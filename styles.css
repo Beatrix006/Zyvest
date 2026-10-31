@@ -33,3 +33,4 @@ body.dark .top-links.open{background:#111b16;border-color:#2a3a31}
 body.dark .primary-button{background:#14865a;color:#fff}
 @media(max-width:760px){.theme-toggle{margin-left:auto;padding:8px 9px;font-size:9px}.theme-label{display:none}.login-link{margin-left:0}}
 body.dark .detail-page{background:var(--paper);color:var(--ink)}
+.footer-signature{display:flex;flex-direction:column;align-items:flex-start;gap:3px}.footer-credit{padding-left:29px;color:#6f8176;font-size:9px;letter-spacing:.25px}body.dark .footer-credit{color:#a2b4a8}

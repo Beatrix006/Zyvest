@@ -4,8 +4,8 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#f4f6f8">
-  <meta name="description" content="Simple Zyvest application user and admin flow guides.">
-  <title>Zyvest | Application Guides</title>
+  <meta name="description" content="Website help guides for Zyvest users and administrators.">
+  <title>Zyvest Website Help Center</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@500;600;700;800&display=swap" rel="stylesheet">
@@ -13,62 +13,62 @@
 </head>
 <body>
   <header class="topbar">
-    <a class="brand" href="#home" aria-label="Zyvest guides home"><span class="brand-mark">z</span><span>zyvest<span class="brand-light">APPLICATION GUIDES</span></span></a>
+    <a class="brand" href="#home" aria-label="Zyvest Website Help Center home"><span class="brand-mark">z</span><span>zyvest<span class="brand-light">WEBSITE HELP CENTER</span></span></a>
     <nav class="top-links" aria-label="Main navigation">
       <button class="nav-button active" data-view="home">Overview</button>
-      <button class="nav-button" data-view="user">User guide</button>
-      <button class="nav-button" data-view="admin">Admin guide</button>
+      <button class="nav-button" data-view="user">User guides</button>
+      <button class="nav-button" data-view="admin">Admin guides</button>
     </nav>
     <button class="theme-toggle" id="themeToggle" type="button" aria-label="Switch to dark theme" title="Switch to dark theme" aria-pressed="false"><span class="theme-icon" aria-hidden="true">☾</span><span class="theme-label">Dark mode</span></button>
-    <a class="login-link" href="https://uat.thinkforgeglobal.com/" target="_blank" rel="noreferrer">Open application <span aria-hidden="true">↗</span></a>
+    <a class="login-link" href="https://uat.thinkforgeglobal.com/" target="_blank" rel="noreferrer">Open Zyvest website <span aria-hidden="true">↗</span></a>
     <button class="menu-toggle" id="menuToggle" aria-label="Open navigation" aria-expanded="false">☰</button>
   </header>
 
   <main id="home">
     <section class="intro" id="overviewView">
-      <p class="eyebrow"><span class="pulse"></span> ZYVEST HELP CENTER</p>
+      <p class="eyebrow"><span class="pulse"></span> ZYVEST WEBSITE HELP CENTER</p>
       <h1>What would you like<br>to understand?</h1>
-      <p class="intro-text">Choose the area that matches your role to see a clear overview of the application flows.</p>
+      <p class="intro-text">Choose User or Admin guides for steps on the Zyvest website. This Help Center explains the flows; it does not sign you in or submit requests.</p>
       <div class="role-grid" aria-label="Choose a guide">
         <button class="role-card" data-view="user">
           <span class="role-icon">♙</span><span class="role-label">ARE YOU A</span><strong>User</strong>
-          <span class="role-description">Learn how to access and manage your Zyvest account.</span><span class="role-action">View user flows <b>→</b></span>
+          <span class="role-description">Read guides for Zyvest website signup, account setup, and Wallet.</span><span class="role-action">View User guides <b>→</b></span>
         </button>
         <button class="role-card" data-view="admin">
           <span class="role-icon">⚙</span><span class="role-label">ARE YOU AN</span><strong>Admin</strong>
-          <span class="role-description">Explore administration workflows and platform controls.</span><span class="role-action">View admin flows <b>→</b></span>
+          <span class="role-description">Read website administration guides as they become available.</span><span class="role-action">View Admin guides <b>→</b></span>
         </button>
       </div>
-      <p class="overview-note">Select a role to get started. You can switch between guides at any time.</p>
+      <p class="overview-note">These are help guides, not account pages. Select a role to browse instructions for the Zyvest website.</p>
     </section>
 
     <section class="guide-view" id="userView" hidden>
       <div class="guide-heading">
         <button class="back-link" data-view="home">← All guides</button>
         <p class="eyebrow">USER GUIDE</p>
-        <h1>User application flows</h1>
-        <p>Choose a module for a quick overview of what the user does and what to check at each step.</p>
+        <h1>Zyvest website · User guides</h1>
+        <p>Each guide explains a step the user completes on the Zyvest website. Open a guide for the sequence, business rules, and checks.</p>
       </div>
       <div class="toolbar">
-        <label class="search-box"><span aria-hidden="true">⌕</span><input id="searchInput" type="search" placeholder="Search user flows" autocomplete="off" aria-label="Search user flows"></label>
+        <label class="search-box"><span aria-hidden="true">⌕</span><input id="searchInput" type="search" placeholder="Search User website guides" autocomplete="off" aria-label="Search User website guides"></label>
         <div class="role-switch"><button class="switch-button selected" data-view="user">User</button><button class="switch-button" data-view="admin">Admin</button></div>
       </div>
       <div class="module-grid" id="moduleGrid" aria-live="polite"></div>
-      <div class="empty-state" id="emptyState" hidden><h2>No matching flows</h2><p>Try another search term.</p></div>
+      <div class="empty-state" id="emptyState" hidden><h2>No matching guides</h2><p>Try another search term.</p></div>
     </section>
 
     <section class="guide-view admin-view" id="adminView" hidden>
       <div class="guide-heading">
         <button class="back-link" data-view="home">← All guides</button>
-        <p class="eyebrow">ADMIN GUIDE</p>
-        <h1>Admin application flows</h1>
-        <p>Admin workflows are ready to be added as the next documentation module.</p>
+        <p class="eyebrow">ADMIN WEBSITE GUIDES</p>
+        <h1>Zyvest website · Admin guides</h1>
+        <p>Admin workflows for the Zyvest website are ready to be added as the next Help Center section.</p>
       </div>
-      <div class="admin-placeholder"><span class="role-icon">⚙</span><h2>Admin flows are coming next</h2><p>This section is set up for admin modules. Select User to review the current account flows.</p><button class="primary-button" data-view="user">Browse user flows <span>→</span></button></div>
+      <div class="admin-placeholder"><span class="role-icon">⚙</span><h2>Admin guides are coming next</h2><p>This Help Center section will explain administrator tasks on the Zyvest website. Select User to browse the current user guides.</p><button class="primary-button" data-view="user">Browse User guides <span>→</span></button></div>
       <div class="role-switch switch-bottom"><button class="switch-button" data-view="user">User</button><button class="switch-button selected" data-view="admin">Admin</button></div>
     </section>
   </main>
-  <footer><span class="footer-brand"><span class="brand-mark">z</span> zyvest</span><span>Application flow reference</span><span>© <span id="year"></span> Zyvest Capital</span></footer>
+  <footer><div class="footer-signature"><span class="footer-brand"><span class="brand-mark">z</span> zyvest</span></div><span>Website Help Center · Flow reference</span><span>© <span id="year"></span> Zyvest Capital</span></footer>
   <script src="script.js"></script>
 </body>
 </html>

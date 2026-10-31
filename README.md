@@ -1,28 +1,26 @@
-# Zyvest Application Guides
+# Zyvest Website Help Center
 
-A standalone responsive reference site built with HTML, CSS, and vanilla JavaScript.
+A standalone Help Center website built with HTML, CSS, and vanilla JavaScript. It documents user and administrator workflows for the separate Zyvest website.
 
 ## Open it
 
 Open `index.html` in a modern browser. No build step or package installation is required.
 
-## Current modules
+## What this site does
 
-- Role selection for User and Admin guides
-- User flows for Log in, Sign up, KYC Verification, Nominee Details, Bank Account Setup, Pending Admin Approval, Profile & account, and Wallet
-- Detailed flow pages with numbered steps and verification checklists
-- Business rules and account-state outcomes for each User flow
-- Screenshot previews with optional captions on each detailed guide page
-- Responsive layout, module search, navigation between roles, and persistent light/dark theme toggle
+- Provides User and Admin guide sections for the Zyvest website
+- Documents Log in, Sign up, KYC Verification, Nominee Details, Bank Account Setup, Pending Admin Approval, Profile, and Wallet flows
+- Shows detailed steps, business rules, account states, verification checks, and local screenshot previews
+- Includes responsive layout, guide search, role navigation, and persistent light/dark theme
 
-New registrations complete contact verification, KYC, nominee, and bank setup before the Pending Admin Approval page. Admin approval routes the user directly to Wallet; approved User modules remain available through User navigation. The Admin guide is an empty section ready for future documentation.
+This is a documentation website. Its guide buttons open help content; they do not sign users into Zyvest, create accounts, submit KYC, approve requests, or process Wallet transactions. Use **Open Zyvest website** to visit the separate product site.
 
-See `BUSINESS_FLOWS.md` for the agreed business logic and implementation boundaries.
+## Onboarding route documented here
+
+New users complete contact verification, KYC, nominee, and bank setup on the Zyvest website. After admin approval, the Zyvest website opens Wallet. The Help Center remains a separate reference site.
+
+See `BUSINESS_FLOWS.md` for the agreed product-flow rules and implementation boundary.
 
 ## Screenshots
 
-Use **Add screenshots** on a detailed guide page to preview image files and add captions. This static prototype displays selected images in the current browser view; it does not upload them to a server or save them between visits.
-
-## Content note
-
-The flow descriptions are a documentation outline based on the supplied requirements. Confirm labels, behavior, and account rules against the live Zyvest application before publishing.
+Use **Add screenshots** on a guide page to preview images and add captions. The Help Center only previews selected images in the current browser view; it does not upload or save them between visits.
