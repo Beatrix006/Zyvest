@@ -3,47 +3,71 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#07110f">
-  <meta name="description" content="Explore Zyvest Capital account, platform, trading and security guides in one place.">
-  <title>Help Center | Zyvest Capital</title>
+  <meta name="theme-color" content="#f4f6f8">
+  <meta name="description" content="Simple Zyvest application user and admin flow guides.">
+  <title>Zyvest | Application Guides</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
 </head>
-<body class="dark">
+<body>
   <header class="topbar">
-    <a class="brand" href="#home" aria-label="Zyvest Capital help center home"><span class="brand-mark">z</span><span>zyvest<span class="brand-light">capital</span></span></a>
-    <nav class="top-links" aria-label="Main navigation"><a href="#home" class="active">Help center</a><a href="#getting-started">Getting started</a><a href="#contact">Contact support</a></nav>
-    <div class="top-actions"><button class="icon-button" id="themeToggle" aria-label="Toggle color theme" title="Toggle theme">◐</button><a class="login-link" href="https://uat.thinkforgeglobal.com/">Client login <span aria-hidden="true">↗</span></a><button class="menu-toggle" id="menuToggle" aria-label="Open navigation">☰</button></div>
+    <a class="brand" href="#home" aria-label="Zyvest guides home"><span class="brand-mark">z</span><span>zyvest<span class="brand-light">APPLICATION GUIDES</span></span></a>
+    <nav class="top-links" aria-label="Main navigation">
+      <button class="nav-button active" data-view="home">Overview</button>
+      <button class="nav-button" data-view="user">User guide</button>
+      <button class="nav-button" data-view="admin">Admin guide</button>
+    </nav>
+    <a class="login-link" href="https://uat.thinkforgeglobal.com/" target="_blank" rel="noreferrer">Open application <span aria-hidden="true">↗</span></a>
+    <button class="menu-toggle" id="menuToggle" aria-label="Open navigation" aria-expanded="false">☰</button>
   </header>
 
   <main id="home">
-    <section class="hero">
-      <div class="hero-grid" aria-hidden="true"></div>
-      <div class="hero-copy"><div class="eyebrow"><span class="pulse"></span> ZYVEST CAPITAL SUPPORT</div><h1>How can we<br><span>help you today?</span></h1><p>Clear answers for your account, trading platform and the markets you explore.</p>
-        <label class="search-box"><span class="search-icon" aria-hidden="true">⌕</span><input id="searchInput" type="search" placeholder="Search guides, topics and questions" autocomplete="off" aria-label="Search help center"><kbd>⌘ K</kbd></label>
-        <div class="popular-searches"><span>Popular:</span><button data-search="verify account">Verify my account</button><button data-search="deposit">Make a deposit</button><button data-search="password">Reset password</button></div>
+    <section class="intro" id="overviewView">
+      <p class="eyebrow"><span class="pulse"></span> ZYVEST HELP CENTER</p>
+      <h1>What would you like<br>to understand?</h1>
+      <p class="intro-text">Choose the area that matches your role to see a clear overview of the application flows.</p>
+      <div class="role-grid" aria-label="Choose a guide">
+        <button class="role-card" data-view="user">
+          <span class="role-icon">♙</span><span class="role-label">ARE YOU A</span><strong>User</strong>
+          <span class="role-description">Learn how to access and manage your Zyvest account.</span><span class="role-action">View user flows <b>→</b></span>
+        </button>
+        <button class="role-card" data-view="admin">
+          <span class="role-icon">⚙</span><span class="role-label">ARE YOU AN</span><strong>Admin</strong>
+          <span class="role-description">Explore administration workflows and platform controls.</span><span class="role-action">View admin flows <b>→</b></span>
+        </button>
       </div>
-      <div class="hero-art" aria-hidden="true"><div class="orb orb-one"></div><div class="orb orb-two"></div><div class="chart-card"><div class="chart-top"><span>MARKET OVERVIEW</span><span class="live"><i></i> LIVE</span></div><div class="chart-value">Explore with confidence</div><svg viewBox="0 0 360 110" preserveAspectRatio="none"><defs><linearGradient id="fade" x1="0" x2="0" y1="0" y2="1"><stop offset="0" stop-color="#06e5a0" stop-opacity=".28"/><stop offset="1" stop-color="#06e5a0" stop-opacity="0"/></linearGradient></defs><path d="M0 85 C28 82 30 60 58 68 S94 52 111 60 137 40 157 50 177 43 198 48 227 24 247 34 273 29 290 39 322 10 360 16 V110 H0Z" fill="url(#fade)"/><path d="M0 85 C28 82 30 60 58 68 S94 52 111 60 137 40 157 50 177 43 198 48 227 24 247 34 273 29 290 39 322 10 360 16" fill="none" stroke="#00dfa0" stroke-width="2.5"/></svg><div class="chart-foot"><span>Education first</span><span>Tools for every step</span></div></div><div class="floating-badge"><span class="badge-icon">✓</span><span><b>Your next step</b><small>Find a clear answer</small></span></div></div>
-      <div class="hero-bottom"><span>Built for every stage of your journey</span><span class="scroll-cue">SCROLL TO EXPLORE <b>↓</b></span></div>
+      <p class="overview-note">Select a role to get started. You can switch between guides at any time.</p>
     </section>
 
-    <section class="content-wrap" id="getting-started">
-      <div class="section-heading"><div><div class="eyebrow dark-eyebrow">THE KNOWLEDGE BASE</div><h2>Find your way around</h2><p>Browse our guides by topic, or search for a quick answer.</p></div><div class="results-count" id="resultsCount">8 collections <span>·</span> 24 guides</div></div>
-      <div class="layout">
-        <aside class="sidebar" aria-label="Help topics"><div class="side-label">BROWSE TOPICS</div><button class="side-link selected" data-category="all"><span>◫</span> All topics <b>24</b></button><button class="side-link" data-category="start"><span>✦</span> Getting started <b>4</b></button><button class="side-link" data-category="account"><span>◎</span> Account & verification <b>4</b></button><button class="side-link" data-category="funding"><span>↔</span> Deposits & withdrawals <b>4</b></button><button class="side-link" data-category="platform"><span>▦</span> Trading platform <b>4</b></button><button class="side-link" data-category="markets"><span>⌁</span> Markets & trading <b>4</b></button><button class="side-link" data-category="security"><span>♢</span> Safety & security <b>4</b></button><div class="sidebar-note"><div class="note-icon">?</div><b>Need a hand?</b><p>Our support team can point you in the right direction.</p><a href="#contact">Get in touch <span>↗</span></a></div></aside>
-        <div class="guides-area"><div class="guide-grid" id="guideGrid" aria-live="polite"></div><div class="empty-state" id="emptyState" hidden><div>⌕</div><h3>No guides found</h3><p>Try another search or choose a different topic.</p><button id="clearSearch">Clear search</button></div></div>
+    <section class="guide-view" id="userView" hidden>
+      <div class="guide-heading">
+        <button class="back-link" data-view="home">← All guides</button>
+        <p class="eyebrow">USER GUIDE</p>
+        <h1>User application flows</h1>
+        <p>Choose a module for a quick overview of what the user does and what to check at each step.</p>
       </div>
+      <div class="toolbar">
+        <label class="search-box"><span aria-hidden="true">⌕</span><input id="searchInput" type="search" placeholder="Search user flows" autocomplete="off" aria-label="Search user flows"></label>
+        <div class="role-switch"><button class="switch-button selected" data-view="user">User</button><button class="switch-button" data-view="admin">Admin</button></div>
+      </div>
+      <div class="module-grid" id="moduleGrid" aria-live="polite"></div>
+      <div class="empty-state" id="emptyState" hidden><h2>No matching flows</h2><p>Try another search term.</p></div>
     </section>
 
-    <section class="trust-strip"><div class="trust-inner"><div class="trust-icon">✳</div><div><span class="eyebrow">A QUICK REMINDER</span><h2>Build knowledge before you make a move.</h2><p>Trading involves risk. Take time to understand products, costs and potential outcomes before placing a trade.</p></div><a href="#getting-started" data-search="order types" class="text-arrow">Explore trading basics <span>↗</span></a></div></section>
-
-    <section class="contact-section" id="contact"><div><div class="eyebrow dark-eyebrow">WE’RE HERE TO HELP</div><h2>Still have a question?</h2><p>Tell us what you need help with and our team will guide you to the right resource.</p></div><a class="contact-button" href="https://uat.thinkforgeglobal.com/">Open client portal <span>↗</span></a><div class="contact-orbit" aria-hidden="true"></div></section>
+    <section class="guide-view admin-view" id="adminView" hidden>
+      <div class="guide-heading">
+        <button class="back-link" data-view="home">← All guides</button>
+        <p class="eyebrow">ADMIN GUIDE</p>
+        <h1>Admin application flows</h1>
+        <p>Admin workflows are ready to be added as the next documentation module.</p>
+      </div>
+      <div class="admin-placeholder"><span class="role-icon">⚙</span><h2>Admin flows are coming next</h2><p>This section is set up for admin modules. Select User to review the current account flows.</p><button class="primary-button" data-view="user">Browse user flows <span>→</span></button></div>
+      <div class="role-switch switch-bottom"><button class="switch-button" data-view="user">User</button><button class="switch-button selected" data-view="admin">Admin</button></div>
+    </section>
   </main>
-  <footer><a class="brand footer-brand" href="#home"><span class="brand-mark">z</span><span>zyvest<span class="brand-light">capital</span></span></a><span>© <span id="year"></span> Zyvest Capital. All rights reserved.</span><div><a href="#contact">Support</a><a href="https://uat.thinkforgeglobal.com/">Client portal</a></div></footer>
+  <footer><span class="footer-brand"><span class="brand-mark">z</span> zyvest</span><span>Application flow reference</span><span>© <span id="year"></span> Zyvest Capital</span></footer>
   <script src="script.js"></script>
 </body>
 </html>
-
-
