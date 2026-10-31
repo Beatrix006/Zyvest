@@ -9,13 +9,13 @@ Open `index.html` in a modern browser. No build step or package installation is 
 ## Current modules
 
 - Role selection for User and Admin guides
-- User flows for Log in, Sign up, KYC Verification, Nominee Details, Bank Account Setup, Pending Admin Approval, Dashboard, Profile & account, Trading accounts, and Wallet
+- User flows for Log in, Sign up, KYC Verification, Nominee Details, Bank Account Setup, Pending Admin Approval, Profile & account, and Wallet
 - Detailed flow pages with numbered steps and verification checklists
 - Business rules and account-state outcomes for each User flow
 - Screenshot previews with optional captions on each detailed guide page
-- Responsive layout, module search, and navigation between roles
+- Responsive layout, module search, navigation between roles, and persistent light/dark theme toggle
 
-New registrations complete contact verification, KYC, nominee, and bank setup before the Pending Admin Approval page. Approval unlocks the Dashboard and remaining User modules. The Admin guide is an empty section ready for future documentation.
+New registrations complete contact verification, KYC, nominee, and bank setup before the Pending Admin Approval page. Admin approval routes the user directly to Wallet; approved User modules remain available through User navigation. The Admin guide is an empty section ready for future documentation.
 
 See `BUSINESS_FLOWS.md` for the agreed business logic and implementation boundaries.
 
