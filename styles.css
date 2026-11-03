@@ -36,8 +36,11 @@ body.dark .detail-page{background:var(--paper);color:var(--ink)}
 .footer-signature{display:flex;flex-direction:column;align-items:flex-start;gap:3px}.footer-credit{padding-left:29px;color:#6f8176;font-size:9px;letter-spacing:.25px}body.dark .footer-credit{color:#a2b4a8}
 
 /* Readable, standard system typography across the Help Center. */
-:root{font-family:system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;font-size:16px;line-height:1.5;--font:system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;--display:system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif}
+:root{font-family:system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;font-size:16px;line-height:1.5;--font:system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;--display:system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;--page-width:1120px}
 body{font-family:var(--font);font-size:1rem;line-height:1.5;-webkit-font-smoothing:auto}
+.topbar{padding-left:max(calc((100vw - var(--page-width))/2 + 24px),24px);padding-right:max(calc((100vw - var(--page-width))/2 + 24px),24px)}
+.intro,.guide-view{max-width:var(--page-width)}
+footer{padding-left:max(calc((100vw - var(--page-width))/2 + 24px),24px);padding-right:max(calc((100vw - var(--page-width))/2 + 24px),24px)}
 .brand,.footer-brand{font-family:var(--display);font-weight:700;letter-spacing:-.3px}
 .brand-light{font-size:.6875rem;letter-spacing:.06em}
 .nav-button,.switch-button{font-size:.875rem}
@@ -57,4 +60,4 @@ body{font-family:var(--font);font-size:1rem;line-height:1.5;-webkit-font-smoothi
 .screenshot-heading p:not(.eyebrow),.upload-hint{font-size:.875rem;line-height:1.55}
 .screenshot-card figcaption input,.remove-screenshot{font-size:.8125rem}
 footer{font-size:.8125rem;line-height:1.5}
-@media(max-width:760px){.intro h1{font-size:2.375rem}.guide-heading h1{font-size:1.875rem}.detail-content>h1{font-size:1.875rem}}
+@media(max-width:760px){.topbar{padding-left:18px;padding-right:18px}.intro,.guide-view{max-width:100%;padding-left:19px;padding-right:19px}.intro h1{font-size:2.375rem}.guide-heading h1{font-size:1.875rem}.detail-content>h1{font-size:1.875rem}footer{padding-left:18px;padding-right:18px}}
