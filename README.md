@@ -9,11 +9,14 @@ Open `index.html` in a modern browser. No build step or package installation is 
 ## What this site does
 
 - Provides User and Admin guide sections for the Zyvest website
+- Shows the supplied Admin dashboard reference first, followed by clickable 3 × 3 cards for its nine visible navigation areas
 - Documents Log in, Sign up, KYC Verification, Nominee Details, Bank Account Setup, Profile, and Wallet flows
-- Shows detailed steps, business rules, account states, verification checks, and local screenshot previews
+- Shows detailed steps, business rules, account states, verification checks, and project-managed screenshot references
 - Includes responsive layout, guide search, role navigation, and persistent light/dark theme
 
 This is a documentation website. Its guide buttons open help content; they do not sign users into Zyvest, create accounts, submit KYC, approve requests, or process Wallet transactions. Use **Open Zyvest website** to visit the separate product site.
+
+Admin overview cards open Help Center detail pages. The Dashboard card includes a thumbnail of the reference image, and its detail explains the charts and every visible metric. The Customers guide includes User Management and MT5 Management screenshots with explanations of their visible metrics, filters, table fields, and actions. Remaining Admin cards say “Update coming soon” until their workflows are provided. Card clicks do not perform administrator actions on the Zyvest website.
 
 ## Onboarding route documented here
 
@@ -23,4 +26,4 @@ See `BUSINESS_FLOWS.md` for the agreed product-flow rules and implementation bou
 
 ## Screenshots
 
-Use **Add screenshots** on a guide page to preview images and add captions. The Help Center only previews selected images in the current browser view; it does not upload or save them between visits.
+To add screenshots, attach the images in the project chat. The Help Center editor will place them in the project assets and connect them to the relevant guide; site visitors do not upload screenshots through the front end.

@@ -72,6 +72,6 @@ Pending/Rejected users cannot access approved-user modules. Admin approval opens
 
 ## Help Center and product boundary
 
-The Help Center is a separate static website built with HTML/CSS/JavaScript. It displays workflow documentation and previews screenshots locally. It does not authenticate users, create accounts, submit KYC, approve onboarding, or process Wallet transactions. Those actions occur on the Zyvest website and must be enforced by Zyvest backend services.
+The Help Center is a separate static website built with HTML/CSS/JavaScript. It displays workflow documentation and project-managed screenshot assets. It does not authenticate users, create accounts, submit KYC, approve onboarding, or process Wallet transactions. Those actions occur on the Zyvest website and must be enforced by Zyvest backend services.
 
 Do not add product sign-in or transaction behavior to this Help Center unless the project is intentionally changed from documentation site to product implementation. KYC document types, nominee requirements, bank verification, review SLA, payment methods/currencies/fees/limits, provider status codes, transfer options, and notification rules must come from Zyvest product configuration; do not invent them in the guide.

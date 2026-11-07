@@ -50,6 +50,120 @@ const modules = [
   }
 ];
 
+// Screenshot assets are added to the project by the Help Center editor, not uploaded by site visitors.
+const guideScreenshots = {
+  login: [],
+  signup: [],
+  kyc: [],
+  nominee: [],
+  'bank-account': [],
+  profile: [],
+  wallet: []
+};
+
+const adminAreas = {
+  dashboard: {
+    title: 'Dashboard',
+    summary: 'See the dashboard charts and the metrics shown in the reference.',
+    charts: [
+      { title: 'Activity chart', text: 'Plots activity across the dates shown on the chart.' },
+      { title: 'Net Revenue Chart', text: 'Shows total revenue change over the displayed three-month period.' }
+    ],
+    metrics: [
+      { group: 'Financial activity', items: [
+        ['Total Deposit', 'Displays the total deposit value reported on the dashboard.'],
+        ['Total Withdraw', 'Displays the total withdrawal value reported on the dashboard.'],
+        ['Pending Deposit', 'Shows deposits currently marked as pending.'],
+        ['Pending Withdraw', 'Shows withdrawals currently marked as pending.'],
+        ['Pending IB Withdraw', 'Shows IB withdrawal items currently marked as pending.'],
+        ['Total IB Withdraw', 'Displays the total IB withdrawal value reported on the dashboard.']
+      ] },
+      { group: 'Users and accounts', items: [
+        ['KYC Unverified', 'Shows users whose identity verification is not marked verified.'],
+        ['Total IB', 'Displays the dashboard total for Introducing Brokers.'],
+        ['Demo Accounts', 'Shows the number of demo accounts.'],
+        ['Live Accounts', 'Shows the number of live accounts.'],
+        ['Active Users', 'Shows the active user total.'],
+        ['Pending Bank Details', 'Shows bank detail items waiting for review.'],
+        ['Pending IB Request', 'Shows Introducing Broker requests waiting for review.'],
+        ['Total Users', 'Shows the total user count.']
+      ] },
+      { group: 'Support tickets', items: [
+        ['Open Tickets', 'Shows support tickets that remain open.'],
+        ['Closed Tickets', 'Shows support tickets marked closed.'],
+        ['Escalated Tickets', 'Shows support tickets that have been escalated.']
+      ] }
+    ]
+  },
+  customers: {
+    title: 'Customers',
+    summary: 'Review customer records across User Management, KYC Management, Bank Account Management, and MT5 Management.',
+    references: [
+      { src: 'screenshots/admin-customers-user-management.png', alt: 'Zyvest admin User Management screen with customer metrics, filters, and user records', caption: 'User Management · customer overview, KYC status, filters, and user records.' },
+      { src: 'screenshots/admin-customers-mt5-management.png', alt: 'Zyvest admin MT5 Management screen with account metrics, filters, and MT5 records', caption: 'MT5 Management · account counts, filters, and MT5 account records.' }
+    ],
+    sections: [
+      { title: 'User Management', items: [
+        ['Total Users', 'Counts the registered users shown in User Management.'],
+        ['Active Users', 'Counts users whose account status is active.'],
+        ['KYC Verified', 'Counts users who have completed KYC verification.'],
+        ['Disabled Accounts', 'Counts accounts that are disabled.'],
+        ['Search & filters', 'Search users, then narrow results by Status, Country, Profession, KYC Status, or Date.'],
+        ['Row & page actions', 'View & Edit opens a user record. Report, View, and Add New User are shown in the toolbar.']
+      ] },
+      { title: 'User Management · table columns', items: [
+        ['Take Action', 'Select a row or open its View & Edit action.'],
+        ['User ID', 'Unique Zyvest identifier for the user.'],
+        ['Name of the User', 'Name displayed for the user.'],
+        ['Country', 'Country recorded on the user profile.'],
+        ['KYC Status', 'Current identity verification status.'],
+        ['Wallet Balance', 'Wallet amount displayed for the user.'],
+        ['IB Status', 'Whether the user’s Introducing Broker status is enabled.'],
+        ['IB ID', 'Identifier for the associated Introducing Broker, when present.'],
+        ['Account Status', 'Current status of the user account.'],
+        ['Email ID', 'Email address associated with the user.'],
+        ['Phone Number', 'Phone number recorded for the user.'],
+        ['Date of Submission', 'Date the user record or application was submitted.'],
+        ['2FA', 'Whether two-factor authentication is active.'],
+        ['Profession', 'Profession recorded on the user profile.'],
+        ['DOB', 'Date of birth recorded on the user profile.']
+      ] },
+      { title: 'MT5 Management', items: [
+        ['Total Users', 'Counts the users represented in MT5 management.'],
+        ['Demo Accounts', 'Counts accounts created for practice trading.'],
+        ['Live Accounts', 'Counts accounts created for live trading.'],
+        ['Accounts / Requested', 'Switch between existing MT5 accounts and account requests.'],
+        ['Search & filters', 'Search MT5 accounts and filter by Group Name, Country, Date, or Account Type.'],
+        ['Row & page actions', 'View Details opens an account record. Report, View, and Add MT5 Account appear in the toolbar.']
+      ] },
+      { title: 'MT5 Management · table columns', items: [
+        ['Take Action', 'Open View Details for the selected account.'],
+        ['MT5 ID', 'Identifier assigned to the MT5 trading account.'],
+        ['User ID', 'Zyvest identifier of the account owner.'],
+        ['Name of the User', 'Name displayed for the account owner.'],
+        ['Email ID', 'Email address associated with the account owner.'],
+        ['Account Type', 'Whether the account is Live or Demo.'],
+        ['Group Name', 'Trading group assigned to the account.'],
+        ['Status', 'Current status of the MT5 account.'],
+        ['Registration Date', 'Date the MT5 account was registered.']
+      ] },
+      { title: 'KYC Management', items: [
+        ['KYC review area', 'Use this Customers tab to access KYC-related customer records and review information. The supplied reference shows the tab but not its detailed fields or actions.']
+      ] },
+      { title: 'Bank Account Management', items: [
+        ['Bank details area', 'Use this Customers tab to access customer bank account information. The supplied reference shows the tab but not its detailed fields or actions.']
+      ] }
+    ]
+  },
+  transactions: { title: 'Transactions', comingSoon: true },
+  support: { title: 'Support', comingSoon: true },
+  ib: { title: 'IB', comingSoon: true },
+  bonus: { title: 'Bonus', comingSoon: true },
+  'user-levels': { title: 'User Levels', comingSoon: true },
+  settings: { title: 'Settings', comingSoon: true },
+  tools: { title: 'Tools', comingSoon: true }
+};
+
 const viewElements = {
   home: document.querySelector('#overviewView'),
   user: document.querySelector('#userView'),
@@ -92,6 +206,7 @@ function renderModules() {
 function openModule(id) {
   const module = modules.find(item => item.id === id);
   if (!module) return;
+  const screenshots = guideScreenshots[module.id] || [];
   const detail = document.createElement('section');
   detail.className = 'detail-page';
   detail.setAttribute('role', 'dialog');
@@ -106,21 +221,18 @@ function openModule(id) {
         <section class="detail-panel check-panel"><h2>What to verify</h2><ul>${module.checks.map(check => `<li>${escapeHtml(check)}</li>`).join('')}</ul></section>
       </div>
       <section class="detail-panel business-rules"><p class="eyebrow">IMPLEMENTATION RULES</p><h2>Business rules & account states</h2><ul>${module.rules.map(rule => `<li>${escapeHtml(rule)}</li>`).join('')}</ul></section>
-      <section class="screenshots-panel"><div class="screenshot-heading"><div><p class="eyebrow">VISUAL WALKTHROUGH</p><h2>Website step screenshots</h2><p>Add screenshots of the Zyvest website to illustrate each guide step.</p></div><label class="upload-button">＋ Add screenshots<input class="screenshot-input" type="file" accept="image/*" multiple></label></div>
-        <div class="upload-hint">Choose one or more image files. Screenshots are previewed in this page; this static demo does not upload them to a server.</div>
-        <div class="screenshot-grid" aria-live="polite"><div class="screenshot-empty">No screenshots added yet.</div></div>
+      <section class="screenshots-panel"><div class="screenshot-heading"><div><p class="eyebrow">VISUAL WALKTHROUGH</p><h2>Website step screenshots</h2><p>Reference screenshots for the steps in this guide.</p></div></div>
+        <div class="screenshot-grid">${screenshots.length ? screenshots.map(screenshot => `<figure class="screenshot-card"><img src="${escapeHtml(screenshot.src)}" alt="${escapeHtml(screenshot.alt || screenshot.caption || module.title)}"><figcaption>${escapeHtml(screenshot.caption || '')}</figcaption></figure>`).join('') : '<div class="screenshot-empty">Screenshots for this guide will appear here when added to the Help Center.</div>'}</div>
       </section>
     </div>`;
   document.body.append(detail);
   document.body.style.overflow = 'hidden';
   const close = () => {
-    detail.querySelectorAll('.screenshot-card img').forEach(image => URL.revokeObjectURL(image.src));
     detail.remove();
     document.body.style.overflow = '';
   };
   detail.querySelectorAll('.close-detail').forEach(button => button.addEventListener('click', close));
   detail.addEventListener('click', event => { if (event.target === detail) close(); });
-  detail.querySelector('.screenshot-input').addEventListener('change', event => addScreenshots(event.target.files, detail));
   detail.addEventListener('keydown', event => {
     if (event.key === 'Escape') close();
     if (event.key === 'Tab') keepFocusInside(event, detail);
@@ -128,17 +240,38 @@ function openModule(id) {
   detail.querySelector('.close-button').focus();
 }
 
-function addScreenshots(files, detail) {
-  const container = detail.querySelector('.screenshot-grid');
-  container.querySelector('.screenshot-empty')?.remove();
-  [...files].filter(file => file.type.startsWith('image/')).forEach(file => {
-    const url = URL.createObjectURL(file);
-    const card = document.createElement('figure');
-    card.className = 'screenshot-card';
-    card.innerHTML = `<img src="${url}" alt="Screenshot for ${escapeHtml(detail.querySelector('#detailTitle').textContent)}"><figcaption><input type="text" aria-label="Screenshot caption" placeholder="Add a short caption"><button type="button" class="remove-screenshot" aria-label="Remove screenshot">Remove</button></figcaption>`;
-    card.querySelector('.remove-screenshot').addEventListener('click', () => { URL.revokeObjectURL(url); card.remove(); if (!container.querySelector('.screenshot-card')) container.innerHTML = '<div class="screenshot-empty">No screenshots added yet.</div>'; });
-    container.append(card);
+function openAdminArea(id) {
+  const area = adminAreas[id];
+  if (!area) return;
+  const detail = document.createElement('section');
+  detail.className = 'detail-page';
+  detail.setAttribute('role', 'dialog');
+  detail.setAttribute('aria-modal', 'true');
+  detail.setAttribute('aria-labelledby', 'adminDetailTitle');
+  detail.innerHTML = `
+    <div class="detail-topbar"><button class="back-link close-admin-detail">← Admin overview</button><span class="detail-counter">ZYVEST WEBSITE · ADMIN GUIDE</span><button class="close-button close-admin-detail" aria-label="Close guide">×</button></div>
+    <div class="detail-content admin-detail-content">
+      <p class="eyebrow">HELP CENTER · ADMIN GUIDE</p>
+      <h1 id="adminDetailTitle">${escapeHtml(area.title)}</h1>
+      ${area.summary ? `<p class="detail-intro">${escapeHtml(area.summary)}</p>` : ''}
+      ${area.comingSoon ? `<section class="admin-coming-soon"><span class="admin-coming-soon-label">GUIDE STATUS</span><h2>Update coming soon</h2><p>The detailed ${escapeHtml(area.title)} guide will be added when its workflow is provided.</p></section>` : `
+        ${area.references?.length ? `<section class="customer-reference-grid" aria-label="${escapeHtml(area.title)} screenshots">${area.references.map(ref => `<figure class="customer-reference"><img src="${escapeHtml(ref.src)}" alt="${escapeHtml(ref.alt)}"><figcaption>${escapeHtml(ref.caption)}</figcaption></figure>`).join('')}</section>` : ''}
+        ${area.sections?.map(group => `<section class="dashboard-explanation"><h2>${escapeHtml(group.title)}</h2><div class="dashboard-metric-grid customer-guide-grid">${group.items.map(([title, text]) => `<article class="dashboard-info-card"><h3>${escapeHtml(title)}</h3><p>${escapeHtml(text)}</p></article>`).join('')}</div></section>`).join('') || ''}
+        ${area.charts?.length ? `<section class="dashboard-explanation"><h2>Charts</h2><div class="dashboard-chart-grid">${area.charts.map(chart => `<article class="dashboard-info-card"><h3>${escapeHtml(chart.title)}</h3><p>${escapeHtml(chart.text)}</p></article>`).join('')}</div></section>` : ''}
+        ${area.metrics?.map(group => `<section class="dashboard-explanation"><h2>${escapeHtml(group.group)}</h2><div class="dashboard-metric-grid">${group.items.map(([title, text]) => `<article class="dashboard-info-card"><h3>${escapeHtml(title)}</h3><p>${escapeHtml(text)}</p></article>`).join('')}</div></section>`).join('') || ''}
+      `}
+      <aside class="admin-reference-note"><strong>About this guide</strong><p>This page explains an area of the separate Zyvest website. It does not perform administrator actions or change account data.</p></aside>
+    </div>`;
+  document.body.append(detail);
+  document.body.style.overflow = 'hidden';
+  const close = () => { detail.remove(); document.body.style.overflow = ''; };
+  detail.querySelectorAll('.close-admin-detail').forEach(button => button.addEventListener('click', close));
+  detail.addEventListener('click', event => { if (event.target === detail) close(); });
+  detail.addEventListener('keydown', event => {
+    if (event.key === 'Escape') close();
+    if (event.key === 'Tab') keepFocusInside(event, detail);
   });
+  detail.querySelector('.close-button').focus();
 }
 
 function keepFocusInside(event, container) {
@@ -150,6 +283,10 @@ function keepFocusInside(event, container) {
 
 document.querySelectorAll('[data-view]').forEach(button => button.addEventListener('click', () => setView(button.dataset.view)));
 document.querySelectorAll('.nav-button').forEach(button => button.addEventListener('click', () => setView(button.dataset.view)));
+document.querySelector('.admin-function-grid')?.addEventListener('click', event => {
+  const card = event.target.closest('[data-admin-area]');
+  if (card) openAdminArea(card.dataset.adminArea);
+});
 search.addEventListener('input', renderModules);
 const themeToggle = document.querySelector('#themeToggle');
 const themeIcon = themeToggle.querySelector('.theme-icon');

@@ -14,8 +14,8 @@ You are refining the existing **Zyvest Website Help Center**. This project is th
 - Preserve the working light/dark theme control. The theme must apply consistently to the header, navigation, content, detail pages, and footer, and remain selected between visits when browser storage is available.
 - Improve typography, spacing, responsive behavior, contrast, focus states, empty/error states, and component consistency.
 - Use restrained animations and transitions; respect `prefers-reduced-motion`.
-- Keep detailed pages scannable, with flow steps, business rules/account states, verification checks, and screenshot upload/preview.
-- Keep screenshot previews local to the current page; do not imply that screenshots are uploaded or saved by this static prototype.
+- Keep detailed pages scannable, with flow steps, business rules/account states, verification checks, and screenshots stored as project assets.
+- Screenshots are supplied by the project owner in the chat and added to the project files by the editor. Do not add a visitor-facing file upload control; reference screenshots from the static assets folder.
 - Keep the project openable in a modern browser without a build step or package installation.
 
 ## Business logic — preserve these rules
@@ -50,14 +50,14 @@ You are refining the existing **Zyvest Website Help Center**. This project is th
 
 - This project is a **static Help Center website**, separate from Zyvest's customer website and backend. It provides instructions only. Do not build or imply product authentication, OTP, Google OAuth, KYC approval, or payment processing in the Help Center.
 - Do not invent KYC document types, nominee/bank fields, verification methods, fees, currencies, limits, review timelines, support contacts, or compliance rules. Use neutral wording or marked configuration placeholders.
-- Keep Admin as a well-designed placeholder for future Admin website guides; do not fabricate workflows.
+- Keep the Admin guides view centered on the supplied dashboard reference screenshot and its nine clickable 3 × 3 overview cards in this order: Dashboard, Customers, Transactions, Support, IB, Bonus, User Levels, Settings, and Tools. The Dashboard card includes a screenshot thumbnail; clicking any card opens a Help Center detail view. The Dashboard detail explains every visible chart and metric without repeating the screenshot. Other Admin areas display “Update coming soon” until the project owner supplies their specific workflows. Card clicks only browse documentation and never perform Admin actions on the Zyvest website. Do not invent unseen administrator workflows.
 - Do not create fake balances, fake success messages, or fake transaction results.
 - Do not remove unrelated files or add a framework/dependency without a concrete need.
 
 ## Quality and delivery
 
 - Keep semantic HTML, keyboard navigation, visible focus, accessible labels, suitable contrast, and mobile support.
-- Ensure role switches, module cards, detail/back/close actions, search, theme toggle, and screenshot controls work.
+- Ensure role switches, User modules, clickable Admin cards, detail/back/close actions, search, theme toggle, and static screenshot rendering work.
 - Avoid console errors, broken references, invalid markup, and CSS/JavaScript errors. Use only existing validation tools; do not install packages.
 - Keep the UI copy synchronized with `BUSINESS_FLOWS.md` and consistently label this project as the Help Center website.
 - Summarize the design changes, changed files, checks performed, and product rules that still need Zyvest confirmation.
