@@ -61,6 +61,69 @@ const guideScreenshots = {
   wallet: []
 };
 
+const ibModules = {
+  'ib-management': {
+    title: 'IB Management',
+    summary: 'Review IB requests and existing partners, inspect a request, and see the fields used when adding an IB.',
+    flow: ['Open IB → IB Management on the Zyvest website.', 'Review the summary cards for Total IB, Total IB Requests, Total Clients, and Total Reward.', 'Choose Requesters, Partners, or Termination to view the corresponding list.', 'Search for an IB or narrow the list with Status, IB Type, IB Level, Country, or Date.', 'Select View & Proceed to inspect a request. The reference shows the applicant details with Approve and Reject controls.', 'To add an IB, select Add New IB, search for a user, choose an IB Type, then select Add.', 'Use the row and status shown on the website to confirm the outcome. This Help Center does not submit or approve requests.'],
+    references: [
+      ['ib-management-overview.png','IB Management overview with summary cards, tabs, filters, and IB rows.'],
+      ['ib-management-requesters-tab.png','IB Management Requesters tab and requester list.'],
+      ['ib-management-review-request.png','IB request details with applicant information and Approve or Reject controls.'],
+      ['ib-management-add-ib.png','Add New IB dialog with user and IB type fields.'],
+      ['ib-management-add-ib-form.png','Add New IB form reference.'],
+      ['ib-management-status-filter.png','IB Management status filter options.'],
+      ['ib-management-type-filter.png','IB Management IB Type filter.'],
+      ['ib-management-level-filter.png','IB Management IB Level filter.'],
+      ['ib-management-country-filter.png','IB Management Country filter.'],
+      ['ib-management-date-filter.png','IB Management Date filter.']
+    ],
+    sections: [
+      {title:'Summary cards and page controls',items:[
+        ['Total IB','Count of Introducing Brokers displayed in the summary.'],['Total IB Requests','Request count displayed by the page. The reference does not define how request states affect this count.'],['Total Clients','Client count displayed in the summary.'],['Total Reward','Reward amount shown by the page.'],['Requesters / Partners / Termination','Switch between the named IB lists or the termination area.'],['Search IB','Find an IB record by the text accepted by the website search.'],['Report','Opens the report action shown in the toolbar.'],['View','Opens the table display options shown in the toolbar.'],['Add New IB','Opens a form to select a user and an IB Type.'] ]},
+      {title:'Filters and request review',items:[
+        ['Status','Filter by the shown statuses: Approved, Pending, or Rejected.'],['IB Type','Narrow the list by the available IB type.'],['IB Level','Filter by the displayed level, including Main IB or Sub IB.'],['Country','Narrow the list by country.'],['Date','Filter records by date.'],['View & Proceed','Open the selected request details for review.'],['Approve / Reject','Decision controls shown in the request detail reference; use the Zyvest website’s confirmation and policy before taking action.'] ]},
+      {title:'IB Management table columns',items:[
+        ['Take Action','Open the row action, shown as View & Proceed for requests.'],['IB ID','Identifier for the Introducing Broker record.'],['User ID','Zyvest identifier of the associated user.'],['Name','Name displayed for the IB.'],['Email','Email associated with the IB record.'],['IB Type','Type assigned to the IB.'],['IB Level','Level displayed for the IB, such as Main IB or Sub IB.'],['Country','Country recorded for the IB.'],['Termination Status','Termination state shown in the table.'],['IB Status','Current IB status displayed in the row.'],['Reg Date','Registration date shown for the record.'],['Direct Client','Direct client count displayed for the IB.'],['Trading volume Lots','Trading volume measured in lots as displayed.'],['Trading volume USD','Trading volume value in USD as displayed.'],['Reward Amount','Reward amount displayed for the IB.'] ]},
+      {title:'Add New IB fields',items:[['Select User','Search for and select the user to associate with the new IB.'],['IB Type','Choose the IB type for the selected user.'],['Cancel','Close the form without adding from this dialog.'],['Add','Submit the selected user and IB type on the Zyvest website.']]}
+    ]
+  },
+  'ib-type': {
+    title:'IB Type', summary:'Understand the IB type list, its filters, and the fields shown when an administrator creates or edits a type.',
+    flow:['Open IB → IB Type on the Zyvest website.','Review the Total IB Types, Total IB, Total Clients, and Total Reward summary cards.','Search for a type or filter by Status, Registration, or Level.','Use View & Edit on a row to inspect or update a type.','To create a type, choose Add New Type and complete the required name, registration, and approval fields.','Add the description and any optional reward conditions shown in the form.','Review the reward criteria and status. The form notes that levels and symbols must be defined before status can be Enabled.','Select Save & Continue and follow the website’s next step. Update Symbols is also visible in the toolbar; the screenshots do not show its full workflow.'],
+    references:[
+      ['ib-type-overview.png','IB Type overview with summary cards, filters, actions, and type records.'],['ib-type-status-filter.png','IB Type status filter.'],['ib-type-registration-filter.png','IB Type Registration filter.'],['ib-type-level-filter.png','IB Type Level filter.'],['ib-type-column-visibility.png','IB Type table column visibility menu.'],['ib-type-create-form-top.png','Upper fields of the Add New IB Type form.'],['ib-type-create-form-bottom.png','Reward criteria and status fields near the bottom of the form.']
+    ],
+    sections:[
+      {title:'Summary cards and page controls',items:[['Total IB Types','Number of IB types shown.'],['Total IB','Number of Introducing Brokers shown.'],['Total Clients','Number of clients shown.'],['Total Reward','Reward amount displayed in the summary.'],['Search IB Types','Find a type using the website search.'],['Status / Registration / Level','Filter the type list by the selected property.'],['Report','Open the report action shown on the page.'],['View','Open table display options.'],['Update Symbols','A symbols action is visible; the supplied screenshots do not show its detailed behavior.'],['Add New Type','Open the IB type creation form.']]},
+      {title:'IB Type table columns',items:[['Take Action','Open View & Edit for the selected type.'],['Type ID','Identifier assigned to the type.'],['Name','Type name.'],['Description','Description recorded for the type.'],['Registration','Registration setting displayed, such as Public, Private, or Restricted.'],['Status','Type status displayed as Enabled or Disabled.'],['Approval','Approval setting shown for the type.'],['No of IB','Number of IBs associated with the type.'],['No of Clients','Number of clients associated with the type.'],['Level','Level value displayed for the type.'],['No Of Tier','Tier count shown in the table.'],['Created Date','Date the type was created.'],['Reward Amount','Reward amount displayed for the type.']]},
+      {title:'Add New IB Type form',items:[['Name · required','Enter the name for this IB type.'],['Description','Enter a description for the type.'],['Registration · required','Choose the registration setting. The filter reference shows Public, Private, and Restricted.'],['Approval · required','Set the approval option presented by the form.'],['Mask Email · required','Set the email masking option presented by the form.'],['Reward Condition · optional','Optional condition text/setting shown by the form.'],['Traders','Reward criterion field shown in the lower form.'],['Trading Volume in Lots','Reward criterion based on lot volume.'],['Trading Volume in USD','Reward criterion based on USD volume.'],['Status · required','The form says status can be Enabled only after levels and symbols are defined.'],['Cancel','Leave the form without saving.'],['Save & Continue','Save the form and continue to the next website step.']]},
+      {title:'Filters and table display',items:[['Status filter','Choose Enabled or Disabled.'],['Registration filter','Choose Public, Private, or Restricted.'],['Level filter','Choose the level values shown by the website.'],['Column visibility','Use the column menu to show or hide available table columns.']]}
+    ]
+  },
+  clients:{
+    title:'Clients',summary:'See how the Clients page lists IB-linked customers, what each summary and table column means, and how the Link User to IB form is presented.',
+    flow:['Open IB → Clients on the Zyvest website.','Review Total Clients, Total IB, Total Main IB, and Total Sub IB.','Search the client list or filter by IB Type, IB Status, Country, or Date.','Select View on a row to inspect that client record.','To associate a user with an IB, choose Link User to IB.','Search and select a User to Link, then search and select the IB Name. Both fields are required in the reference.','Select Add to submit on the Zyvest website, or Cancel to leave without submitting.','Return to the list and use its displayed values to confirm the association. This Help Center does not change client records.'],
+    references:[['ib-clients-overview.png','Clients overview with summary cards, search, filters, actions, and client rows.'],['ib-clients-ib-type-filter.png','Clients IB Type filter.'],['ib-clients-ib-status-filter.png','Clients IB Status filter.'],['ib-clients-country-filter.png','Clients Country filter.'],['ib-clients-date-filter.png','Clients Date filter.'],['ib-clients-link-user-to-ib.png','Link User to IB dialog with the two required search fields.']],
+    sections:[
+      {title:'Summary cards and page controls',items:[['Total Clients','Total number of direct clients under IBs shown in the reference.'],['Total IB','Number of Introducing Brokers shown.'],['Total Main IB','Count of Main IB records displayed.'],['Total Sub IB','Count of Sub IB records displayed.'],['Search Clients','Search the visible client list.'],['IB Type','Filter clients by IB type.'],['IB Status','Filter clients by the displayed IB status.'],['Country','Filter clients by country.'],['Date','Filter client records by date.'],['Report','Open the report action shown in the toolbar.'],['View','Open the table display options.'],['Link User to IB','Open the form for selecting a user and an IB.']]},
+      {title:'Clients table columns',items:[['Take Action','Open the row’s View action.'],['User ID','Zyvest identifier for the client.'],['Name','Name displayed for the client.'],['Country','Country recorded for the client.'],['Email','Email associated with the client.'],['IB Type','IB type displayed for the client association.'],['IB','IB association indicator/value displayed in the row.'],['IB Name','Name of the associated Introducing Broker.'],['Trades','Trade count displayed for the client.'],['Trading Volume in Lots','Trading volume in lots shown for the client.'],['Trading Volume in USD','Trading volume in USD shown for the client.'],['Reward','Reward value displayed for the client.'],['Reg Date','Registration date displayed for the client.']]},
+      {title:'Link User to IB form',items:[['User to Link · required','Search for the user by name or ID and select the matching user.'],['IB Name · required','Search for and select the destination IB by name or ID.'],['Cancel','Close the form without submitting the association.'],['Add','Submit the selected user and IB association on the Zyvest website.']]}
+    ]
+  },
+  'trading-groups':{title:'Trading Groups',comingSoon:true},report:{title:'Report',comingSoon:true},'reward-transaction':{title:'Reward Transaction',comingSoon:true},'ib-hierarchy':{title:'IB Hierarchy',comingSoon:true}
+};
+
+const ibModuleCards = [
+  {id:'ib-management',title:'IB Management',summary:'Review IB requests, partner records, filters, and visible approval actions.'},
+  {id:'ib-type',title:'IB Type',summary:'Understand type settings, registration options, reward criteria, and table fields.'},
+  {id:'clients',title:'Clients',summary:'Explore client relationships, table columns, filters, and linking a user to an IB.'},
+  {id:'trading-groups',title:'Trading Groups',summary:'This IB area is under construction.',comingSoon:true},
+  {id:'report',title:'Report',summary:'This IB area is under construction.',comingSoon:true},
+  {id:'reward-transaction',title:'Reward Transaction',summary:'This IB area is under construction.',comingSoon:true},
+  {id:'ib-hierarchy',title:'IB Hierarchy',summary:'This IB area is under construction.',comingSoon:true}
+];
+
 const adminAreas = {
   dashboard: {
     title: 'Dashboard',
@@ -252,7 +315,7 @@ const adminAreas = {
       ] }
     ]
   },
-  ib: { title: 'IB', comingSoon: true },
+  ib: { title: 'IB', directory: true, summary: 'Browse clear guides to IB Management, IB Type, and Clients. The remaining areas are marked under construction until their workflows are documented.' },
   bonus: { title: 'Bonus', comingSoon: true },
   'user-levels': { title: 'User Levels', comingSoon: true },
   settings: { title: 'Settings', comingSoon: true },
@@ -335,6 +398,45 @@ function openModule(id) {
   detail.querySelector('.close-button').focus();
 }
 
+function openIbModule(id, opener) {
+  const module = ibModules[id];
+  if (!module) return;
+  const detail = document.createElement('section');
+  detail.className = 'detail-page ib-subpage';
+  detail.setAttribute('role', 'dialog');
+  detail.setAttribute('aria-modal', 'true');
+  detail.setAttribute('aria-labelledby', 'ibDetailTitle');
+  const references = module.references || [];
+  detail.innerHTML = `
+    <div class="detail-topbar"><button class="back-link close-ib-detail">← IB modules</button><span class="detail-counter">ZYVEST WEBSITE · IB GUIDE</span><button class="close-button close-ib-detail" aria-label="Return to IB modules">×</button></div>
+    <div class="detail-content admin-detail-content ib-detail-content">
+      <p class="eyebrow">HELP CENTER · IB GUIDE</p><h1 id="ibDetailTitle">${escapeHtml(module.title)}</h1>
+      ${module.summary ? `<p class="detail-intro">${escapeHtml(module.summary)}</p>` : ''}
+      ${module.comingSoon ? `<section class="admin-coming-soon"><span class="admin-coming-soon-label">GUIDE STATUS</span><h2>Under construction</h2><p>The detailed ${escapeHtml(module.title)} guide will be added when its workflow and reference screens are available.</p></section>` : `
+        <section class="detail-panel ib-flow-panel"><h2>How to use this page</h2><ol class="flow-list">${module.flow.map(step => `<li>${escapeHtml(step)}</li>`).join('')}</ol></section>
+        <section class="dashboard-explanation ib-reference-section"><div class="ib-section-heading"><div><p class="eyebrow">SCREEN BY SCREEN</p><h2>Reference screenshots</h2></div><span>${references.length} screenshots</span></div>
+          <div class="customer-reference-grid ib-reference-grid ib-reference-grid-${references.length}" aria-label="${escapeHtml(module.title)} screenshots">${references.map(([file,caption]) => `<figure class="customer-reference"><img src="./screenshots/${escapeHtml(file)}" alt="${escapeHtml(caption)}" loading="lazy"><figcaption>${escapeHtml(caption)}</figcaption></figure>`).join('')}</div>
+        </section>
+        ${module.sections.map(group => `<section class="dashboard-explanation ib-explanation-section"><h2>${escapeHtml(group.title)}</h2><div class="dashboard-metric-grid customer-guide-grid">${group.items.map(([title,text]) => `<article class="dashboard-info-card"><h3>${escapeHtml(title)}</h3><p>${escapeHtml(text)}</p></article>`).join('')}</div></section>`).join('')}
+      `}
+      <aside class="admin-reference-note"><strong>About this guide</strong><p>This Help Center explains how to read the separate Zyvest website. It does not perform IB administration or change user or account data. Labels and actions are described from the supplied screenshots.</p></aside>
+    </div>`;
+  document.body.append(detail);
+  detail.querySelectorAll('.close-ib-detail').forEach(button => button.addEventListener('click', () => {
+    detail.remove();
+    opener?.focus();
+  }));
+  detail.addEventListener('click', event => {
+    if (event.target === detail) { detail.remove(); opener?.focus(); }
+  });
+  detail.addEventListener('keydown', event => {
+    event.stopPropagation();
+    if (event.key === 'Escape') { detail.remove(); opener?.focus(); }
+    if (event.key === 'Tab') keepFocusInside(event, detail);
+  });
+  detail.querySelector('.close-button').focus();
+}
+
 function openAdminArea(id) {
   const area = adminAreas[id];
   if (!area) return;
@@ -349,7 +451,7 @@ function openAdminArea(id) {
       <p class="eyebrow">HELP CENTER · ADMIN GUIDE</p>
       <h1 id="adminDetailTitle">${escapeHtml(area.title)}</h1>
       ${area.summary ? `<p class="detail-intro">${escapeHtml(area.summary)}</p>` : ''}
-      ${area.comingSoon ? `<section class="admin-coming-soon"><span class="admin-coming-soon-label">GUIDE STATUS</span><h2>Update coming soon</h2><p>The detailed ${escapeHtml(area.title)} guide will be added when its workflow is provided.</p></section>` : `
+      ${area.directory ? `<div class="ib-module-grid" aria-label="IB guide modules">${ibModuleCards.map((module, index) => `<button type="button" class="ib-module-card" data-ib-module="${module.id}"><span class="ib-module-number">${String(index + 1).padStart(2,'0')}</span><strong>${escapeHtml(module.title)}</strong><span>${escapeHtml(module.summary)}</span><b>${module.comingSoon ? 'Under construction' : 'Open guide'} <i>→</i></b></button>`).join('')}</div>` : area.comingSoon ? `<section class="admin-coming-soon"><span class="admin-coming-soon-label">GUIDE STATUS</span><h2>Update coming soon</h2><p>The detailed ${escapeHtml(area.title)} guide will be added when its workflow is provided.</p></section>` : `
         ${area.references?.length ? `<section class="customer-reference-grid${area.title === 'Support' ? ' support-reference-grid' : ''}" aria-label="${escapeHtml(area.title)} screenshots">${area.references.map(ref => `<figure class="customer-reference"><img src="${escapeHtml(ref.src)}" alt="${escapeHtml(ref.alt)}"><figcaption>${escapeHtml(ref.caption)}</figcaption></figure>`).join('')}</section>` : ''}
         ${area.flow?.length ? `<section class="detail-panel support-flow-panel"><h2>Create a ticket for a user</h2><ol class="flow-list">${area.flow.map(step => `<li>${escapeHtml(step)}</li>`).join('')}</ol></section>` : ''}
         ${area.sections?.map(group => `<section class="dashboard-explanation"><h2>${escapeHtml(group.title)}</h2><div class="dashboard-metric-grid customer-guide-grid">${group.items.map(([title, text]) => `<article class="dashboard-info-card"><h3>${escapeHtml(title)}</h3><p>${escapeHtml(text)}</p></article>`).join('')}</div></section>`).join('') || ''}
@@ -362,6 +464,10 @@ function openAdminArea(id) {
   document.body.style.overflow = 'hidden';
   const close = () => { detail.remove(); document.body.style.overflow = ''; };
   detail.querySelectorAll('.close-admin-detail').forEach(button => button.addEventListener('click', close));
+  detail.querySelector('.ib-module-grid')?.addEventListener('click', event => {
+    const card = event.target.closest('[data-ib-module]');
+    if (card) openIbModule(card.dataset.ibModule, card);
+  });
   detail.addEventListener('click', event => { if (event.target === detail) close(); });
   detail.addEventListener('keydown', event => {
     if (event.key === 'Escape') close();
