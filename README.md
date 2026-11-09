@@ -16,7 +16,7 @@ Open `index.html` in a modern browser. No build step or package installation is 
 
 This is a documentation website. Its guide buttons open help content; they do not sign users into Zyvest, create accounts, submit KYC, approve requests, or process Wallet transactions. Use **Open Zyvest website** to visit the separate product site.
 
-Admin overview cards open Help Center detail pages. The Dashboard card includes a thumbnail of the reference image, and its detail explains the charts and every visible metric. The Customers guide includes User Management and MT5 Management references and field descriptions. The Transactions guide includes seven screenshots and concise cards for All Wallets, Wallet/MT5 Deposits, Wallet/MT5 Withdrawals, and Wallet/MT5 Internal Transfers. Remaining Admin cards say “Update coming soon” until their workflows are provided. Card clicks do not perform administrator actions on the Zyvest website.
+Admin overview cards open Help Center detail pages. The Dashboard card includes a thumbnail of the reference image, and its detail explains the charts and every visible metric. The Customers guide includes User Management and MT5 Management references and field descriptions. The Transactions guide includes seven screenshots and concise cards for All Wallets, Wallet/MT5 Deposits, Wallet/MT5 Withdrawals, and Wallet/MT5 Internal Transfers. The Support guide includes nine screenshots, ticket list and filter explanations, status labels, and the admin flow for creating a ticket for a selected user. Other Admin cards say “Update coming soon” until their workflows are provided. Card clicks do not perform administrator actions on the Zyvest website.
 
 ## Onboarding route documented here
 

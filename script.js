@@ -180,7 +180,78 @@ const adminAreas = {
       ] }
     ]
   },
-  support: { title: 'Support', comingSoon: true },
+  support: {
+    title: 'Support',
+    summary: 'Review support tickets, narrow the ticket list, and create a ticket for a selected user on the Zyvest website.',
+    references: [
+      { src: './screenshots/admin-support-ticket-list.png', alt: 'Admin Support ticket list with ticket summary cards, filters, table, and column menu', caption: 'Support ticket list · summary cards, search and filters, row actions, and configurable table columns.' },
+      { src: './screenshots/admin-support-status-filter.png', alt: 'Support ticket list with the status filter open', caption: 'Status filter · Open, In Progress, Awaiting Reply, Escalated, Resolved, Reopened, and Closed.' },
+      { src: './screenshots/admin-support-date-filter.png', alt: 'Support ticket list with date filter choices', caption: 'Date filter · Today, One Week, One Month, and One Year.' },
+      { src: './screenshots/admin-support-type-filter.png', alt: 'Support ticket list with ticket type filter options', caption: 'Type filter · filter by ticket type, such as bug issue or feature request.' },
+      { src: './screenshots/admin-support-team-filter.png', alt: 'Support ticket list with team filter choices', caption: 'Team filter · narrow tickets by the listed support team.' },
+      { src: './screenshots/admin-support-priority-filter.png', alt: 'Support ticket list with priority filter choices', caption: 'Priority filter · high, low, medium, and critical.' },
+      { src: './screenshots/admin-support-create-type.png', alt: 'Create New Ticket form with ticket type choices open', caption: 'Create ticket · select a ticket type, such as feature request or bug issue.' },
+      { src: './screenshots/admin-support-create-priority.png', alt: 'Create New Ticket form with priority choices open', caption: 'Create ticket · set priority to high, low, medium, or critical.' },
+      { src: './screenshots/admin-support-create-ticket.png', alt: 'Create New Ticket form with user target, ticket type, priority, title, description, and attachment controls', caption: 'Create New Ticket · select a user, enter the required details, optionally add a template or attachments, then create the ticket.' }
+    ],
+    flow: [
+      'On the Zyvest website, open Admin → Support.',
+      'Select Create Ticket to open the Create New Ticket form.',
+      'Search for and select the Ticket Target user.',
+      'Choose a Ticket Type and Ticket Priority.',
+      'Enter the Ticket Title and Description; the screenshot marks these fields as required.',
+      'Optionally select a ticket template or add attachments. The supplied form shows three attachment slots.',
+      'Select Create Ticket to submit the form on the Zyvest website.',
+      'Return to the ticket list and use the ticket ID and status to locate and follow the record.'
+    ],
+    sections: [
+      { title: 'Support overview and controls', items: [
+        ['Open Tickets', 'Count of tickets currently shown as open.'],
+        ['Tickets In Progress', 'Count of tickets shown as being worked on.'],
+        ['Closed Tickets', 'Count of tickets marked closed.'],
+        ['Escalated Tickets', 'Count of tickets marked escalated.'],
+        ['Search and filters', 'Search tickets or filter by Status, Priority, Team, Type, and Date.'],
+        ['Report status', 'The supplied screen labels the ticket report summaries “Report Coming Soon.”'],
+        ['Report, View, and Create Ticket', 'Report and View are toolbar controls; Create Ticket opens the form described above.']
+      ] },
+      { title: 'Ticket list columns', items: [
+        ['Ticket Id', 'Unique reference used to identify a ticket.'],
+        ['Raiser Id', 'Zyvest user ID of the person who raised the ticket.'],
+        ['Priority', 'Urgency level assigned to the ticket.'],
+        ['Ticket Type', 'Ticket category, such as bug issue or feature request.'],
+        ['Title', 'Short subject describing the ticket.'],
+        ['Status', 'Current ticket state shown in the list.'],
+        ['Raiser Name', 'Name of the user who raised the ticket.'],
+        ['Raiser Email', 'Email address associated with the ticket raiser.'],
+        ['Created By', 'Indicates who created the ticket, such as User.'],
+        ['Team', 'Support team assigned to the ticket.'],
+        ['Assigned Emp', 'Employee assigned to handle the ticket, when assigned.'],
+        ['Assigned Date', 'Date an employee was assigned.'],
+        ['Created Date', 'Date the ticket was created.'],
+        ['Updated Date', 'Most recent date the ticket record was updated.'],
+        ['Toggle columns', 'Choose which available columns are displayed in the ticket table.']
+      ] },
+      { title: 'Create ticket form options', items: [
+        ['Ticket Target', 'Search for the user the ticket is being created for.'],
+        ['Ticket Type', 'Choose the category; the screenshots show feature request and bug issue.'],
+        ['Ticket Priority', 'Choose high, low, medium, or critical.'],
+        ['Ticket Title', 'Enter a short subject for the support request.'],
+        ['Description', 'Describe the issue or request; formatting controls are available.'],
+        ['Ticket Template', 'Optionally select a saved template to help prepare the description.'],
+        ['Attachments', 'Add supporting files using the attachment slots shown in the form.'],
+        ['Create Ticket', 'Submit the completed form on the Zyvest website.']
+      ] },
+      { title: 'Ticket status labels', items: [
+        ['Open', 'Ticket is open in the support queue.'],
+        ['In Progress', 'Ticket is marked as being handled.'],
+        ['Awaiting Reply', 'The ticket is marked as waiting for a reply.'],
+        ['Escalated', 'The ticket is marked as escalated for additional attention.'],
+        ['Resolved', 'The ticket is marked as resolved.'],
+        ['Reopened', 'A previously resolved or closed ticket has been reopened.'],
+        ['Closed', 'The ticket is marked closed.']
+      ] }
+    ]
+  },
   ib: { title: 'IB', comingSoon: true },
   bonus: { title: 'Bonus', comingSoon: true },
   'user-levels': { title: 'User Levels', comingSoon: true },
@@ -279,7 +350,8 @@ function openAdminArea(id) {
       <h1 id="adminDetailTitle">${escapeHtml(area.title)}</h1>
       ${area.summary ? `<p class="detail-intro">${escapeHtml(area.summary)}</p>` : ''}
       ${area.comingSoon ? `<section class="admin-coming-soon"><span class="admin-coming-soon-label">GUIDE STATUS</span><h2>Update coming soon</h2><p>The detailed ${escapeHtml(area.title)} guide will be added when its workflow is provided.</p></section>` : `
-        ${area.references?.length ? `<section class="customer-reference-grid" aria-label="${escapeHtml(area.title)} screenshots">${area.references.map(ref => `<figure class="customer-reference"><img src="${escapeHtml(ref.src)}" alt="${escapeHtml(ref.alt)}"><figcaption>${escapeHtml(ref.caption)}</figcaption></figure>`).join('')}</section>` : ''}
+        ${area.references?.length ? `<section class="customer-reference-grid${area.title === 'Support' ? ' support-reference-grid' : ''}" aria-label="${escapeHtml(area.title)} screenshots">${area.references.map(ref => `<figure class="customer-reference"><img src="${escapeHtml(ref.src)}" alt="${escapeHtml(ref.alt)}"><figcaption>${escapeHtml(ref.caption)}</figcaption></figure>`).join('')}</section>` : ''}
+        ${area.flow?.length ? `<section class="detail-panel support-flow-panel"><h2>Create a ticket for a user</h2><ol class="flow-list">${area.flow.map(step => `<li>${escapeHtml(step)}</li>`).join('')}</ol></section>` : ''}
         ${area.sections?.map(group => `<section class="dashboard-explanation"><h2>${escapeHtml(group.title)}</h2><div class="dashboard-metric-grid customer-guide-grid">${group.items.map(([title, text]) => `<article class="dashboard-info-card"><h3>${escapeHtml(title)}</h3><p>${escapeHtml(text)}</p></article>`).join('')}</div></section>`).join('') || ''}
         ${area.charts?.length ? `<section class="dashboard-explanation"><h2>Charts</h2><div class="dashboard-chart-grid">${area.charts.map(chart => `<article class="dashboard-info-card"><h3>${escapeHtml(chart.title)}</h3><p>${escapeHtml(chart.text)}</p></article>`).join('')}</div></section>` : ''}
         ${area.metrics?.map(group => `<section class="dashboard-explanation"><h2>${escapeHtml(group.group)}</h2><div class="dashboard-metric-grid">${group.items.map(([title, text]) => `<article class="dashboard-info-card"><h3>${escapeHtml(title)}</h3><p>${escapeHtml(text)}</p></article>`).join('')}</div></section>`).join('') || ''}
