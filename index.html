@@ -9,7 +9,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@500;600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="./styles.css?v=support-tiles-20261109">
+  <link rel="stylesheet" href="./styles.css?v=steps1to5-20261113">
 </head>
 <body>
   <header class="topbar">
@@ -29,6 +29,34 @@
       <p class="eyebrow"><span class="pulse"></span> ZYVEST WEBSITE HELP CENTER</p>
       <h1>What would you like<br>to understand?</h1>
       <p class="intro-text">Choose User or Admin guides for steps on the Zyvest website. This Help Center explains the flows; it does not sign you in or submit requests.</p>
+      <div class="onboarding-roadmap" aria-label="User onboarding journey roadmap">
+        <div class="roadmap-header">
+          <span class="pulse"></span>
+          <span class="roadmap-title">USER DASHBOARD & ONBOARDING JOURNEY</span>
+          <span class="roadmap-subtitle">4 primary dashboard modules</span>
+        </div>
+        <div class="roadmap-steps">
+          <div class="roadmap-step">
+            <span class="step-num">01</span>
+            <div class="step-text"><strong>Log in</strong><small>Authentication</small></div>
+          </div>
+          <span class="step-separator" aria-hidden="true">→</span>
+          <div class="roadmap-step">
+            <span class="step-num">02</span>
+            <div class="step-text"><strong>Sign up</strong><small>Steps 1 to 4</small></div>
+          </div>
+          <span class="step-separator" aria-hidden="true">→</span>
+          <div class="roadmap-step">
+            <span class="step-num">03</span>
+            <div class="step-text"><strong>Profile & Account</strong><small>Settings & Security</small></div>
+          </div>
+          <span class="step-separator" aria-hidden="true">→</span>
+          <div class="roadmap-step step-unlocked">
+            <span class="step-num">04</span>
+            <div class="step-text"><strong>Wallet</strong><small>Deposits & Transfers</small></div>
+          </div>
+        </div>
+      </div>
       <div class="role-grid" aria-label="Choose a guide">
         <button class="role-card" data-view="user">
           <span class="role-icon">♙</span><span class="role-label">ARE YOU A</span><strong>User</strong>
@@ -48,6 +76,34 @@
         <p class="eyebrow">USER GUIDE</p>
         <h1>Zyvest website · User guides</h1>
         <p>Guides cover signup, verification, account setup, and Wallet on the Zyvest website. Open one for its steps, rules, and checks.</p>
+      </div>
+      <div class="onboarding-roadmap user-roadmap" aria-label="User onboarding journey steps">
+        <div class="roadmap-header">
+          <span class="pulse"></span>
+          <span class="roadmap-title">USER DASHBOARD GUIDES</span>
+          <span class="roadmap-subtitle">4 primary modules · Click to open guide</span>
+        </div>
+        <div class="roadmap-steps">
+          <button class="roadmap-step" type="button" data-module="login">
+            <span class="step-num">01</span>
+            <div class="step-text"><strong>Log in</strong><small>Authentication</small></div>
+          </button>
+          <span class="step-separator" aria-hidden="true">→</span>
+          <button class="roadmap-step" type="button" data-module="signup">
+            <span class="step-num">02</span>
+            <div class="step-text"><strong>Sign up</strong><small>Steps 1 to 4</small></div>
+          </button>
+          <span class="step-separator" aria-hidden="true">→</span>
+          <button class="roadmap-step" type="button" data-module="profile">
+            <span class="step-num">03</span>
+            <div class="step-text"><strong>Profile & Account</strong><small>Settings & 2FA</small></div>
+          </button>
+          <span class="step-separator" aria-hidden="true">→</span>
+          <button class="roadmap-step step-unlocked" type="button" data-module="wallet">
+            <span class="step-num">04</span>
+            <div class="step-text"><strong>Wallet</strong><small>Deposits & Transfers</small></div>
+          </button>
+        </div>
       </div>
       <div class="toolbar">
         <label class="search-box"><span aria-hidden="true">⌕</span><input id="searchInput" type="search" placeholder="Search User website guides" autocomplete="off" aria-label="Search User website guides"></label>
@@ -86,6 +142,6 @@
     </section>
   </main>
   <footer><div class="footer-signature"><span class="footer-brand"><span class="brand-mark">z</span> zyvest</span></div><span>Website Help Center · Flow reference</span><span>© <span id="year"></span> Zyvest Capital</span></footer>
-  <script src="./script.js?v=ib-module-20261109"></script>
+  <script src="./script.js?v=steps1to5-20261113"></script>
 </body>
 </html>

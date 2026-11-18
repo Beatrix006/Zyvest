@@ -1,54 +1,402 @@
 const modules = [
   {
-    id: 'login', icon: '↗', title: 'Log in', path: 'Authentication & User Access',
-    summary: 'This guide explains how to sign in on the Zyvest website using email/password or Google, and where the website routes each account state.',
-    flow: ['On the Zyvest website, open the Login page', 'Choose email/password or Login with Google', 'For email/password, enter the registered email and password, then click Login', 'For Google, authenticate with Google and match the verified email to a Zyvest account', 'If the verified email is new, start signup/onboarding on the Zyvest website', 'After valid authentication, incomplete onboarding resumes at its next required step', 'Approved users open Wallet; users whose onboarding is under review receive status updates through the Zyvest website'],
-    rules: ['Email and Password are required for password sign-in. Invalid credentials keep the user on the login page and show an error.', 'A Google email matching an existing account links to that Zyvest account. A new verified Google email starts signup/onboarding and must complete phone verification, KYC, nominee details, and bank account setup.', 'Forgot your password? sends an email reset link; the user sets a new password through that link.', 'After signup, users complete KYC, nominee, and bank setup. While the completed request is under review, approved-user actions remain unavailable.', 'When Zyvest approves an account, Wallet is the first available page. Rejected users receive the review reason and a correction/resubmission path.', 'The login page also exposes a language selector and a Sign up link.'],
-    checks: ['Email/password sign-in accepts valid credentials and rejects invalid credentials with a clear message.', 'Google sign-in matches verified email correctly and does not create a duplicate account.', 'Incomplete onboarding resumes at its next required step.', 'Users awaiting review can see status updates; approved-only actions remain unavailable.', 'Approved users land on Wallet; Rejected users see a correction path.', 'Password recovery sends a reset link and permits setting a new password.']
+    id: 'login', icon: '↗', title: 'Log in', number: '01', step: 'Authentication', path: 'Authentication & Access',
+    summary: 'Sign in to your Zyvest website account using email and password or Google, with direct routing based on account state.',
+    flow: [
+      'On the Zyvest website, open the Login page',
+      'Choose email/password sign in or Login with Google',
+      'For email/password, enter your registered email and password, then click Login',
+      'For Google, authenticate with your Google account matching your verified email',
+      'If the verified Google email is new, the site routes you to complete signup/onboarding',
+      'If onboarding was previously started, the site resumes at your next required step (KYC, Nominee, or Pending KYC approval)',
+      'Approved users are able to get the Wallet feature and access the dashboard'
+    ],
+    rules: [
+      'Email and Password are required for password sign-in. Invalid credentials keep the user on the login page and show an error.',
+      'A Google email matching an existing account links to that Zyvest account. A new verified Google email starts signup/onboarding.',
+      'Forgot your password? sends an email reset link; the user sets a new password through that link.',
+      'Users whose submissions are under review can sign in and see their status updates on the dashboard.',
+      'When Zyvest approves an account, the user is able to get the Wallet feature and access the remaining User navigation modules. Rejected users receive the review reason and a correction/resubmission path.',
+      'The login page also exposes a language selector and a Sign up link.'
+    ],
+    checks: [
+      'Email/password sign-in accepts valid credentials and rejects invalid credentials with a clear message.',
+      'Google sign-in matches verified email correctly and does not create a duplicate account.',
+      'Incomplete onboarding resumes at its next required step.',
+      'Users awaiting review can see status updates on their dashboard.',
+      'Approved users are able to get the Wallet feature; Rejected users see a correction path.',
+      'Password recovery sends a reset link and permits setting a new password.'
+    ]
   },
   {
-    id: 'signup', icon: '＋', title: 'Sign up', path: 'Onboarding · Step 1',
-    summary: 'Create login credentials and verify email and phone, then complete KYC, nominee, and bank setup before the review decision.',
-    flow: ['On the Zyvest website, choose Sign Up', 'Enter personal details, email, and phone number', 'Create and confirm a password', 'Accept Terms & Conditions and submit registration', 'Verify the email using its OTP/link', 'Verify the phone number using its OTP', 'Continue to the separate KYC Verification guide', 'Complete nominee details, then bank account setup', 'Submit the completed onboarding request for admin review', 'Check the Zyvest website or email for review status and the next step'],
-    rules: ['Email and phone must both be verified before the user continues to KYC.', 'Signup alone does not submit the onboarding request for admin review; KYC, nominee, and bank setup are required next steps.', 'After submission, the request is reviewed. Approved users go to Wallet first and can use the remaining User navigation modules.', 'Admin review sets the account to Approved or Rejected and notifies the user in-app and by email.', 'Rejected users see the review reason and can correct requested details/documents and resubmit.'],
-    checks: ['Required fields, terms acceptance, and password confirmation are validated.', 'Email and phone OTPs are each required and have clear success/error states.', 'Post-signup navigation enters KYC Verification, not Wallet.', 'The completed onboarding request is submitted for review after all required steps.', 'Approved users land on Wallet; Rejected users reach the correct correction path.']
+    id: 'signup', icon: '＋', title: 'Sign up', number: '02', step: 'Steps 1–4 · Onboarding', path: 'Onboarding & Verification',
+    hasSubmodules: true,
+    summary: 'Complete the 4 onboarding steps: Step 1 (Registration & Email OTP), Step 2 (KYC Verification), Step 3 (Nominee Details), and Step 4 (Pending KYC approval).',
+    flow: [
+      'Step 1 · Sign up & Email OTP: Fill in Full Name, Email, optional Phone, Referral Code (Apply), Password & Confirm, check Terms, click green Sign up (or Google Sign up), and verify email OTP within 2:28',
+      'Step 2 · KYC Verification: Complete Personal Details (DOB calendar, Country, State, Address, Pincode, Profession, declarations), upload valid government ID (Passport, Aadhar, Voter ID, PAN up to 10 MB), and complete face scan (or Skip)',
+      'Step 3 · Nominee Details: Enter Nominee Name, Date of Birth, select Relation from searchable dropdown, enter Email ID, and check accurate information & Terms checkbox (or Skip)',
+      'Step 4 · Pending KYC approval: Reach the Submission Under Review page, view pending status with "Go to Dashboard" button, and receive notification upon approval/rejection'
+    ],
+    rules: [
+      'Sign up includes all 4 onboarding steps merged inside this module: Step 1 (Sign up & OTP), Step 2 (KYC Verification), Step 3 (Nominee Details), and Step 4 (Pending KYC approval).',
+      'Full Name, Email Address, Password, Confirm Password, and Terms agreement are required for standard registration.',
+      'Phone Number is optional on the initial form; Referral Code can be applied if available.',
+      'Google Sign up routes through Google account selection and displays Zyvest Capital UAT consent for name and profile picture.',
+      'Email OTP verification has a 2:28 countdown timer with a Resend OTP option below the OTP field.',
+      'Each subsequent onboarding step (KYC, Nominee, Pending KYC approval) can be accessed and reviewed via the step cards below.',
+      'Approved users get full access to Wallet and platform features; rejected users receive specific review feedback and a correction path.'
+    ],
+    checks: [
+      'Registration form validates all required fields, passwords match, and terms checkbox is checked.',
+      'Email OTP verification validates the 6-digit code before the 2:28 timer expires.',
+      'All 4 onboarding steps (Step 1 to Step 4) are accessible sequentially inside this module.',
+      'Upon final submission, the Submission Under Review screen presents a working "Go to Dashboard" button.',
+      'Approved users receive full access to Wallet and platform modules.'
+    ]
   },
   {
-    id: 'kyc', icon: '▣', title: 'KYC verification', path: 'Onboarding · Step 2',
-    summary: 'Complete the identity information and document submission required before admin review.',
-    flow: ['Continue after Sign up and contact verification on the Zyvest website', 'Open KYC Verification', 'Review the identity information requested on the Zyvest website', 'Enter required details and upload requested documents', 'Review the information and document previews', 'Submit the KYC information on the website', 'Continue to Nominee Details when the submission is accepted'],
-    rules: ['KYC is a separate website onboarding step between Sign up and Nominee Details.', 'Use document types and field rules configured by Zyvest; this guide does not assume a universal document list.', 'Submitting KYC does not approve the account. Admin review occurs after nominee and bank setup are complete and the onboarding request is submitted.', 'If review requests a correction, the Zyvest website shows the reason and lets the user update and resubmit the relevant KYC information.'],
-    checks: ['Required KYC fields and documents cannot be skipped.', 'Uploads show validation and a reviewable preview before submission.', 'Successful submission continues to Nominee Details.', 'KYC submission is not presented as approval.']
+    id: 'profile', icon: '♙', title: 'Profile & account', number: '03', step: 'Account Settings', path: 'Dashboard · Profile & Security',
+    summary: 'Centralized location to view and manage registered account information, personal details, nominee authorization, security settings, KYC status, 2FA, and login history.',
+    flow: [
+      'Top Navigation: Access major platform modules (Dashboard, Wallet, Account Type, IB, Support, PAMM, Copy Trading, Notifications, Theme, User Profile Dropdown)',
+      'Settings Sidebar: Navigate through Profile, KYC Verification, 2 Factor Authentication (2FA), and Notifications',
+      'Account Identification: Review Profile Picture, unique Zyvest ID, current Account Level (e.g., Level 1), and access the Upgrade option if eligible',
+      'Personal Information: Review Full Name, Date of Birth, Address, Country, Email, and Phone Number (locked with Lock Icon), and click the Edit Icon on Display Name to update your platform display name',
+      'Nominee Details: Read emergency fund management guidelines and select "Add" to assign an authorized nominee',
+      'KYC Verification Status: View current KYC verification status (Active or other state) and use "Re-Setup" to re-verify if required',
+      'Two-Factor Authentication: Check 2FA status (Active / Inactive) and select "Setup" to configure authenticator security',
+      'Change Password: Click the Change Password section (with navigation arrow) to open the secure password change screen',
+      'Login History: Review previous login activity, sessions, and timestamps to audit account access'
+    ],
+    rules: [
+      'The Profile page is accessible from the top navigation User Profile dropdown and Settings sidebar.',
+      'Your ID and Account Level are system-assigned identifiers; eligible users can use Upgrade to explore higher levels.',
+      'Display Name has an Edit Icon and can be modified directly; registered personal fields (Full Name, Date of Birth, Address, Country, Email, Phone Number) display a Lock Icon restricting direct inline edits.',
+      'Nominee Details allows users to add an authorized person to manage funds in case of emergency, subject to platform policies.',
+      'KYC Verification Status displays current account standing (e.g., Active) with a "Re-Setup" action for identity re-verification.',
+      'Two-Factor Authentication displays Active/Inactive status with a "Setup" button to add an additional layer of login security.',
+      'Change Password includes an arrow icon directing users to a separate screen for credential updates.',
+      'Login History provides an audit trail of previous authentication sessions.'
+    ],
+    checks: [
+      'Top navigation bar displays all 11 platform elements including Zyvest logo, modules, alerts, theme toggle, and profile dropdown.',
+      'Settings sidebar smoothly switches between Profile, KYC Verification, 2FA, and Notifications.',
+      'Display Name edit icon opens direct editing, while locked fields (Full Name, DOB, Address, Country, Email, Phone) show the Lock icon.',
+      'Nominee Details section includes emergency description and functional "Add" button.',
+      'KYC status reflects Active with accessible "Re-Setup" option.',
+      '2FA status reflects Active/Inactive with accessible "Setup" option.',
+      'Change password navigates via the arrow icon to the password update screen.',
+      'Login history lists prior user authentication activities.'
+    ],
+    sections: [
+      {
+        eyebrow: 'PLATFORM ACCESS',
+        title: 'Top Navigation Bar',
+        description: 'The top navigation bar provides access to the major modules of the Zyvest platform.',
+        items: [
+          ['Zyvest Logo', 'Displays the Zyvest Capital logo and represents the platform\'s branding.', 'Branding'],
+          ['Dashboard', 'Provides access to the main dashboard, where users can view an overview of their account.', 'Main View'],
+          ['Wallet', 'Allows users to access their wallet and view available balance and transaction-related information.', 'Funds'],
+          ['Account Type', 'Provides access to account type-related information and options.', 'Account'],
+          ['IB', 'Provides access to the Introducing Broker (IB) section.', 'Broker'],
+          ['Support', 'Allows users to access customer support services.', 'Help Desk'],
+          ['PAMM', 'Provides access to the PAMM (Percentage Allocation Management Module) section.', 'Investment'],
+          ['Copy Trading', 'Allows users to access copy trading features and related information.', 'Trading'],
+          ['Notification Icon', 'Displays notifications and updates related to the user\'s account and platform activities.', 'Alerts'],
+          ['Theme Icon', 'Allows users to switch between available application themes (light and dark mode).', 'Interface'],
+          ['User Profile Dropdown', 'Displays the logged-in user\'s name and provides access to account-related options.', 'Menu']
+        ]
+      },
+      {
+        eyebrow: 'NAVIGATION & SECTIONS',
+        title: 'Settings Sidebar',
+        description: 'The Settings sidebar contains different sections through which users can manage their account preferences and security.',
+        items: [
+          ['Profile', 'Displays the user\'s personal information, account details, nominee information, and security settings.', 'Active Section'],
+          ['KYC Verification', 'Provides access to identity verification details and the user\'s KYC verification process.', 'Identity'],
+          ['2 Factor Authentication', 'Allows users to configure and manage additional account login security.', 'Security'],
+          ['Notifications', 'Provides options to manage notification preferences.', 'Preferences']
+        ]
+      },
+      {
+        eyebrow: 'ACCOUNT IDENTIFICATION',
+        title: 'Account Identification Details',
+        description: 'Displays the user\'s registered account identification data, profile image, and platform tier.',
+        items: [
+          ['Profile Picture', 'Displays the profile photograph uploaded by the user. It helps visually identify the account holder.', 'Visual ID'],
+          ['Your ID', 'Displays the unique identification number assigned to the user by Zyvest. Used to identify the user across the platform.', 'Unique ID'],
+          ['Account Level', 'Displays the current account level assigned to the user (e.g., Level 1).', 'Level 1'],
+          ['Upgrade Button', 'Provides an option for the user to explore or upgrade their current account level, if eligible.', 'Action Button']
+        ]
+      },
+      {
+        eyebrow: 'PERSONAL INFORMATION',
+        title: 'Personal Information Fields & Controls',
+        description: 'Displays personal information provided during registration or account verification, with indicators for editable vs. locked fields.',
+        items: [
+          ['Full Name', 'Displays the user\'s complete registered name (e.g., Kabir Singh).', '🔒 Locked'],
+          ['Display Name', 'Displays the name used to represent the user within the platform. It may be different from the registered full name.', '✏️ Edit Icon'],
+          ['Date of Birth', 'Displays the user\'s registered date of birth in the specified date format.', '🔒 Locked'],
+          ['Address', 'Displays the residential address provided by the user during registration or verification.', '🔒 Locked'],
+          ['Country', 'Displays the country associated with the user\'s registered account.', '🔒 Locked'],
+          ['Email', 'Displays the email address registered with the user\'s Zyvest account.', '🔒 Locked'],
+          ['Phone Number', 'Displays the mobile number associated with the user\'s account, including the country code.', '🔒 Locked'],
+          ['Edit Icon (UI Element)', 'Indicates that the corresponding information can be edited. In the UI, the Display Name field has an edit icon.', 'Editable UI'],
+          ['Lock Icon (UI Element)', 'Indicates that the corresponding field is locked or restricted from direct editing to ensure verified compliance.', 'Restricted UI']
+        ]
+      },
+      {
+        eyebrow: 'EMERGENCY AUTHORIZATION',
+        title: 'Nominee Details',
+        description: 'Allows users to add a person who may be authorized to manage their funds in case of an emergency, subject to platform policies.',
+        items: [
+          ['Nominee Details Section', 'Displays the section where nominee-related information can be managed.', 'Overview'],
+          ['Emergency Description', 'Explains that users can add a nominee who can manage their funds in case of an emergency.', 'Policy Notice'],
+          ['Add Button', 'Allows the user to initiate the process of adding a nominee.', 'Action Button']
+        ]
+      },
+      {
+        eyebrow: 'SECURITY CONTROLS',
+        title: 'Password and Security',
+        description: 'Provides access to account security features: check KYC status, configure two-factor authentication, and update password.',
+        items: [
+          ['KYC Verification Status', 'Displays the current Know Your Customer (KYC) verification status of the user\'s account.', 'Verification'],
+          ['KYC Status Indicator', 'Indicates whether the user\'s KYC verification is Active or in another available state.', 'Status: Active'],
+          ['Re-Setup Button', 'Allows the user to initiate the KYC re-verification or re-setup process.', 'Action Button'],
+          ['2 Factor Authentication (2FA)', 'Displays the current two-factor authentication status of the user\'s account (Active / Inactive).', 'Status: Active/Inactive'],
+          ['2FA Setup Button', 'Allows the user to configure two-factor authentication to add an additional layer of account security.', 'Action Button'],
+          ['Change Password', 'Informs users that they can update their account password to maintain account security.', 'Credentials'],
+          ['Arrow Icon (Navigation)', 'Indicates that clicking the section will navigate the user to another page or screen for changing the password.', 'Navigation Link']
+        ]
+      },
+      {
+        eyebrow: 'ACCESS AUDIT',
+        title: 'Login History',
+        description: 'Provides information about previous login activities associated with the user\'s account.',
+        items: [
+          ['Logins Section', 'Displays the section containing the user\'s previous login information.', 'Session Log'],
+          ['History Description', 'Indicates that users can review details about their previous login activities (detailed fields viewable upon expanding).', 'Audit Record']
+        ]
+      }
+    ]
   },
   {
-    id: 'nominee', icon: '♧', title: 'Nominee details', path: 'Onboarding · Step 3',
-    summary: 'Capture the nominee information requested by Zyvest after KYC submission.',
-    flow: ['Continue from KYC Verification on the Zyvest website', 'Open Nominee Details', 'Enter the nominee information requested on the website', 'Review the details for accuracy', 'Save and submit nominee details', 'Continue to Bank Account Setup'],
-    rules: ['Nominee Details is a required onboarding step after KYC and before bank account setup.', 'Use the required fields, eligibility rules, and validation configured by Zyvest; exact nominee requirements must come from the product/compliance team.', 'If admin review requests a correction, return the user to this step with the reason and preserve already-valid information.'],
-    checks: ['Required nominee fields and validation messages are clear.', 'The user can review details before submission.', 'Successful submission continues to Bank Account Setup.', 'Correction requests identify the affected nominee information.']
-  },
-  {
-    id: 'bank-account', icon: '▤', title: 'Bank account setup', path: 'Onboarding · Step 4',
-    summary: 'Add and verify the bank account details required to complete Zyvest website onboarding.',
-    flow: ['Continue from Nominee Details on the Zyvest website', 'Open Bank Account Setup', 'Enter the bank account information requested on the website', 'Complete any configured ownership or account verification step', 'Review and submit the details', 'Submit the completed onboarding request for admin review', 'Check the Zyvest website or email for the review decision and next step'],
-    rules: ['Bank Account Setup is required after Nominee Details and before the onboarding request can be reviewed.', 'Bank fields, ownership checks, and verification methods must follow configured Zyvest requirements; do not infer them from generic banking conventions.', 'The Zyvest website communicates the review status and next steps to the user.', 'If admin requests a correction, the website routes the user to the relevant step and preserves other valid submissions.'],
-    checks: ['Required bank fields are validated before submission.', 'Any configured verification step has clear Pending/Success/Failure outcomes.', 'The onboarding request is submitted only after all required website steps are complete.', 'The user receives the configured review status and next-step information.']
-  },
-  {
-    id: 'profile', icon: '♙', title: 'Profile & account', path: 'Approved → Profile / Settings',
-    summary: 'View account details, update permitted profile fields, verify contact changes, and manage KYC submissions.',
-    flow: ['Open Profile / Settings from the approved-user navigation', 'Review legal name, display name, email, phone, account status, and KYC status', 'Edit the display name and save', 'To change phone or email, enter the new contact and request an OTP', 'Verify the OTP; only then replace the saved phone or login email', 'To change legal name, submit supporting documents for admin/KYC review', 'Review KYC status and any admin feedback', 'If Rejected, correct the requested details/documents and resubmit'],
-    rules: ['Profile & Account Management is available after approval as part of the unlocked User modules.', 'Display name is self-service editable.', 'A phone number is replaced only after the new number passes OTP verification.', 'A new email must pass OTP verification before it replaces the login email.', 'Legal-name changes require supporting documents and admin/KYC review. An already Approved account stays active during this review.', 'Before approval, KYC and onboarding corrections happen through their onboarding steps; the user does not enter the full Profile module.'],
-    checks: ['Unverified phone/email changes do not replace saved contact details.', 'The verified email becomes the login identifier after confirmation.', 'Legal-name changes create a review request and do not suspend an already-Approved account.', 'KYC status, rejection reason, and resubmission action are visible when applicable.']
-  },
-  {
-    id: 'wallet', icon: '◇', title: 'Wallet', path: 'Approved → Wallet',
-    summary: 'Approved users with required KYC can deposit, withdraw to verified methods, transfer between their own accounts, and track status.',
-    flow: ['After admin approval, open Wallet as the first approved-user page', 'Confirm the user is Approved and has required KYC', 'Deposit: choose an enabled payment method and review currency, fees, limits, and estimated amount', 'Submit the deposit and track Pending → Processing → Completed or Failed', 'Credit the wallet only when the deposit is Completed', 'Withdraw: select a verified payment method in the user’s name and enter an amount within available funds/limits', 'Review the withdrawal summary and submit; reserve available funds immediately', 'Track the request; release reserved funds if Failed or Rejected', 'Transfer: select an eligible source and destination offered for the user’s own account', 'Use only supported same-currency options and enter an amount within configured limits', 'Review the transfer details and confirm', 'Process the debit and credit atomically, then show the result in history'],
-    rules: ['Only Approved users with required KYC can deposit, withdraw, or transfer. Pending/Rejected users cannot start money actions.', 'Show only deposit methods enabled for the user. Disclose currency, fees, limits, and estimated amount before submission.', 'Deposit statuses are Pending, Processing, Completed, and Failed. Wallet funds are credited only on Completed.', 'Withdrawals go only to verified payment methods in the user’s name. Reserve funds on submission and release them on Failed/Rejected.', 'Transfers use only source/destination options enabled for the user’s own account, same-currency options, and configured limits shown before confirmation.', 'A confirmed transfer is atomic: debit and credit both succeed together or neither is applied. Record the outcome in transaction history.'],
-    checks: ['Ineligible users are blocked before payment/transfer submission.', 'Deposit disclosures and withdrawal destination ownership are visible before confirmation.', 'Deposits do not increase balance before Completed.', 'Failed/Rejected withdrawals restore reserved available funds.', 'Transfer confirmation shows source, destination, amount, currency, and limit status.', 'Transfer results never leave only one side debited or credited.']
+    id: 'wallet', icon: '◇', title: 'Wallet', number: '04', step: 'Fund Management', path: 'Dashboard · Wallet & Funds',
+    summary: 'Approved users are able to get the full Wallet feature for deposits, withdrawals, internal MT5 transfers, real-time balance management, and transaction statement tracking.',
+    flow: [
+      'Access Wallet: After account approval and KYC completion, open Wallet from the top navigation bar',
+      'Account Overview: Review your Total Balance, Available Balance, Reserved Funds, and connected MT5 Account Equities',
+      'Deposit Funds: Select an enabled payment method (Bank Wire, Cards, Crypto), review limits, fees, and estimated credit time, and complete the payment',
+      'Track Deposit: Monitor transaction lifecycle from Pending → Processing → Completed, with automatic credit to Available Balance',
+      'Withdraw Funds: Select a verified destination method in your registered legal name, specify the amount within available limits, and submit',
+      'Reserve & Process: Observe the requested amount move to Reserved Funds immediately while Zyvest verifies and executes the payout',
+      'Internal Transfer: Select source (Wallet or MT5) and destination (MT5 or Wallet), enter the transfer amount, review real-time exchange rates if applicable, and confirm',
+      'Atomic Execution: Transfers process atomically in real-time with instant balance updates across both accounts',
+      'Transaction History: Filter history by date, type, or status, inspect detailed transaction receipts, and export statements'
+    ],
+    rules: [
+      'The Wallet feature is unlocked for approved users who have completed KYC verification.',
+      'Deposit methods displayed are dynamically restricted to methods enabled and compliant for the user\'s jurisdiction.',
+      'All deposit fees, minimum/maximum thresholds, and processing times must be fully disclosed before confirmation.',
+      'Withdrawal destinations must be verified and registered in the user\'s own legal name (third-party payouts are strictly prohibited).',
+      'Available balance is reserved immediately upon withdrawal submission; if rejected or cancelled, funds are restored to available balance.',
+      'Internal transfers between Wallet and MT5 accounts process atomically with zero internal fee markup.',
+      'Every wallet movement generates a permanent transaction ID, timestamp, and audit trail available in Transaction History.'
+    ],
+    checks: [
+      'Wallet navigation is accessible for approved users with full feature access.',
+      'Available, Reserved, and MT5 balances update accurately following each transaction.',
+      'Deposit workflow shows clear fee, currency, and limit disclosures before submission.',
+      'Withdrawal form restricts destinations to verified accounts in the user\'s legal name and enforces balance limits.',
+      'Internal transfers execute atomically between Wallet and MT5 without lag or dropped funds.',
+      'Transaction filter and history display accurate timestamps, status badges, and transaction IDs.'
+    ],
+    sections: [
+      {
+        eyebrow: 'BALANCES & CURRENCIES',
+        title: 'Wallet Overview & Account Balances',
+        description: 'Displays available, reserved, and total balances across supported account currencies and connected MT5 accounts.',
+        items: [
+          ['Total Balance', 'Aggregated sum of all funds across your main fiat and crypto balances.', 'Overview'],
+          ['Available Balance', 'Funds immediately accessible for new deposits, withdrawals, or trading transfers.', 'Accessible'],
+          ['Reserved Funds', 'Amount temporarily locked during active pending withdrawal requests or open operations.', 'Locked'],
+          ['Connected MT5 Balances', 'Real-time equity and balance synchronized across connected MT5 trading accounts.', 'MT5 Accounts'],
+          ['Multi-Currency Support', 'Hold and manage balances in USD, EUR, GBP, and supported digital assets.', 'Currencies']
+        ]
+      },
+      {
+        eyebrow: 'FUNDING METHODS',
+        title: 'Deposit Workflow & Disclosures',
+        description: 'Step-by-step instructions for funding your Zyvest wallet using verified payment channels.',
+        items: [
+          ['Enabled Payment Methods', 'Choose between instant bank transfer, wire deposit, credit/debit cards, and supported crypto.', 'Channels'],
+          ['Deposit Disclosures', 'Review real-time conversion rates, provider processing fees, minimum/maximum limits, and estimated time.', 'Transparency'],
+          ['Deposit Status Tracking', 'Track funding lifecycle: Pending → Processing → Completed (or Failed with clear error reasons).', 'Tracking'],
+          ['Credit Confirmation', 'Funds are credited to available wallet balance automatically once payment confirms.', 'Instant Credit']
+        ]
+      },
+      {
+        eyebrow: 'WITHDRAWAL CONTROLS',
+        title: 'Withdrawal Workflow & Safety Checks',
+        description: 'Security rules and procedures for withdrawing funds from your Zyvest wallet.',
+        items: [
+          ['Verified Destination', 'Withdrawals are strictly permitted only to verified bank accounts or crypto addresses registered in your name.', 'Security Rule'],
+          ['Fund Reservation', 'Requested withdrawal amount is immediately reserved from available funds upon submission.', 'Balance Safety'],
+          ['Approval & Processing', 'Requests are reviewed and processed; notification sent upon release or completion.', 'Status Cycle'],
+          ['Failure & Rejection Release', 'If a withdrawal is rejected or fails, reserved funds are instantly released back to available balance.', 'Auto-Release']
+        ]
+      },
+      {
+        eyebrow: 'TRADING TRANSFERS',
+        title: 'Internal Transfer between Wallet & MT5',
+        description: 'Move capital seamlessly between your Zyvest Wallet and MT5 trading accounts without external fees.',
+        items: [
+          ['Source & Destination', 'Transfer funds between Main Wallet and any connected MT5 Live trading account.', 'Direct Route'],
+          ['Atomic Processing', 'Debiting the source and crediting the destination execute atomically in real-time.', 'Zero Lag'],
+          ['Zero Internal Fees', 'Instant internal capital reallocation without payment provider transaction charges.', 'No Fees'],
+          ['Currency Handling', 'Supports same-currency matching or live platform conversion rates before confirmation.', 'Rates Disclosed']
+        ]
+      },
+      {
+        eyebrow: 'RECORDS & AUDIT',
+        title: 'Transaction History & Statements',
+        description: 'Complete historical records for all deposits, withdrawals, transfers, and fees.',
+        items: [
+          ['Multi-Filter Search', 'Filter history by Transaction Type (Deposit, Withdrawal, Transfer), Date Range, and Status.', 'Filters'],
+          ['Transaction Details Dialog', 'Click any transaction to view Transaction ID, Reference Code, Timestamp, Method, and Net Amount.', 'Detailed Receipt'],
+          ['Statement Export', 'Export verified PDF and CSV account statements for tax or accounting purposes.', 'Export PDF/CSV']
+        ]
+      }
+    ]
   }
 ];
+
+const onboardingSubmodules = {
+  'step-1': {
+    id: 'step-1',
+    number: '01',
+    step: 'Step 1',
+    title: 'Sign up & Email OTP',
+    summary: 'Create login credentials with personal details or Google, verify email OTP, and begin your onboarding.',
+    flow: [
+      'On the Zyvest website, open the Sign up page',
+      'Enter your Full Name and Email Address',
+      'Optionally enter a Phone Number',
+      'Optionally enter a Referral Code and select Apply if available',
+      'Enter a Password and Confirm Password',
+      'Check the Agree to Privacy Policy & Terms & Conditions checkbox and click the green Sign up button',
+      'Or choose Google Sign up: select a Google account or add an account, then confirm sharing your name and profile picture with Zyvest Capital UAT',
+      'On the "Please verify your email" page, enter the OTP sent to your email before the 2:28 countdown timer expires',
+      'Use the Resend OTP option below the OTP field if needed once available',
+      'Select Continue after entering the valid OTP to proceed to Step 2 (KYC Verification)'
+    ],
+    rules: [
+      'Full Name, Email Address, Password, Confirm Password, and Terms checkbox are mandatory.',
+      'Phone Number and Referral Code are optional.',
+      'Google Sign up routes through Google account selection and displays Zyvest Capital UAT consent.',
+      'The email OTP expires after 2:28; Resend OTP is available below the input field.'
+    ],
+    checks: [
+      'Form fields, password matching, and terms acceptance are validated.',
+      'Email OTP timer and Resend OTP link behave as expected.',
+      'Valid OTP entry unlocks Step 2 (KYC Verification).'
+    ]
+  },
+  'kyc': {
+    id: 'kyc',
+    number: '02',
+    step: 'Step 2',
+    title: 'KYC Verification',
+    summary: 'Complete personal details, upload a valid government ID, and complete face verification (or skip steps) to verify identity.',
+    flow: [
+      'After email OTP verification, open the KYC Verification personal details page',
+      'Enter your Legal Full Name and select your Date of Birth using the calendar date picker',
+      'Select your Country from the dropdown and your State from the dropdown',
+      'Fill in your Address, Pincode, and select your Profession',
+      'Check the declaration confirming the information provided is accurate and agreeing to the Privacy Policy and Terms & Conditions',
+      'Select "Apply for Manual Verification" (or choose "Skip for Now" to defer)',
+      'On the KYC Document Verification page ("Upload valid government ID for verification"), search for and select your document type (Passport, Aadhar Card, Voter ID, PAN Card, and more searchable via the top search bar)',
+      'Upload your document file (accepted formats: JPEG, PNG, PDF; maximum file size: up to 10 MB)',
+      'Click "Continue" to proceed, or select "Skip for Now"',
+      'On the Face Verification page, grant camera permissions ("Allow Zyvest Capital to take pictures and record video")',
+      'Select "Start Verification" to perform face verification, or choose "Skip for Now"',
+      'Continue to Step 3 (Nominee Details) upon completion'
+    ],
+    rules: [
+      'KYC Verification consists of three stages: Personal Details, Document Verification, and Face Verification.',
+      'Personal Details requires Legal Full Name, Date of Birth (calendar date picker), Country, State, Address, Pincode, Profession, and the accuracy & Terms checkbox.',
+      'Document Verification supports Passport, Aadhar Card, Voter ID, PAN Card, and more via a top search bar; uploaded files must be JPEG, PNG, or PDF up to 10 MB.',
+      'Face Verification requires camera access permission ("Allow Zyvest Capital to take pictures and record video") and clicking "Start Verification".',
+      'Each stage provides a "Skip for Now" option allowing users to defer verification steps.',
+      'Submitting KYC moves the user to Step 3 (Nominee Details).'
+    ],
+    checks: [
+      'All required KYC fields (Legal Full Name, Date of Birth picker, Country, State, Address, Pincode, Profession) and declaration checkboxes are validated.',
+      'Document search bar filters accepted government IDs (Passport, Aadhar Card, Voter ID, PAN Card, etc.).',
+      'File upload strictly validates accepted formats (JPEG, PNG, PDF) and the 10 MB size limit.',
+      'Camera permissions prompt appears correctly during Face Verification, with "Start Verification" activating the camera.',
+      '"Skip for Now" is available and functional at each stage.',
+      'Successful submission routes the user to Step 3 (Nominee Details).'
+    ]
+  },
+  'nominee': {
+    id: 'nominee',
+    number: '03',
+    step: 'Step 3',
+    title: 'Nominee Details',
+    summary: 'Add nominee information with relation selection, complete declarations, and continue to Step 4.',
+    flow: [
+      'Continue from KYC Verification to the Add Nominee page on the Zyvest website',
+      'Enter the Nominee\'s Name and Date of Birth',
+      'Select the Relation with Nominee using the dropdown (with searchable relation options)',
+      'Enter the Nominee\'s Email ID and attach any requested nominee fields',
+      'Check the declaration confirming the entered information is accurate and agreeing to the Privacy Policy and Terms & Conditions',
+      'Select "Continue" to submit nominee details, or select "Skip for Now"',
+      'Proceed to Step 4 (Pending KYC approval) upon completing or skipping nominee details'
+    ],
+    rules: [
+      'Nominee Details captures the Nominee Name, Date of Birth, Relation with Nominee (via searchable dropdown), and Nominee Email ID.',
+      'The declaration checkbox confirming information accuracy and agreement to Privacy Policy and Terms & Conditions must be checked to continue.',
+      'Users can choose "Continue" to submit nominee details or choose "Skip for Now".',
+      'Completed nominee details are preserved during the review process.'
+    ],
+    checks: [
+      'Nominee fields (Name, Date of Birth, Email ID) and searchable Relation dropdown function properly.',
+      'Declaration checkbox is required when clicking "Continue".',
+      '"Skip for Now" allows the user to proceed without submitting nominee details immediately.',
+      'Advancing from nominee details leads to Step 4 (Pending KYC approval).'
+    ]
+  },
+  'admin-approval': {
+    id: 'admin-approval',
+    number: '04',
+    step: 'Step 4',
+    title: 'Pending KYC approval',
+    summary: 'Review submission status, access the dashboard while under review, and track review outcomes.',
+    flow: [
+      'After completing KYC verification and nominee details (or choosing to defer), reach the "Submission Under Review" page',
+      'Review the status notification indicating your KYC submission is pending approval',
+      'Select "Go to Dashboard" to explore your account dashboard while awaiting approval',
+      'Receive in-app and email notification once Zyvest reviews your KYC submission',
+      'When Approved, unlock the Wallet feature and full user platform navigation',
+      'If Rejected, view the specific review reason and access the direct correction/resubmission path'
+    ],
+    rules: [
+      'The "Submission Under Review" screen informs users that their application is with the admin team.',
+      'Users can navigate to their Dashboard using the "Go to Dashboard" button while in pending status.',
+      'Review sets the account to Approved or Rejected and sends instant in-app and email alerts.',
+      'When Zyvest approves an account, the user is able to get the Wallet feature and access all user modules.',
+      'Rejected applications display clear feedback and guide the user back to correct specific information or re-upload documents.'
+    ],
+    checks: [
+      'The "Submission Under Review" page displays clear status messaging and a functional "Go to Dashboard" button.',
+      'Status banner is visible on the dashboard while the account is under review.',
+      'Approval immediately unlocks the Wallet feature and platform navigation.',
+      'Rejection displays the exact reason and opens the correction flow.'
+    ]
+  }
+};
 
 // Screenshot assets are added to the project by the Help Center editor, not uploaded by site visitors.
 const guideScreenshots = {
@@ -56,7 +404,7 @@ const guideScreenshots = {
   signup: [],
   kyc: [],
   nominee: [],
-  'bank-account': [],
+  'admin-approval': [],
   profile: [],
   wallet: []
 };
@@ -349,16 +697,79 @@ function setView(view) {
 
 function renderModules() {
   const query = search.value.trim().toLowerCase();
-  const visible = modules.filter(module => `${module.title} ${module.path} ${module.summary} ${module.flow.join(' ')} ${module.rules.join(' ')} ${module.checks.join(' ')}`.toLowerCase().includes(query));
+  const visible = modules.filter(module => {
+    let text = `${module.title} ${module.number || ''} ${module.step || ''} ${module.path} ${module.summary} ${module.flow.join(' ')} ${module.rules.join(' ')} ${module.checks.join(' ')}`;
+    if (module.hasSubmodules) {
+      Object.values(onboardingSubmodules).forEach(sub => {
+        text += ` ${sub.title} ${sub.summary} ${sub.flow.join(' ')} ${sub.rules.join(' ')} ${sub.checks.join(' ')}`;
+      });
+    }
+    return text.toLowerCase().includes(query);
+  });
   grid.innerHTML = visible.map(module => `
     <button class="module-card" data-module="${module.id}" aria-label="Open ${escapeHtml(module.title)} guide">
-      <span class="module-icon">${module.icon}</span><span class="module-path">${escapeHtml(module.path)}</span>
+      <div class="module-card-header">
+        <span class="module-card-number">${escapeHtml(module.number || '')}</span>
+        <span class="module-step-badge">${escapeHtml(module.step || '')}</span>
+        <span class="module-icon">${module.icon}</span>
+      </div>
+      <span class="module-path">${escapeHtml(module.path)}</span>
       <strong>${escapeHtml(module.title)}</strong><span class="module-summary">${escapeHtml(module.summary)}</span>
+      ${module.hasSubmodules ? '<div class="submodule-pill-list"><span class="submodule-pill">Step 1: Sign up</span><span class="submodule-pill">Step 2: KYC</span><span class="submodule-pill">Step 3: Nominee</span><span class="submodule-pill">Step 4: Pending KYC Approval</span></div>' : ''}
       <span class="module-action">Open overview <b>→</b></span>
     </button>`).join('');
   empty.hidden = visible.length > 0;
   grid.hidden = visible.length === 0;
   grid.querySelectorAll('[data-module]').forEach(button => button.addEventListener('click', () => openModule(button.dataset.module)));
+}
+
+function openOnboardingSubmodule(id, opener) {
+  const sub = onboardingSubmodules[id];
+  if (!sub) return;
+  const detail = document.createElement('section');
+  detail.className = 'detail-page onboarding-subpage';
+  detail.setAttribute('role', 'dialog');
+  detail.setAttribute('aria-modal', 'true');
+  detail.setAttribute('aria-labelledby', 'subDetailTitle');
+  detail.innerHTML = `
+    <div class="detail-topbar">
+      <button class="back-link close-sub-detail">← Sign up guide</button>
+      <span class="detail-counter">ZYVEST ONBOARDING · ${escapeHtml(sub.step.toUpperCase())} OF 04</span>
+      <button class="close-button close-sub-detail" aria-label="Return to Sign up guide">×</button>
+    </div>
+    <div class="detail-content">
+      <p class="eyebrow">HELP CENTER · ONBOARDING ${escapeHtml(sub.step.toUpperCase())}</p>
+      <h1 id="subDetailTitle">${escapeHtml(sub.title)}</h1>
+      <p class="detail-intro">${escapeHtml(sub.summary)}</p>
+      <div class="flow-layout">
+        <section class="detail-panel">
+          <h2>Steps on the Zyvest website</h2>
+          <ol class="flow-list">${sub.flow.map(step => `<li>${escapeHtml(step)}</li>`).join('')}</ol>
+        </section>
+        <section class="detail-panel check-panel">
+          <h2>What to verify</h2>
+          <ul>${sub.checks.map(check => `<li>${escapeHtml(check)}</li>`).join('')}</ul>
+        </section>
+      </div>
+      <section class="detail-panel business-rules">
+        <p class="eyebrow">IMPLEMENTATION RULES</p>
+        <h2>Business rules & account states</h2>
+        <ul>${sub.rules.map(rule => `<li>${escapeHtml(rule)}</li>`).join('')}</ul>
+      </section>
+    </div>`;
+  document.body.append(detail);
+  const close = () => {
+    detail.remove();
+    opener?.focus();
+  };
+  detail.querySelectorAll('.close-sub-detail').forEach(btn => btn.addEventListener('click', close));
+  detail.addEventListener('click', event => { if (event.target === detail) close(); });
+  detail.addEventListener('keydown', event => {
+    event.stopPropagation();
+    if (event.key === 'Escape') close();
+    if (event.key === 'Tab') keepFocusInside(event, detail);
+  });
+  detail.querySelector('.close-button').focus();
 }
 
 function openModule(id) {
@@ -371,14 +782,71 @@ function openModule(id) {
   detail.setAttribute('aria-modal', 'true');
   detail.setAttribute('aria-labelledby', 'detailTitle');
   detail.innerHTML = `
-    <div class="detail-topbar"><button class="back-link close-detail">← All User guides</button><span class="detail-counter">ZYVEST WEBSITE GUIDE · ${escapeHtml(module.path)}</span><button class="close-button close-detail" aria-label="Close guide">×</button></div>
+    <div class="detail-topbar"><button class="back-link close-detail">← All User guides</button><span class="detail-counter">ZYVEST WEBSITE GUIDE · ${escapeHtml(module.number ? module.number + ' · ' : '')}${escapeHtml(module.path)}</span><button class="close-button close-detail" aria-label="Close guide">×</button></div>
     <div class="detail-content">
-      <p class="eyebrow">HELP CENTER · USER GUIDE</p><h1 id="detailTitle">${escapeHtml(module.title)}</h1><p class="detail-intro">${escapeHtml(module.summary)}</p>
+      <p class="eyebrow">HELP CENTER · USER GUIDE${module.step ? ` · ${escapeHtml(module.step.toUpperCase())}` : ''}</p><h1 id="detailTitle">${escapeHtml(module.title)}</h1><p class="detail-intro">${escapeHtml(module.summary)}</p>
       <div class="flow-layout">
         <section class="detail-panel"><h2>Steps on the Zyvest website</h2><ol class="flow-list">${module.flow.map(step => `<li>${escapeHtml(step)}</li>`).join('')}</ol></section>
         <section class="detail-panel check-panel"><h2>What to verify</h2><ul>${module.checks.map(check => `<li>${escapeHtml(check)}</li>`).join('')}</ul></section>
       </div>
       <section class="detail-panel business-rules"><p class="eyebrow">IMPLEMENTATION RULES</p><h2>Business rules & account states</h2><ul>${module.rules.map(rule => `<li>${escapeHtml(rule)}</li>`).join('')}</ul></section>
+      ${module.hasSubmodules ? `
+        <section class="detail-panel onboarding-submodule-section">
+          <div class="ib-section-heading">
+            <div>
+              <p class="eyebrow">ONBOARDING STEPS 1 TO 4</p>
+              <h2>4 Onboarding steps inside Sign up</h2>
+              <p>Select any step below to review its exact fields, document formats, and verification rules.</p>
+            </div>
+            <span>Steps 1–4</span>
+          </div>
+          <div class="onboarding-cards-grid">
+            ${Object.values(onboardingSubmodules).map(sub => `
+              <button type="button" class="onboarding-subcard" data-submodule="${sub.id}">
+                <div class="onboarding-subcard-header">
+                  <span class="onboarding-subcard-number">${sub.number}</span>
+                  <span class="module-step-badge">${sub.step}</span>
+                </div>
+                <strong>${escapeHtml(sub.title)}</strong>
+                <p>${escapeHtml(sub.summary)}</p>
+                <span class="onboarding-subcard-action">View ${sub.step} guide <b>→</b></span>
+              </button>
+            `).join('')}
+          </div>
+        </section>
+      ` : ''}
+      ${module.sections?.length ? `
+        <section class="detail-panel profile-sections-container">
+          <div class="ib-section-heading">
+            <div>
+              <p class="eyebrow">DETAILED PAGE MODULES & CONTROLS</p>
+              <h2>Profile Page Structure & Components</h2>
+              <p>Reference guide for all navigation menus, identification items, personal fields, and security options.</p>
+            </div>
+            <span>${module.sections.length} Sections</span>
+          </div>
+          ${module.sections.map(group => `
+            <div class="dashboard-explanation" style="margin-top:22px">
+              <div style="display:flex;align-items:center;justify-content:space-between;gap:8px;margin-bottom:8px">
+                <h3 style="margin:0;font-size:1.1rem;color:var(--ink)">${escapeHtml(group.title)}</h3>
+                <span class="module-step-badge" style="font-size:0.75rem">${escapeHtml(group.eyebrow || 'SECTION')}</span>
+              </div>
+              ${group.description ? `<p style="margin:0 0 12px;color:var(--muted);font-size:0.875rem">${escapeHtml(group.description)}</p>` : ''}
+              <div class="dashboard-metric-grid customer-guide-grid">
+                ${group.items.map(([title, text, badge]) => `
+                  <article class="dashboard-info-card">
+                    <div style="display:flex;align-items:center;justify-content:space-between;gap:8px;margin-bottom:6px">
+                      <h4 style="margin:0;font-size:0.95rem;color:var(--ink)">${escapeHtml(title)}</h4>
+                      ${badge ? `<span class="module-step-badge" style="font-size:0.72rem;padding:2px 8px">${escapeHtml(badge)}</span>` : ''}
+                    </div>
+                    <p style="margin:0;color:var(--muted);font-size:0.85rem;line-height:1.5">${escapeHtml(text)}</p>
+                  </article>
+                `).join('')}
+              </div>
+            </div>
+          `).join('')}
+        </section>
+      ` : ''}
       <section class="screenshots-panel"><div class="screenshot-heading"><div><p class="eyebrow">VISUAL WALKTHROUGH</p><h2>Website step screenshots</h2><p>Reference screenshots for the steps in this guide.</p></div></div>
         <div class="screenshot-grid">${screenshots.length ? screenshots.map(screenshot => `<figure class="screenshot-card"><img src="${escapeHtml(screenshot.src)}" alt="${escapeHtml(screenshot.alt || screenshot.caption || module.title)}"><figcaption>${escapeHtml(screenshot.caption || '')}</figcaption></figure>`).join('') : '<div class="screenshot-empty">Screenshots for this guide will appear here when added to the Help Center.</div>'}</div>
       </section>
@@ -390,6 +858,11 @@ function openModule(id) {
     document.body.style.overflow = '';
   };
   detail.querySelectorAll('.close-detail').forEach(button => button.addEventListener('click', close));
+  detail.querySelectorAll('[data-submodule]').forEach(subButton => {
+    subButton.addEventListener('click', () => {
+      openOnboardingSubmodule(subButton.dataset.submodule, subButton);
+    });
+  });
   detail.addEventListener('click', event => { if (event.target === detail) close(); });
   detail.addEventListener('keydown', event => {
     if (event.key === 'Escape') close();
@@ -485,6 +958,9 @@ function keepFocusInside(event, container) {
 
 document.querySelectorAll('[data-view]').forEach(button => button.addEventListener('click', () => setView(button.dataset.view)));
 document.querySelectorAll('.nav-button').forEach(button => button.addEventListener('click', () => setView(button.dataset.view)));
+document.querySelectorAll('.roadmap-step[data-module]').forEach(button => {
+  button.addEventListener('click', () => openModule(button.dataset.module));
+});
 document.querySelector('.admin-function-grid')?.addEventListener('click', event => {
   const card = event.target.closest('[data-admin-area]');
   if (card) openAdminArea(card.dataset.adminArea);
