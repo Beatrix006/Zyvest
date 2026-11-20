@@ -1,120 +1,142 @@
-# Zyvest – User Profile Page
+# Zyvest – User Profile & Account Page Documentation
 
 ## 1. Overview
-The Profile page allows users to view their registered account information, personal details, nominee information, security settings, and previous login details. It provides users with an overview of their account and access to different account management options.
+The **Profile & Account** page is a centralized workspace within the Zyvest platform that allows users to manage their identity, trading account tiers, personal details, nominee authorization, security settings, KYC status, two-factor authentication, and login activity.
+
+It is accessible directly from the **Zyvest Dashboard** via the top navigation bar or the **Settings** sidebar menu.
+
+---
 
 ## 2. Top Navigation Bar
+The top navigation bar provides instant access to all core platform modules and utilities:
 
-The top navigation bar provides access to the major modules of the Zyvest platform.
+| Field / Menu | Explanation | Classification |
+|---|---|---|
+| **Zyvest Logo** | Displays the official Zyvest Capital brand logo and links to the main home view. | Branding |
+| **Dashboard** | Provides access to the main dashboard showing equity, charts, and quick actions. | Navigation |
+| **Wallet** | Unlocked for approved users to manage deposits, withdrawals, and internal transfers. | Funds |
+| **Account Type** | Dedicated entry point to view account plans and open the plan selection modal. | Accounts |
+| **IB** | Introducing Broker management section for commissions, rebates, and sub-clients. | Broker |
+| **Support** | Customer help desk ticket management and real-time support requests. | Help Desk |
+| **PAMM** | Percentage Allocation Management Module for pooled investment accounts. | Investment |
+| **Copy Trading** | Copy trading interface to discover, follow, and mirror master strategy providers. | Trading |
+| **Notification Icon** | Bell icon alerting users to system notices, deposit confirmations, and security alerts. | Alerts |
+| **Theme Icon** | One-click toggle switching between Light and Dark application themes. | Interface |
+| **User Profile Dropdown** | Displays the logged-in user's name and avatar, opening account settings and logout. | Menu |
 
-| Field / Menu | Explanation |
-|---|---|
-| Zyvest Logo | Displays the Zyvest Capital logo and represents the platform's branding. |
-| Dashboard | Provides access to the main dashboard, where users can view an overview of their account. |
-| Wallet | Allows users to access their wallet and view available balance and transaction-related information. |
-| Account Type | Provides access to account type-related information and options. |
-| IB | Provides access to the Introducing Broker (IB) section. |
-| Support | Allows users to access customer support services. |
-| PAMM | Provides access to the PAMM (Percentage Allocation Management Module) section. |
-| Copy Trading | Allows users to access copy trading features and related information. |
-| Notification Icon | Displays notifications and updates related to the user's account and platform activities. |
-| Theme Icon | Allows users to switch between available application themes. |
-| User Profile Dropdown | Displays the logged-in user's name and provides access to account-related options. |
+---
 
 ## 3. Settings Sidebar
+The Settings sidebar categorizes user preferences and compliance settings into clear functional views:
 
-The Settings sidebar contains different sections through which users can manage their account preferences and security.
+| Menu Item | Explanation | Status Indicator |
+|---|---|---|
+| **Profile** | Displays personal details, account identification, nominee information, and security. | Active Section |
+| **KYC Verification** | Identity verification portal tracking document status and submission history. | Verified / Active |
+| **2 Factor Authentication** | Dual-channel login and withdrawal security configuration (Mail code & Authenticator app). | Security Tier |
+| **Notifications** | Configuration options for email alerts, push notifications, and trade execution notices. | Preferences |
 
-| Menu Item | Explanation |
-|---|---|
-| Profile | Displays the user's personal information, account details, nominee information, and security settings. |
-| KYC Verification | Provides access to identity verification details and the user's KYC verification process. |
-| 2 Factor Authentication | Allows users to configure and manage additional account login security. |
-| Notifications | Provides options to manage notification preferences. |
+---
 
-## 4. Manage Account Details
+## 4. Account Identification & User Level Upgrading
 
-This section displays the user's registered account information. It allows users to view their personal details and access available account management options.
+Located at the top of the Profile workspace, this section presents the user's primary credentials and platform status:
 
-### 4.1 Account Identification Details
+| Field / Element | Explanation | Functionality |
+|---|---|---|
+| **Profile Picture** | Displays the avatar or photograph uploaded by the user with image upload/change support. Visually confirms account identity. | Upload / Replace Photo |
+| **Your ID** | System-assigned unique numeric account identifier (e.g. `ZYV-849201`). Quoted in all support and funding queries. | Read-Only Identifier |
+| **Account Level** | Displays current user membership tier (e.g., `Level 1`). Higher levels offer higher leverage, lower commissions, and elevated withdrawal limits. | Tier Status Badge |
+| **Upgrade Option** | Interactive action button allowing eligible users to explore tier progression criteria or request an immediate account level upgrade. | Action Button |
 
-| Field | Explanation |
-|---|---|
-| Profile Picture | Displays the profile photograph uploaded by the user. It helps visually identify the account holder. |
-| Your ID | Displays the unique identification number assigned to the user by Zyvest. This ID is used to identify the user's account within the platform. |
-| Account Level | Displays the current account level assigned to the user. For example, Level 1. |
-| Upgrade | Provides an option for the user to explore or upgrade their current account level, if eligible. |
+---
 
-### 4.2 Personal Information
+## 5. Account Types — "Choose a plan that is right for you"
 
-This section displays the personal information provided by the user during registration or account verification.
+Inside the Account Types section (accessible from the Profile page and top navigation), an interactive module/modal opens titled **"Choose a plan that is right for you"**.
 
-| Field | Explanation |
-|---|---|
-| Full Name | Displays the user's complete registered name. For example, Kabir Singh. |
-| Display Name | Displays the name used to represent the user within the platform. It may be different from the registered full name. |
-| Date of Birth | Displays the user's registered date of birth in the specified date format. |
-| Address | Displays the residential address provided by the user during registration or verification. |
-| Country | Displays the country associated with the user's registered account. |
-| Email | Displays the email address registered with the user's Zyvest account. |
-| Phone Number | Displays the mobile number associated with the user's account, including the country code. |
+This module allows users to evaluate and select from distinct trading plans tailored to manual traders, scalpers, institutional accounts, and copy trading participants.
 
-**Additional UI Elements:**
+### Key Trading Account Plans
 
-- **Edit Icon:** Indicates that the corresponding information can be edited. In the screenshot, the Display Name field has an edit icon.
-- **Lock Icon:** Indicates that the corresponding field is locked or restricted from direct editing.
+| Plan Name | Target Audience | Range of Spread | Leverage | Commission | Minimum Deposit | Key Highlights |
+|---|---|---|---|---|---|---|
+| **Copier Group** | Copy Trading & Strategy Followers | **0.0 – 1.2 pips** (Floating) | **Up to 1:500** (Flexible) | $3.00 / lot | $100 | Seamless sync with master traders, automatic risk stop-loss, copy ratio customization. |
+| **Standard Account** | Beginners & Day Traders | **1.0 – 1.8 pips** (Floating) | **Up to 1:500** | $0 (Markup included) | $50 | Zero commission on all currency pairs, instant market execution, ideal for discretionary trading. |
+| **Raw Spread (ECN)** | Scalpers & Algorithmic Traders | **From 0.0 pips** (Raw interbank) | **Up to 1:500** | $3.50 / lot per side | $200 | Direct Tier-1 interbank liquidity feeds, ultra-low latency, optimal for automated Expert Advisors (EAs). |
+| **VIP / Institutional** | High-Volume & Professional Investors | **From 0.0 pips** (Institutional) | **Up to 1:200** | Custom negotiable rates | $10,000 | Dedicated personal account manager, custom VPS hosting, priority liquidity queue, expedited payouts. |
 
-## 5. Nominee Details
+### Core Account Parameters Explained
+- **Range of Spread:** Represents the difference between the Bid and Ask prices across trading instruments. Floating spreads dynamically tighten during peak market liquidity.
+- **Leverage:** The margin multiplier (e.g. 1:100, 1:200, 1:500) determining the borrowing power available to open market positions relative to account equity.
 
-The Nominee Details section allows users to add a person who may be authorized to manage their funds in case of an emergency, subject to the platform's nominee policies.
+---
 
-| Field / Element | Explanation |
-|---|---|
-| Nominee Details | Displays the section where nominee-related information can be managed. |
-| Description | Explains that users can add a nominee who can manage their funds in case of an emergency. |
-| Add Button | Allows the user to initiate the process of adding a nominee. |
+## 6. Manage Profile (Personal Information)
 
-## 6. Password and Security
+The Manage Profile card presents the user's verified personal details collected during onboarding. Strict compliance rules protect verified information against unauthorized alteration.
 
-This section provides access to account security features. Users can check their KYC status, configure two-factor authentication, and manage their account password.
+| Field Name | Display Example | UI Control / Indicator | Editing Policy |
+|---|---|---|---|
+| **Full Name** | Kabir Singh | 🔒 Lock Icon | **Restricted:** Permanent verified legal name matching government ID. Name changes require administrative review. |
+| **Display Name** | KabirTrader | ✏️ Edit Icon | **Editable:** Public platform alias/handle that can be modified directly inline. |
+| **Date of Birth** | 14 Aug 1992 | 🔒 Lock Icon | **Restricted:** Compliance-locked birth date matching KYC records. |
+| **Phone Number** | +1 (555) 234-8901 | 🔒 Lock Icon | **Protected:** Locked from arbitrary inline edits. Updates require SMS/Phone OTP verification. |
+| **Mail ID (Email)** | kabir.singh@example.com | 🔒 Lock Icon | **Protected:** Primary authentication email. Updates require dual-channel email verification. |
+| **Address** | 452 Elm Street, Suite 300 | 🔒 Lock Icon | **Restricted:** Residential address verified via proof-of-address documents. |
+| **Country** | United States | 🔒 Lock Icon | **Restricted:** Registered jurisdiction determining regulatory jurisdiction and available payment rails. |
 
-### 6.1 KYC Verification Status
+---
 
-| Field / Element | Explanation |
-|---|---|
-| KYC Verification Status | Displays the current Know Your Customer (KYC) verification status of the user's account. |
-| Status | Indicates whether the user's KYC verification is Active or in another available state. |
-| Re-Setup Button | Allows the user to initiate the KYC re-verification or re-setup process. |
+## 7. KYC Verification Status & Re-Setup
 
-### 6.2 Two-Factor Authentication (2FA)
+Tracks the user's Know Your Customer (KYC) regulatory compliance standing:
 
-| Field / Element | Explanation |
-|---|---|
-| 2 Factor Authentication | Displays the current two-factor authentication status of the user's account. |
-| Status | Indicates whether 2FA is currently Active or Inactive. |
-| Setup Button | Allows the user to configure two-factor authentication to add an additional layer of account security. |
+| Field / Element | Explanation | UI Presentation |
+|---|---|---|
+| **KYC Verification Status** | Displays current account verification standing (e.g., `Active`, `Verified`, or `Under Review`). | Status Badge (`Active`) |
+| **Re-Setup Option** | Action button enabling users to update expired identity cards, submit fresh address proofs, or re-verify biometrics. | Action Button (`Re-Setup`) |
 
-### 6.3 Change Password
+---
 
-| Field / Element | Explanation |
-|---|---|
-| Change Password | Provides access to the password management section. |
-| Description | Informs users that they can update their account password to maintain account security. |
-| Arrow Icon | Indicates that clicking the section will navigate the user to another page or screen for changing the password. |
+## 8. Nominee Details (Emergency Authorization)
 
-## 7. Login History
+Allows users to appoint an authorized nominee who can manage or claim account funds in the event of unforeseen contingencies:
 
-The Login History section provides information about previous login activities associated with the user's account.
+| Field / Element | Explanation | UI Presentation |
+|---|---|---|
+| **Nominee Details Section** | Displays appointed nominee overview or empty placeholder prompt. | Overview Card |
+| **Emergency Notice** | Clarifies platform policies governing legal entitlement and proof requirements for nominee disbursement. | Policy Notice |
+| **Add / Edit Nominee Button** | Opens the nominee form requiring Nominee Legal Name, Date of Birth, Relationship (Spouse, Child, Parent, etc.), and Contact Email. | Action Button (`Add Nominee`) |
 
-| Field / Element | Explanation |
-|---|---|
-| Logins | Displays the section containing the user's previous login information. |
-| Description | Indicates that users can review details about their previous login activities. |
+---
 
-The detailed login history fields are not fully visible in the provided screenshots and should be documented after inspecting the expanded section.
+## 9. Two-Factor Authentication (2FA)
 
-## 8. Summary
+Zyvest enforces robust multi-factor security protecting login sessions and financial transactions. Two distinct authentication channels are supported:
 
-The Zyvest Profile page provides users with a centralized location to view and manage their account-related information. It covers personal details, account identification, nominee information, KYC verification, two-factor authentication, password management, and login history.
+| Security Channel | Functionality & Workflow | User Action |
+|---|---|---|
+| **Generate New Code with Mail** | Triggers an immediate one-time 6-digit numeric security passcode dispatched to the user's registered **Mail ID**. Valid for 10 minutes. Ideal for fallback authentication without third-party apps. | Button: `Generate new code with mail` |
+| **Open Authenticator App** | Integrates with time-based one-time password (TOTP) apps such as **Google Authenticator**, **Microsoft Authenticator**, or **Authy**. Provides a scanable QR code and backup alphanumeric secret key. | Button: `Open authenticator app` |
+| **2FA Status** | Indicates whether two-factor verification is enforced on login and withdrawals (`Active` vs. `Inactive`). | Status Badge |
 
-The page helps users understand their registered account information and access the available account management and security features.
+---
+
+## 10. Credentials & Login History
+
+| Section | Element | Description |
+|---|---|---|
+| **Change Password** | Password Security Card | Displays password status and features a navigation arrow redirecting the user to the dedicated credential update screen with old password, new password, and confirmation fields. |
+| **Login History** | Session Audit Log | Provides a transparent chronological audit trail recording previous login sessions, including: Timestamp, IP Address, Device/Browser Agent, Approximate Location, and Login Status (Success/Failed). |
+
+---
+
+## 11. Summary & Implementation Rules
+
+1. **Dashboard & Settings Integration:** The Profile & Account view is accessible via both top navigation user controls and the Settings sidebar.
+2. **Account Upgrades:** The User Level badge displays current status with an accessible Upgrade path.
+3. **Account Types Plan Selection:** Inside Account Types, a dedicated modal opens titled **"Choose a plan that is right for you"** showcasing the **Copier Group** plan alongside Standard and Raw Spread options, detailing **Range of Spread** and **Leverage**.
+4. **Manage Profile Restrictions:** Personal fields (Full Name, Date of Birth, Address, Country, Phone, Mail ID) remain compliance-locked (🔒), while the Display Name features an interactive Edit Icon (✏️).
+5. **KYC Lifecycle:** Current status reflects `Active`, with an accessible `Re-Setup` button for document renewals.
+6. **2FA Dual Channels:** Users can choose between **"Generate new code with mail"** for email-delivered codes or **"Open authenticator app"** for TOTP app configuration.

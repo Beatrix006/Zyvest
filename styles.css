@@ -196,3 +196,108 @@ body.dark .onboarding-subcard-action{color:#83d9a8}
   .roadmap-step{justify-content:flex-start}
   .onboarding-cards-grid{grid-template-columns:1fr}
 }
+
+/* --- Interactive Profile & Account Types Features --- */
+.interactive-feature-panel{margin-top:24px;background:#f8fcf9;border:1px solid #cce8d8;border-radius:12px;padding:22px}
+.interactive-feature-header{display:flex;align-items:flex-start;justify-content:space-between;gap:14px;margin-bottom:18px}
+.interactive-feature-header h2{margin:4px 0 6px;color:var(--ink);font-size:1.25rem}
+.interactive-feature-header p{margin:0;color:var(--muted);font-size:.875rem}
+
+.interactive-action-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
+.interactive-action-card{display:flex;gap:14px;padding:18px;background:var(--white);border:1px solid var(--line);border-radius:10px;transition:border-color .15s,box-shadow .15s}
+.interactive-action-card:hover{border-color:#83d9a8;box-shadow:0 6px 16px #1040280f}
+.interactive-card-icon{font-size:1.75rem;line-height:1;flex-shrink:0}
+.interactive-card-body{display:flex;flex-direction:column;align-items:flex-start;gap:6px;width:100%}
+.interactive-card-body h3{margin:0;font-size:1.025rem;color:var(--ink)}
+.interactive-card-body p{margin:0 0 10px;font-size:.85rem;color:var(--muted);line-height:1.5}
+
+.btn-action-primary{display:inline-flex;align-items:center;gap:6px;padding:9px 16px;background:var(--green);color:#fff;border:none;border-radius:7px;font:inherit;font-size:.875rem;font-weight:700;cursor:pointer;transition:background .15s,transform .1s}
+.btn-action-primary:hover{background:var(--green-dark);transform:translateY(-1px)}
+.btn-action-secondary{display:inline-flex;align-items:center;gap:6px;padding:8px 14px;background:#eef8f2;color:#087950;border:1px solid #bce4cd;border-radius:6px;font:inherit;font-size:.8125rem;font-weight:600;cursor:pointer;transition:all .15s}
+.btn-action-secondary:hover{background:#dcf2e4;border-color:#83d9a8;color:#065f3f}
+
+.twofa-button-group{display:flex;flex-wrap:wrap;gap:8px}
+.twofa-live-feedback{width:100%;margin-top:10px;padding:12px 14px;border-radius:7px;font-size:.85rem;line-height:1.5;animation:fadeIn .2s ease}
+.twofa-live-feedback.feedback-success{background:#e7f8ee;border:1px solid #99dfb8;color:#0b6b41}
+.twofa-live-feedback code{background:#d2f0df;padding:2px 6px;border-radius:4px;font-family:monospace;font-weight:700}
+
+/* Plan Chooser Modal Styles */
+.plan-modal-dialog{max-width:1080px;width:95vw}
+.plan-modal-header{margin-bottom:20px;text-align:center}
+.plan-modal-header h1{margin:6px 0 8px;font-size:1.75rem;color:var(--ink)}
+.plan-modal-header p{margin:0 auto;max-width:680px;color:var(--muted);font-size:.925rem}
+
+.plan-cards-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px;margin-top:20px}
+.plan-card{position:relative;display:flex;flex-direction:column;padding:18px;background:var(--white);border:1.5px solid var(--line);border-radius:12px;text-align:left;transition:all .18s ease}
+.plan-card:hover{border-color:#53bd88;transform:translateY(-3px);box-shadow:0 10px 24px #1b452f14}
+.plan-card.plan-featured{border-color:#087950;background:#fbfffd;box-shadow:0 4px 18px #08795018}
+
+.plan-card-tag{align-self:flex-start;padding:3px 8px;border-radius:4px;font-size:.6875rem;font-weight:700;background:#eef8f2;color:#087950;margin-bottom:10px}
+.plan-card.plan-featured .plan-card-tag{background:#087950;color:#fff}
+
+.plan-card-header{display:flex;align-items:center;gap:8px;margin-bottom:10px}
+.plan-card-icon{font-size:1.5rem}
+.plan-card-title{margin:0;font-size:1.15rem;font-weight:800;color:var(--ink)}
+
+.plan-metric-boxes{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:12px 0 14px;background:#f6faf7;padding:10px;border-radius:8px;border:1px solid #e1efe7}
+.plan-metric-box{display:flex;flex-direction:column;gap:2px}
+.plan-metric-label{font-size:.6875rem;text-transform:uppercase;color:var(--muted);font-weight:700;letter-spacing:.3px}
+.plan-metric-value{font-size:.875rem;font-weight:800;color:#087950}
+
+.plan-details-list{list-style:none;padding:0;margin:0 0 16px;display:flex;flex-direction:column;gap:6px;font-size:.8125rem;color:var(--ink)}
+.plan-details-list li{display:flex;align-items:flex-start;gap:6px;line-height:1.4}
+.plan-details-list li::before{content:"✓";color:#087950;font-weight:800;flex-shrink:0}
+
+.plan-select-btn{margin-top:auto;width:100%;padding:10px;border:1px solid #087950;background:transparent;color:#087950;border-radius:7px;font:inherit;font-size:.875rem;font-weight:700;cursor:pointer;transition:all .15s}
+.plan-select-btn:hover{background:#087950;color:#fff}
+.plan-card.plan-selected .plan-select-btn{background:#087950;color:#fff}
+.plan-selected-badge{display:none;position:absolute;top:10px;right:10px;background:#087950;color:#fff;font-size:10px;font-weight:800;padding:2px 7px;border-radius:4px}
+.plan-card.plan-selected .plan-selected-badge{display:block}
+
+/* Authenticator Modal */
+.authenticator-modal-dialog{max-width:480px;width:92vw}
+.auth-step-box{background:#f8fbf9;border:1px solid #d4ede0;border-radius:10px;padding:16px;margin:16px 0;text-align:center}
+.auth-qr-frame{display:inline-grid;place-items:center;background:#fff;padding:14px;border-radius:10px;border:1px solid #bce4cd;margin-bottom:12px}
+.auth-key-display{display:flex;align-items:center;justify-content:center;gap:8px;margin-top:8px}
+.auth-key-display code{background:#e7f5ee;padding:6px 10px;border-radius:6px;font-family:monospace;font-size:.95rem;font-weight:800;color:#087950;letter-spacing:1px}
+.btn-copy-code{padding:5px 10px;border:1px solid #bce4cd;background:#fff;border-radius:5px;font-size:.75rem;font-weight:700;color:#087950;cursor:pointer}
+.btn-copy-code:hover{background:#eef8f2}
+.totp-input-row{display:flex;justify-content:center;gap:6px;margin:16px 0}
+.totp-digit{width:40px;height:48px;border:1.5px solid var(--line);border-radius:8px;text-align:center;font-size:1.25rem;font-weight:800;background:var(--white);color:var(--ink)}
+.totp-digit:focus{border-color:#087950;outline:none}
+
+/* Dark mode adjustments */
+body.dark .interactive-feature-panel{background:#13261c;border-color:#294d37}
+body.dark .interactive-feature-header h2{color:#e7eee9}
+body.dark .interactive-action-card{background:#18251d;border-color:#2c3b32}
+body.dark .interactive-action-card:hover{border-color:#4e926d}
+body.dark .interactive-card-body h3{color:#e7eee9}
+body.dark .btn-action-secondary{background:#1c3928;border-color:#36704f;color:#89dfb1}
+body.dark .btn-action-secondary:hover{background:#234a34;border-color:#4e926d;color:#a5ebd0}
+body.dark .twofa-live-feedback.feedback-success{background:#153825;border-color:#286341;color:#89dfb1}
+body.dark .twofa-live-feedback code{background:#1d4c32;color:#a3f1c9}
+body.dark .plan-card{background:#18251d;border-color:#2c3b32}
+body.dark .plan-card:hover{border-color:#4e926d}
+body.dark .plan-card.plan-featured{background:#152c20;border-color:#36704f}
+body.dark .plan-card-tag{background:#1f3a2b;color:#89dfb1}
+body.dark .plan-card.plan-featured .plan-card-tag{background:#0a9b64;color:#fff}
+body.dark .plan-card-title{color:#e7eee9}
+body.dark .plan-metric-boxes{background:#122018;border-color:#243d2e}
+body.dark .plan-metric-value{color:#89dfb1}
+body.dark .plan-details-list{color:#d5e2d9}
+body.dark .plan-select-btn{border-color:#36704f;color:#89dfb1}
+body.dark .plan-select-btn:hover{background:#0a9b64;border-color:#0a9b64;color:#fff}
+body.dark .auth-step-box{background:#16281e;border-color:#294d37}
+body.dark .auth-qr-frame{background:#fff}
+body.dark .auth-key-display code{background:#1a3c2a;color:#8de0b5}
+body.dark .btn-copy-code{background:#18251d;border-color:#36704f;color:#89dfb1}
+body.dark .totp-digit{background:#16241b;border-color:#2c3b32;color:#fff}
+
+@media(max-width:980px){
+  .plan-cards-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .interactive-action-grid{grid-template-columns:1fr}
+}
+@media(max-width:560px){
+  .plan-cards-grid{grid-template-columns:1fr}
+}
+

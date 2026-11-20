@@ -56,38 +56,43 @@ const modules = [
     ]
   },
   {
-    id: 'profile', icon: '♙', title: 'Profile & account', number: '03', step: 'Account Settings', path: 'Dashboard · Profile & Security',
-    summary: 'Centralized location to view and manage registered account information, personal details, nominee authorization, security settings, KYC status, 2FA, and login history.',
+    id: 'profile', icon: '♙', title: 'Profile & account', number: '03', step: 'Settings & Account Types', path: 'Dashboard · Settings & Account Types',
+    summary: 'Centralized location to view and manage profile identification, user level upgrades, account type plans ("Choose a plan that is right for you" including Copier Group with spread range and leverage), personal details, KYC status & re-setup, nominee authorization, and dual-channel 2FA.',
     flow: [
-      'Top Navigation: Access major platform modules (Dashboard, Wallet, Account Type, IB, Support, PAMM, Copy Trading, Notifications, Theme, User Profile Dropdown)',
-      'Settings Sidebar: Navigate through Profile, KYC Verification, 2 Factor Authentication (2FA), and Notifications',
-      'Account Identification: Review Profile Picture, unique Zyvest ID, current Account Level (e.g., Level 1), and access the Upgrade option if eligible',
-      'Personal Information: Review Full Name, Date of Birth, Address, Country, Email, and Phone Number (locked with Lock Icon), and click the Edit Icon on Display Name to update your platform display name',
-      'Nominee Details: Read emergency fund management guidelines and select "Add" to assign an authorized nominee',
-      'KYC Verification Status: View current KYC verification status (Active or other state) and use "Re-Setup" to re-verify if required',
-      'Two-Factor Authentication: Check 2FA status (Active / Inactive) and select "Setup" to configure authenticator security',
-      'Change Password: Click the Change Password section (with navigation arrow) to open the secure password change screen',
-      'Login History: Review previous login activity, sessions, and timestamps to audit account access'
+      'Top Navigation & Settings Access: On the Zyvest Dashboard, locate and click the Settings icon or User Profile dropdown menu in the top navigation bar to open the Profile & Account workspace',
+      'Account Identification & Level Upgrades: Review Profile Picture, unique Zyvest ID, and current Account Level (e.g., Level 1), and click the "Upgrade" option to view tier requirements or request an account level advancement',
+      'Account Types — "Choose a plan that is right for you": Open the Account Types section or modal to review available trading account plans. Compare plans including Copier Group, Standard, and Raw Spread, evaluating their Range of Spread (e.g. 0.0 – 1.2 pips) and Leverage (e.g. up to 1:500)',
+      'Manage Profile Details: Inspect verified personal information: Full Name, Display Name (with inline Edit Icon), Date of Birth, Phone Number, Mail ID (Email), Address, and Country',
+      'Edit Display Name: Click the Edit Icon next to Display Name to modify your platform handle directly inline',
+      'Locked Compliance Records: Full Name, Date of Birth, Address, Country, Phone Number, and Mail ID display a Lock Icon restricting unverified inline edits to maintain compliance',
+      'KYC Verification Status & Re-Setup: Review your KYC verification status (Active / Verified) and click the "Re-Setup" button if you need to submit updated identity cards or re-verify documents',
+      'Nominee Details: Read emergency fund management guidelines and select "Add" to assign an authorized nominee (Legal Name, Relation, DOB, Email) to manage funds in case of emergency',
+      'Two-Factor Authentication (2FA): Manage account security with dual options: select "Generate new code with mail" to receive OTP verification passcodes via registered email, or "Open authenticator app" to configure TOTP security with Google Authenticator or Authy',
+      'Change Password & Login History: Select Change Password (with navigation arrow) to open the credential update screen, and review Login History timestamps, IP addresses, and device logs'
     ],
     rules: [
-      'The Profile page is accessible from the top navigation User Profile dropdown and Settings sidebar.',
-      'Your ID and Account Level are system-assigned identifiers; eligible users can use Upgrade to explore higher levels.',
-      'Display Name has an Edit Icon and can be modified directly; registered personal fields (Full Name, Date of Birth, Address, Country, Email, Phone Number) display a Lock Icon restricting direct inline edits.',
-      'Nominee Details allows users to add an authorized person to manage funds in case of emergency, subject to platform policies.',
-      'KYC Verification Status displays current account standing (e.g., Active) with a "Re-Setup" action for identity re-verification.',
-      'Two-Factor Authentication displays Active/Inactive status with a "Setup" button to add an additional layer of login security.',
-      'Change Password includes an arrow icon directing users to a separate screen for credential updates.',
-      'Login History provides an audit trail of previous authentication sessions.'
+      'The Profile & Account page is accessible from both the Dashboard top navigation User menu and the Settings sidebar.',
+      'Profile Picture visually identifies the account holder; Your ID and Account Level are system-assigned identifiers with an accessible Upgrade path.',
+      'Account Types features a dedicated modal module titled "Choose a plan that is right for you", detailing plans like Copier Group with specific Range of Spread and Leverage.',
+      'Copier Group is designed specifically for copy trading with floating spreads from 0.0 to 1.2 pips and leverage up to 1:500.',
+      'Display Name has an active Edit Icon and can be updated directly inline; registered personal fields (Full Name, Date of Birth, Address, Country, Phone Number, Mail ID) display a Lock Icon restricting direct unverified changes.',
+      'Phone Number and Mail ID changes require multi-factor OTP confirmation before taking effect.',
+      'KYC Verification Status displays Active standing, with a functional "Re-Setup" action for identity document renewals and re-verification.',
+      'Nominee Details allows users to add an authorized emergency contact to manage funds, subject to verified documentation under platform policy.',
+      'Two-Factor Authentication (2FA) supports both "Generate new code with mail" (email OTP) and "Open authenticator app" (time-based TOTP code via Google Authenticator / Authy).',
+      'Change Password includes an arrow icon directing users to a separate screen for credential updates, and Login History preserves an audit trail of previous authentication sessions.'
     ],
     checks: [
-      'Top navigation bar displays all 11 platform elements including Zyvest logo, modules, alerts, theme toggle, and profile dropdown.',
-      'Settings sidebar smoothly switches between Profile, KYC Verification, 2FA, and Notifications.',
-      'Display Name edit icon opens direct editing, while locked fields (Full Name, DOB, Address, Country, Email, Phone) show the Lock icon.',
-      'Nominee Details section includes emergency description and functional "Add" button.',
+      'Top navigation bar displays all 11 platform elements and Settings sidebar smoothly toggles Profile, KYC, 2FA, and Notifications.',
+      'Account Identification displays Profile Picture, unique Your ID, Account Level badge, and functional Upgrade button.',
+      'Account Types opens the "Choose a plan that is right for you" module displaying Copier Group, spread ranges, and leverage options.',
+      'Manage Profile displays Full Name, Display Name, Date of Birth, Phone Number, Mail ID, Address, and Country.',
+      'Display Name edit icon opens direct inline editing, while locked fields (Full Name, DOB, Address, Country, Phone, Mail ID) show the Lock icon.',
       'KYC status reflects Active with accessible "Re-Setup" option.',
-      '2FA status reflects Active/Inactive with accessible "Setup" option.',
-      'Change password navigates via the arrow icon to the password update screen.',
-      'Login history lists prior user authentication activities.'
+      'Nominee Details section includes emergency description and functional "Add" button.',
+      'Two-Factor Authentication (2FA) provides accessible options for both "Generate new code with mail" and "Open authenticator app".',
+      'Change Password navigates via the arrow icon to the password update screen.',
+      'Login history accurately audits previous authentication activities with timestamp, IP, and device data.'
     ],
     sections: [
       {
@@ -98,7 +103,7 @@ const modules = [
           ['Zyvest Logo', 'Displays the Zyvest Capital logo and represents the platform\'s branding.', 'Branding'],
           ['Dashboard', 'Provides access to the main dashboard, where users can view an overview of their account.', 'Main View'],
           ['Wallet', 'Allows users to access their wallet and view available balance and transaction-related information.', 'Funds'],
-          ['Account Type', 'Provides access to account type-related information and options.', 'Account'],
+          ['Account Type', 'Provides access to account type-related information and options, opening the plan chooser modal.', 'Account'],
           ['IB', 'Provides access to the Introducing Broker (IB) section.', 'Broker'],
           ['Support', 'Allows users to access customer support services.', 'Help Desk'],
           ['PAMM', 'Provides access to the PAMM (Percentage Allocation Management Module) section.', 'Investment'],
@@ -121,62 +126,85 @@ const modules = [
       },
       {
         eyebrow: 'ACCOUNT IDENTIFICATION',
-        title: 'Account Identification Details',
-        description: 'Displays the user\'s registered account identification data, profile image, and platform tier.',
+        title: 'Account Identification & User Level Upgrading',
+        description: 'Displays the user\'s registered account identification data, profile image, current account level, and upgrading options.',
         items: [
-          ['Profile Picture', 'Displays the profile photograph uploaded by the user. It helps visually identify the account holder.', 'Visual ID'],
-          ['Your ID', 'Displays the unique identification number assigned to the user by Zyvest. Used to identify the user across the platform.', 'Unique ID'],
-          ['Account Level', 'Displays the current account level assigned to the user (e.g., Level 1).', 'Level 1'],
-          ['Upgrade Button', 'Provides an option for the user to explore or upgrade their current account level, if eligible.', 'Action Button']
+          ['Profile Picture', 'Displays the profile photograph uploaded by the user with image upload/change support. It helps visually identify the account holder.', 'Visual ID'],
+          ['Your ID', 'Displays the unique identification number assigned to the user by Zyvest. Used across all platform operations.', 'Unique ID'],
+          ['Account Level', 'Displays current user membership tier (e.g., Level 1). Higher levels offer lower fees and higher limits.', 'Level 1'],
+          ['Upgrade Option', 'Provides an option for the user to explore tier progression criteria or request an immediate account level upgrade.', 'Action Button']
+        ]
+      },
+      {
+        eyebrow: 'TRADING ACCOUNTS & PLANS',
+        title: 'Account Types · Choose a Plan That Is Right for You',
+        description: 'Inside Account Types, a dedicated module opens allowing users to "Choose a plan that is right for you". Compare plans like Copier Group with their Range of Spread and Leverage.',
+        items: [
+          ['Account Types Module', 'Clicking Account Types opens the dedicated "Choose a plan that is right for you" module.', 'Modal View'],
+          ['Copier Group Plan', 'Designed specifically for copy trading. Features floating Range of Spread (0.0 – 1.2 pips) and Leverage up to 1:500.', 'Range: 0.0–1.2 | Lev: 1:500'],
+          ['Standard Plan', 'Zero-commission retail trading plan with Range of Spread (1.0 – 1.8 pips) and Leverage up to 1:500.', 'Range: 1.0–1.8 | Lev: 1:500'],
+          ['Raw Spread (ECN) Plan', 'Direct interbank liquidity with raw Range of Spread from 0.0 pips and Leverage up to 1:500.', 'Range: 0.0+ | Lev: 1:500'],
+          ['VIP / Investor Plan', 'Tailored account for high-net-worth clients with custom institutional spreads and Leverage up to 1:200.', 'Range: 0.0+ | Lev: 1:200'],
+          ['Range of Spread', 'Specifies the spread range (difference between bid and ask) offered across trading instruments for each plan.', 'Spread Metric'],
+          ['Leverage', 'Purchasing power multiplier configured per account plan (e.g. 1:100, 1:200, 1:500) determining margin requirements.', 'Leverage Multiplier']
         ]
       },
       {
         eyebrow: 'PERSONAL INFORMATION',
-        title: 'Personal Information Fields & Controls',
-        description: 'Displays personal information provided during registration or account verification, with indicators for editable vs. locked fields.',
+        title: 'Manage Profile (Personal Details)',
+        description: 'Displays personal information collected during registration and KYC verification, with indicators for editable vs. locked compliance fields.',
         items: [
-          ['Full Name', 'Displays the user\'s complete registered name (e.g., Kabir Singh).', '🔒 Locked'],
-          ['Display Name', 'Displays the name used to represent the user within the platform. It may be different from the registered full name.', '✏️ Edit Icon'],
-          ['Date of Birth', 'Displays the user\'s registered date of birth in the specified date format.', '🔒 Locked'],
-          ['Address', 'Displays the residential address provided by the user during registration or verification.', '🔒 Locked'],
-          ['Country', 'Displays the country associated with the user\'s registered account.', '🔒 Locked'],
-          ['Email', 'Displays the email address registered with the user\'s Zyvest account.', '🔒 Locked'],
-          ['Phone Number', 'Displays the mobile number associated with the user\'s account, including the country code.', '🔒 Locked'],
-          ['Edit Icon (UI Element)', 'Indicates that the corresponding information can be edited. In the UI, the Display Name field has an edit icon.', 'Editable UI'],
-          ['Lock Icon (UI Element)', 'Indicates that the corresponding field is locked or restricted from direct editing to ensure verified compliance.', 'Restricted UI']
+          ['Full Name', 'Displays the user\'s complete registered legal name (e.g., Kabir Singh). Restricted from direct inline edits.', '🔒 Locked'],
+          ['Display Name', 'Displays the nickname/alias representing the user within the platform. Accompanied by an Edit Icon for direct inline editing.', '✏️ Edit Icon'],
+          ['Date of Birth', 'Displays the user\'s registered date of birth matching official KYC documents.', '🔒 Locked'],
+          ['Phone Number', 'Displays registered mobile number including country code. Modifications require phone OTP validation.', '🔒 Locked'],
+          ['Mail ID', 'Displays registered email address used for platform authentication. Modifications require dual email verification.', '🔒 Locked'],
+          ['Address', 'Displays registered residential address verified during identity onboarding.', '🔒 Locked'],
+          ['Country', 'Displays registered country and regulatory jurisdiction associated with the account.', '🔒 Locked'],
+          ['Edit Icon (UI Element)', 'Indicates that the corresponding field can be edited directly inline (Display Name).', 'Editable UI'],
+          ['Lock Icon (UI Element)', 'Indicates compliance-locked fields requiring formal re-verification or OTP to modify.', 'Restricted UI']
+        ]
+      },
+      {
+        eyebrow: 'COMPLIANCE STANDING',
+        title: 'KYC Verification Status & Re-Setup',
+        description: 'Displays current Know Your Customer (KYC) compliance status and provides a re-verification trigger.',
+        items: [
+          ['KYC Verification Status', 'Displays the current Know Your Customer (KYC) verification status of the user\'s account.', 'Verification'],
+          ['KYC Status Indicator', 'Indicates whether the user\'s KYC verification is Active, Verified, or Pending.', 'Status: Active'],
+          ['Re-Setup Option', 'Action button allowing the user to initiate the KYC re-verification process and submit updated ID documents.', 'Action Button']
         ]
       },
       {
         eyebrow: 'EMERGENCY AUTHORIZATION',
         title: 'Nominee Details',
-        description: 'Allows users to add a person who may be authorized to manage their funds in case of an emergency, subject to platform policies.',
+        description: 'Allows users to add an authorized nominee who can manage their funds in case of an emergency, subject to platform policies.',
         items: [
-          ['Nominee Details Section', 'Displays the section where nominee-related information can be managed.', 'Overview'],
-          ['Emergency Description', 'Explains that users can add a nominee who can manage their funds in case of an emergency.', 'Policy Notice'],
-          ['Add Button', 'Allows the user to initiate the process of adding a nominee.', 'Action Button']
+          ['Nominee Details Section', 'Displays the section where nominee-related authorization is configured and managed.', 'Overview'],
+          ['Emergency Description', 'Explains that users can appoint an authorized person to manage funds in case of an emergency under platform rules.', 'Policy Notice'],
+          ['Add Button', 'Allows the user to initiate the process of recording an authorized nominee (Name, Relation, DOB, Email).', 'Action Button']
         ]
       },
       {
         eyebrow: 'SECURITY CONTROLS',
-        title: 'Password and Security',
-        description: 'Provides access to account security features: check KYC status, configure two-factor authentication, and update password.',
+        title: 'Two-Factor Authentication (2FA)',
+        description: 'Provides robust multi-factor security controls, including generating one-time passcodes via email and linking authenticator apps.',
         items: [
-          ['KYC Verification Status', 'Displays the current Know Your Customer (KYC) verification status of the user\'s account.', 'Verification'],
-          ['KYC Status Indicator', 'Indicates whether the user\'s KYC verification is Active or in another available state.', 'Status: Active'],
-          ['Re-Setup Button', 'Allows the user to initiate the KYC re-verification or re-setup process.', 'Action Button'],
           ['2 Factor Authentication (2FA)', 'Displays the current two-factor authentication status of the user\'s account (Active / Inactive).', 'Status: Active/Inactive'],
-          ['2FA Setup Button', 'Allows the user to configure two-factor authentication to add an additional layer of account security.', 'Action Button'],
-          ['Change Password', 'Informs users that they can update their account password to maintain account security.', 'Credentials'],
-          ['Arrow Icon (Navigation)', 'Indicates that clicking the section will navigate the user to another page or screen for changing the password.', 'Navigation Link']
+          ['Generate New Code with Mail', 'Security feature that generates and sends a fresh 6-digit one-time verification passcode directly to the user\'s registered Mail ID.', 'Email OTP'],
+          ['Open Authenticator App Option', 'Security feature providing direct integration with authenticator apps (Google Authenticator, Authy) via QR code and secret key.', 'TOTP App'],
+          ['2FA Setup / Reconfigure', 'Action button allowing the user to configure or adjust two-factor authentication preferences.', 'Action Button']
         ]
       },
       {
-        eyebrow: 'ACCESS AUDIT',
-        title: 'Login History',
-        description: 'Provides information about previous login activities associated with the user\'s account.',
+        eyebrow: 'CREDENTIALS & AUDIT',
+        title: 'Change Password & Login History',
+        description: 'Provides access to password credentials update and a detailed historical audit of account login sessions.',
         items: [
-          ['Logins Section', 'Displays the section containing the user\'s previous login information.', 'Session Log'],
-          ['History Description', 'Indicates that users can review details about their previous login activities (detailed fields viewable upon expanding).', 'Audit Record']
+          ['Change Password', 'Informs users that they can update their account password to maintain credentials security.', 'Credentials'],
+          ['Arrow Icon (Navigation)', 'Indicates that clicking the section will navigate the user to another page or screen for changing the password.', 'Navigation Link'],
+          ['Logins Section', 'Displays previous session audit entries with timestamp, IP address, device, and location data.', 'Session Log'],
+          ['History Description', 'Provides a transparent audit trail of previous authentication attempts to monitor account integrity.', 'Audit Record']
         ]
       }
     ]
@@ -716,6 +744,7 @@ function renderModules() {
       <span class="module-path">${escapeHtml(module.path)}</span>
       <strong>${escapeHtml(module.title)}</strong><span class="module-summary">${escapeHtml(module.summary)}</span>
       ${module.hasSubmodules ? '<div class="submodule-pill-list"><span class="submodule-pill">Step 1: Sign up</span><span class="submodule-pill">Step 2: KYC</span><span class="submodule-pill">Step 3: Nominee</span><span class="submodule-pill">Step 4: Pending KYC Approval</span></div>' : ''}
+      ${module.id === 'profile' ? '<div class="submodule-pill-list"><span class="submodule-pill">User Level Upgrade</span><span class="submodule-pill">Account Types: Copier Group</span><span class="submodule-pill">Spread & Leverage</span><span class="submodule-pill">Manage Profile</span><span class="submodule-pill">KYC Re-Setup</span><span class="submodule-pill">2FA: Mail & App</span></div>' : ''}
       <span class="module-action">Open overview <b>→</b></span>
     </button>`).join('');
   empty.hidden = visible.length > 0;
@@ -772,6 +801,292 @@ function openOnboardingSubmodule(id, opener) {
   detail.querySelector('.close-button').focus();
 }
 
+const accountPlansData = [
+  {
+    id: 'copier-group',
+    name: 'Copier Group',
+    tag: 'Recommended for Copy Trading',
+    icon: '👥',
+    spreadRange: '0.0 – 1.2 pips',
+    spreadType: 'Floating Spread',
+    leverage: 'Up to 1:500',
+    minDeposit: '$100',
+    commission: '$3.00 / lot',
+    execution: 'Instant Market Copy',
+    featured: true,
+    description: 'Designed specifically for copy trading participants. Automatically mirrors top-performing master traders with real-time execution and risk controls.',
+    features: [
+      'Automatic sync with master trader strategies',
+      'Flexible leverage configuration (1:100 to 1:500)',
+      'Tight floating spread range from 0.0 – 1.2 pips',
+      'Automated equity stop-loss risk protection',
+      'Full MT5 terminal & mobile app compatibility'
+    ]
+  },
+  {
+    id: 'standard',
+    name: 'Standard Account',
+    tag: 'Zero Commission',
+    icon: '⚡',
+    spreadRange: '1.0 – 1.8 pips',
+    spreadType: 'Floating Spread',
+    leverage: 'Up to 1:500',
+    minDeposit: '$50',
+    commission: '$0 (Built into spread)',
+    execution: 'Market Execution',
+    featured: false,
+    description: 'The versatile all-round trading account for beginners and discretionary retail traders seeking zero-commission trading.',
+    features: [
+      'No added commissions per lot traded',
+      'Competitive spread range starting from 1.0 pip',
+      'High leverage up to 1:500 for flexible margin',
+      'Access to 100+ FX pairs, indices, and metals',
+      'Instant deposit and fast automated withdrawal'
+    ]
+  },
+  {
+    id: 'raw-spread',
+    name: 'Raw Spread (ECN)',
+    tag: 'Ultra-Low Spreads',
+    icon: '💎',
+    spreadRange: 'From 0.0 pips',
+    spreadType: 'Raw Interbank',
+    leverage: 'Up to 1:500',
+    minDeposit: '$200',
+    commission: '$3.50 / lot per side',
+    execution: 'Direct Interbank Liquidity',
+    featured: false,
+    description: 'Tailored for day traders, scalpers, and algorithmic Expert Advisors demanding institutional spreads with no markup.',
+    features: [
+      'Raw interbank spread range starting from 0.0 pips',
+      'Fixed low commission fee of $3.50 per lot',
+      'High-speed execution via Equinix NY4 server farm',
+      'No dealing desk (NDD) with zero requotes',
+      'Unrestricted scalping, hedging, and EA trading'
+    ]
+  },
+  {
+    id: 'vip-investor',
+    name: 'VIP / Institutional',
+    tag: 'High Volume Tier',
+    icon: '👑',
+    spreadRange: 'From 0.0 pips',
+    spreadType: 'Institutional Custom',
+    leverage: 'Up to 1:200',
+    minDeposit: '$10,000',
+    commission: 'Volume Rebates Available',
+    execution: 'Priority Prime Liquidity',
+    featured: false,
+    description: 'Premium institutional tier providing personalized liquidity streams, dedicated account management, and tailored margin rules.',
+    features: [
+      'Lowest institutional spread range on the platform',
+      'Tailored leverage up to 1:200 with bespoke margin',
+      'Dedicated private VIP account manager',
+      'Complimentary ultra-low latency VPS hosting',
+      'Priority queue for high-value wallet payouts'
+    ]
+  }
+];
+
+function openAccountTypesPlanModal(opener) {
+  const detail = document.createElement('section');
+  detail.className = 'detail-page plan-modal-dialog';
+  detail.setAttribute('role', 'dialog');
+  detail.setAttribute('aria-modal', 'true');
+  detail.setAttribute('aria-labelledby', 'planModalTitle');
+  detail.innerHTML = `
+    <div class="detail-topbar">
+      <button class="back-link close-plan-modal">← Profile guide</button>
+      <span class="detail-counter">ZYVEST TRADING ACCOUNTS · PLAN CHOOSER</span>
+      <button class="close-button close-plan-modal" aria-label="Close plan chooser">×</button>
+    </div>
+    <div class="detail-content">
+      <div class="plan-modal-header">
+        <p class="eyebrow"><span class="pulse"></span> ACCOUNT TYPES & TRADING PLANS</p>
+        <h1 id="planModalTitle">Choose a plan that is right for you</h1>
+        <p>Compare spreads, leverage, commissions, and execution models across Zyvest trading account types. Select any plan to view its complete specifications.</p>
+      </div>
+
+      <div class="plan-cards-grid">
+        ${accountPlansData.map(plan => `
+          <div class="plan-card ${plan.featured ? 'plan-featured' : ''}" data-plan-id="${plan.id}">
+            <span class="plan-selected-badge">✓ ACTIVE SELECTION</span>
+            <span class="plan-card-tag">${escapeHtml(plan.tag)}</span>
+            <div class="plan-card-header">
+              <span class="plan-card-icon">${plan.icon}</span>
+              <h3 class="plan-card-title">${escapeHtml(plan.name)}</h3>
+            </div>
+            <p style="margin:0 0 10px;font-size:0.825rem;color:var(--muted);line-height:1.45">${escapeHtml(plan.description)}</p>
+            
+            <div class="plan-metric-boxes">
+              <div class="plan-metric-box">
+                <span class="plan-metric-label">Range of Spread</span>
+                <span class="plan-metric-value">${escapeHtml(plan.spreadRange)}</span>
+              </div>
+              <div class="plan-metric-box">
+                <span class="plan-metric-label">Max Leverage</span>
+                <span class="plan-metric-value">${escapeHtml(plan.leverage)}</span>
+              </div>
+            </div>
+
+            <ul class="plan-details-list">
+              <li><strong>Min Deposit:</strong>&nbsp;${escapeHtml(plan.minDeposit)}</li>
+              <li><strong>Commission:</strong>&nbsp;${escapeHtml(plan.commission)}</li>
+              <li><strong>Execution:</strong>&nbsp;${escapeHtml(plan.execution)}</li>
+              ${plan.features.slice(0, 3).map(f => `<li>${escapeHtml(f)}</li>`).join('')}
+            </ul>
+
+            <button type="button" class="plan-select-btn" data-select-plan="${plan.id}">
+              ${plan.id === 'copier-group' ? 'Select Copier Plan' : 'Select Plan'}
+            </button>
+          </div>
+        `).join('')}
+      </div>
+
+      <div id="planSelectionToast" class="twofa-live-feedback feedback-success" style="margin-top:20px" hidden></div>
+
+      <aside class="admin-reference-note" style="margin-top:22px">
+        <strong>About Account Types & Plans</strong>
+        <p>This module illustrates the plan chooser workflow on the Zyvest website. Account spreads fluctuate dynamically based on market liquidity and tier conditions. Leverage settings determine required margin and can be adjusted within allowed account limits.</p>
+      </aside>
+    </div>`;
+
+  document.body.append(detail);
+  const close = () => {
+    detail.remove();
+    opener?.focus();
+  };
+  detail.querySelectorAll('.close-plan-modal').forEach(btn => btn.addEventListener('click', close));
+  detail.addEventListener('click', event => { if (event.target === detail) close(); });
+  detail.addEventListener('keydown', event => {
+    event.stopPropagation();
+    if (event.key === 'Escape') close();
+    if (event.key === 'Tab') keepFocusInside(event, detail);
+  });
+
+  const toast = detail.querySelector('#planSelectionToast');
+  detail.querySelectorAll('[data-select-plan]').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const planId = btn.dataset.selectPlan;
+      const plan = accountPlansData.find(p => p.id === planId);
+      detail.querySelectorAll('.plan-card').forEach(c => c.classList.remove('plan-selected'));
+      const activeCard = detail.querySelector(`[data-plan-id="${planId}"]`);
+      if (activeCard) activeCard.classList.add('plan-selected');
+      if (toast && plan) {
+        toast.hidden = false;
+        toast.innerHTML = `<strong>✓ Plan Selected: ${escapeHtml(plan.name)}</strong> (Range of Spread: <code>${escapeHtml(plan.spreadRange)}</code>, Leverage: <code>${escapeHtml(plan.leverage)}</code>). In your live Zyvest portal, new MT5 accounts will be provisioned under this tier.`;
+        toast.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+      }
+    });
+  });
+
+  detail.querySelector('.close-button').focus();
+}
+
+function openAuthenticatorModal(opener) {
+  const detail = document.createElement('section');
+  detail.className = 'detail-page authenticator-modal-dialog';
+  detail.setAttribute('role', 'dialog');
+  detail.setAttribute('aria-modal', 'true');
+  detail.setAttribute('aria-labelledby', 'authModalTitle');
+  detail.innerHTML = `
+    <div class="detail-topbar">
+      <button class="back-link close-auth-modal">← Profile guide</button>
+      <span class="detail-counter">ZYVEST SECURITY · 2FA SETUP</span>
+      <button class="close-button close-auth-modal" aria-label="Close authenticator setup">×</button>
+    </div>
+    <div class="detail-content" style="text-align:center">
+      <p class="eyebrow"><span class="pulse"></span> TWO-FACTOR AUTHENTICATION</p>
+      <h1 id="authModalTitle" style="font-size:1.45rem;margin:6px 0 10px">Open Authenticator App</h1>
+      <p style="margin:0 auto 16px;color:var(--muted);font-size:0.875rem">Scan the QR code with Google Authenticator, Microsoft Authenticator, or Authy, or copy the setup key manually.</p>
+
+      <div class="auth-step-box">
+        <div class="auth-qr-frame">
+          <svg width="140" height="140" viewBox="0 0 140 140" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="Simulated Authenticator QR Code">
+            <rect width="140" height="140" fill="#ffffff"/>
+            <rect x="10" y="10" width="35" height="35" fill="#087950"/>
+            <rect x="17" y="17" width="21" height="21" fill="#ffffff"/>
+            <rect x="22" y="22" width="11" height="11" fill="#087950"/>
+            <rect x="95" y="10" width="35" height="35" fill="#087950"/>
+            <rect x="102" y="17" width="21" height="21" fill="#ffffff"/>
+            <rect x="107" y="22" width="11" height="11" fill="#087950"/>
+            <rect x="10" y="95" width="35" height="35" fill="#087950"/>
+            <rect x="17" y="102" width="21" height="21" fill="#ffffff"/>
+            <rect x="22" y="107" width="11" height="11" fill="#087950"/>
+            <rect x="52" y="15" width="10" height="10" fill="#087950"/>
+            <rect x="70" y="20" width="14" height="8" fill="#087950"/>
+            <rect x="55" y="35" width="8" height="16" fill="#087950"/>
+            <rect x="70" y="45" width="18" height="10" fill="#087950"/>
+            <rect x="55" y="65" width="30" height="10" fill="#087950"/>
+            <rect x="15" y="55" width="10" height="25" fill="#087950"/>
+            <rect x="35" y="65" width="10" height="15" fill="#087950"/>
+            <rect x="95" y="55" width="15" height="10" fill="#087950"/>
+            <rect x="115" y="65" width="15" height="18" fill="#087950"/>
+            <rect x="55" y="85" width="12" height="20" fill="#087950"/>
+            <rect x="75" y="85" width="16" height="14" fill="#087950"/>
+            <rect x="95" y="95" width="15" height="20" fill="#087950"/>
+            <rect x="115" y="105" width="15" height="15" fill="#087950"/>
+            <rect x="55" y="115" width="30" height="12" fill="#087950"/>
+          </svg>
+        </div>
+        <p style="margin:4px 0;font-size:0.78rem;color:var(--muted)">Account: <strong>Zyvest Capital (Kabir Singh)</strong></p>
+        <div class="auth-key-display">
+          <code>ZYV-7892-AUTH-KBR9</code>
+          <button type="button" class="btn-copy-code" id="btnCopyAuthCode">Copy Key</button>
+        </div>
+      </div>
+
+      <div style="margin-top:16px">
+        <label style="display:block;font-size:0.8125rem;font-weight:700;color:var(--ink);margin-bottom:6px">Enter 6-digit Authenticator Code:</label>
+        <div class="totp-input-row">
+          <input type="text" maxlength="1" class="totp-digit" value="4" aria-label="Digit 1">
+          <input type="text" maxlength="1" class="totp-digit" value="8" aria-label="Digit 2">
+          <input type="text" maxlength="1" class="totp-digit" value="2" aria-label="Digit 3">
+          <input type="text" maxlength="1" class="totp-digit" value="9" aria-label="Digit 4">
+          <input type="text" maxlength="1" class="totp-digit" value="1" aria-label="Digit 5">
+          <input type="text" maxlength="1" class="totp-digit" value="6" aria-label="Digit 6">
+        </div>
+        <button type="button" class="btn-action-primary" id="btnVerifyTotp" style="width:100%;justify-content:center;padding:11px">
+          Verify & Enable Authenticator 2FA
+        </button>
+      </div>
+
+      <div id="authSuccessNotice" class="twofa-live-feedback feedback-success" style="margin-top:14px" hidden></div>
+    </div>`;
+
+  document.body.append(detail);
+  const close = () => {
+    detail.remove();
+    opener?.focus();
+  };
+  detail.querySelectorAll('.close-auth-modal').forEach(btn => btn.addEventListener('click', close));
+  detail.addEventListener('click', event => { if (event.target === detail) close(); });
+  detail.addEventListener('keydown', event => {
+    event.stopPropagation();
+    if (event.key === 'Escape') close();
+    if (event.key === 'Tab') keepFocusInside(event, detail);
+  });
+
+  const copyBtn = detail.querySelector('#btnCopyAuthCode');
+  if (copyBtn) {
+    copyBtn.addEventListener('click', () => {
+      copyBtn.textContent = 'Copied!';
+      setTimeout(() => { copyBtn.textContent = 'Copy Key'; }, 1800);
+    });
+  }
+
+  const verifyBtn = detail.querySelector('#btnVerifyTotp');
+  const notice = detail.querySelector('#authSuccessNotice');
+  if (verifyBtn && notice) {
+    verifyBtn.addEventListener('click', () => {
+      notice.hidden = false;
+      notice.innerHTML = `<strong>✓ 2FA Verified & Active!</strong> Authenticator app paired successfully. Subsequent logins and withdrawals will require this 6-digit code.`;
+    });
+  }
+
+  detail.querySelector('.close-button').focus();
+}
+
 function openModule(id) {
   const module = modules.find(item => item.id === id);
   if (!module) return;
@@ -812,6 +1127,46 @@ function openModule(id) {
                 <span class="onboarding-subcard-action">View ${sub.step} guide <b>→</b></span>
               </button>
             `).join('')}
+          </div>
+        </section>
+      ` : ''}
+      ${module.id === 'profile' ? `
+        <section class="detail-panel interactive-feature-panel">
+          <div class="interactive-feature-header">
+            <div>
+              <p class="eyebrow"><span class="pulse"></span> LIVE INTERACTIVE WORKFLOWS</p>
+              <h2>Account Types & 2FA Interactive Controls</h2>
+              <p>Test the exact Account Types plan selection ("Choose a plan that is right for you") and dual-channel 2FA workflows directly in this Help Center guide.</p>
+            </div>
+            <span class="module-step-badge">Interactive Demo</span>
+          </div>
+          <div class="interactive-action-grid">
+            <div class="interactive-action-card">
+              <span class="interactive-card-icon">🎯</span>
+              <div class="interactive-card-body">
+                <h3>Account Types · Plan Selection</h3>
+                <p>Click below to open the interactive module: <strong>"Choose a plan that is right for you"</strong>. Compare plans including <strong>Copier Group</strong>, evaluating <strong>Range of Spread</strong> and <strong>Leverage</strong>.</p>
+                <button type="button" class="btn-action-primary open-plans-modal-btn">
+                  Choose a plan that is right for you <b>→</b>
+                </button>
+              </div>
+            </div>
+            <div class="interactive-action-card">
+              <span class="interactive-card-icon">🛡️</span>
+              <div class="interactive-card-body">
+                <h3>Two-Factor Authentication (2FA)</h3>
+                <p>Test both verification channels configured for account login protection and withdrawal authentication:</p>
+                <div class="twofa-button-group">
+                  <button type="button" class="btn-action-secondary twofa-mail-trigger-btn">
+                    ✉️ Generate new code with mail
+                  </button>
+                  <button type="button" class="btn-action-secondary twofa-app-trigger-btn">
+                    📱 Open authenticator app
+                  </button>
+                </div>
+                <div class="twofa-live-feedback" id="twofaLiveFeedback" hidden></div>
+              </div>
+            </div>
           </div>
         </section>
       ` : ''}
@@ -863,6 +1218,25 @@ function openModule(id) {
       openOnboardingSubmodule(subButton.dataset.submodule, subButton);
     });
   });
+
+  const plansBtn = detail.querySelector('.open-plans-modal-btn');
+  if (plansBtn) {
+    plansBtn.addEventListener('click', () => openAccountTypesPlanModal(plansBtn));
+  }
+  const mail2faBtn = detail.querySelector('.twofa-mail-trigger-btn');
+  const app2faBtn = detail.querySelector('.twofa-app-trigger-btn');
+  const feedbackBox = detail.querySelector('#twofaLiveFeedback');
+  if (mail2faBtn && feedbackBox) {
+    mail2faBtn.addEventListener('click', () => {
+      feedbackBox.hidden = false;
+      feedbackBox.className = 'twofa-live-feedback feedback-success';
+      feedbackBox.innerHTML = `<strong>✓ Security Code Dispatched!</strong> A 6-digit one-time verification passcode has been sent to your registered Mail ID (<code>kabir.singh@example.com</code>). Code is valid for 10 minutes.`;
+      feedbackBox.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    });
+  }
+  if (app2faBtn) {
+    app2faBtn.addEventListener('click', () => openAuthenticatorModal(app2faBtn));
+  }
   detail.addEventListener('click', event => { if (event.target === detail) close(); });
   detail.addEventListener('keydown', event => {
     if (event.key === 'Escape') close();

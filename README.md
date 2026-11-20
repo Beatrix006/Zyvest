@@ -11,6 +11,7 @@ Open `index.html` in a modern browser. No build step or package installation is 
 - Provides User and Admin guide sections for the Zyvest website
 - User guides feature 4 primary dashboard modules: Log in, Sign in / Sign up, Profile & account, and Wallet
 - The Sign in / Sign up module contains 4 core onboarding stages: Step 1 (Sign up & Email OTP), Step 2 (KYC Verification), Step 3 (Nominee Details), and Step 4 (Pending KYC approval)
+- The Profile & account module documents the full settings workspace: Account Identification & User Level Upgrades (Profile Picture, Your ID, Account Level 1, Upgrade option), Account Types interactive modal ("Choose a plan that is right for you" with Copier Group, spread range, and leverage), Manage Profile (Full Name, Display Name with edit icon, Date of Birth, Phone Number, Mail ID, Address, Country), KYC Verification Status with Re-Setup, Nominee Details, and dual-channel 2FA ("Generate new code with mail" and "Open authenticator app")
 - Shows the supplied Admin dashboard reference first, followed by clickable 3 × 3 cards for its nine visible navigation areas
 - Shows detailed steps, business rules, account states, verification checks, and project-managed screenshot references
 - Includes responsive layout, guide search, role navigation, and persistent light/dark theme
