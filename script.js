@@ -211,89 +211,111 @@ const modules = [
   },
   {
     id: 'wallet', icon: '◇', title: 'Wallet', number: '04', step: 'Fund Management', path: 'Dashboard · Wallet & Funds',
-    summary: 'Approved users are able to get the full Wallet feature for deposits, withdrawals, internal MT5 transfers, real-time balance management, and transaction statement tracking.',
+    summary: 'Approved users access the unified User Wallet and Dashboard to manage Withdrawable Balance, Total Balance (MT5 + Wallet), deposit via Fiat/Crypto to Wallet or MT5, withdraw, execute P2P and MT5 transfers, manage MT5 accounts, connect bank accounts, and review transaction history.',
     flow: [
-      'Access Wallet: After account approval and KYC completion, open Wallet from the top navigation bar',
-      'Account Overview: Review your Total Balance, Available Balance, Reserved Funds, and connected MT5 Account Equities',
-      'Deposit Funds: Select an enabled payment method (Bank Wire, Cards, Crypto), review limits, fees, and estimated credit time, and complete the payment',
-      'Track Deposit: Monitor transaction lifecycle from Pending → Processing → Completed, with automatic credit to Available Balance',
-      'Withdraw Funds: Select a verified destination method in your registered legal name, specify the amount within available limits, and submit',
-      'Reserve & Process: Observe the requested amount move to Reserved Funds immediately while Zyvest verifies and executes the payout',
-      'Internal Transfer: Select source (Wallet or MT5) and destination (MT5 or Wallet), enter the transfer amount, review real-time exchange rates if applicable, and confirm',
-      'Atomic Execution: Transfers process atomically in real-time with instant balance updates across both accounts',
-      'Transaction History: Filter history by date, type, or status, inspect detailed transaction receipts, and export statements'
+      'Access Wallet: After KYC approval, open Wallet or Dashboard from the top navigation bar',
+      'Balance Review: View Withdrawable Balance, Total Balance (MT5 + Wallet), Total Bonus / Unused Bonus, and Approval in Progress holds',
+      'Deposit to Wallet / MT5: Open Deposit modal, choose "Deposit To Wallet" or "Deposit To MT5 Account", pick Fiat or Crypto, select From/To bank accounts, enter USD amount & view converted value, attach proof (JPEG, PNG, PDF up to 10MB), and submit for team verification',
+      'Deposit to MT5 Specifics: For MT5 deposits, select target MT5 account and choose from 3 transaction methods: Fiat, Crypto, or Move Funds to MT5 (internal wallet transfer), with optional "Send bank details to my email"',
+      'Withdraw Funds: Open Withdraw modal, verify Withdrawable Balance, select "Withdraw from Wallet" or "Withdraw from MT5", choose destination bank or USDT address, and submit to place funds into "Approval in Progress"',
+      'Transfer Funds: Open Transfer modal, select "Wallet Transfer" (P2P) or "MT5 Transfer" (internal); search recipient with "Find User" to preview From/To user cards, enter amount, and send transfer request',
+      'Manage MT5 Accounts: Click "+ Add New" under My MT5 Accounts to create Live or Demo accounts with customizable leverage (100, 200, 300) and initial deposit',
+      'Connect Bank Accounts: Click "+ Add New" under My Bank Accounts to connect bank details (Account Holder Name, Account Number, Country, IFSC/IBAN, Swift, Bank, Branch, Address, and Proof up to 10MB)',
+      'Manage USDT Addresses: Whitelist TRC20/ERC20 cryptocurrency payout addresses under My USDT Address',
+      'Audit Ledger: Inspect Transaction History filtered by Trans Method, Module, Trans Type, and Date'
     ],
     rules: [
       'The Wallet feature is unlocked for approved users who have completed KYC verification.',
-      'Deposit methods displayed are dynamically restricted to methods enabled and compliant for the user\'s jurisdiction.',
-      'All deposit fees, minimum/maximum thresholds, and processing times must be fully disclosed before confirmation.',
-      'Withdrawal destinations must be verified and registered in the user\'s own legal name (third-party payouts are strictly prohibited).',
-      'Available balance is reserved immediately upon withdrawal submission; if rejected or cancelled, funds are restored to available balance.',
-      'Internal transfers between Wallet and MT5 accounts process atomically with zero internal fee markup.',
-      'Every wallet movement generates a permanent transaction ID, timestamp, and audit trail available in Transaction History.'
+      'Deposit to Wallet supports Fiat Currency (wire) and Crypto Currency; Deposit to MT5 adds a 3rd option: Move Funds to MT5.',
+      'Bank deposits require selecting a pre-added account from "My Bank Accounts" (From Bank) and the admin receiving account (To Bank).',
+      'Payment proof must be attached via drag-and-drop or file browser in JPEG, PNG, or PDF format, up to 10MB per file.',
+      'Deposit to MT5 includes an option to "Send bank details to my email" and requires selecting the target MT5 account.',
+      'Withdrawable Balance represents liquid capital available after deducting active margin holds, open position risk, and unvested bonuses.',
+      'Pending withdrawals move directly to "Approval in Progress" until back-office compliance and bank settlement complete.',
+      'Wallet Transfer (P2P) requires recipient search via "Find User", displaying a visual card preview with profile photo, name, and user ID (e.g. ZYVE-500).',
+      'My MT5 Accounts supports creating Live and Demo accounts with leverage options (100, 200, 300) and initial deposit settings.',
+      'Connecting a bank account requires Account Holder Name, Account Number, Country, Swift Code, Bank, Branch, and document proof up to 10MB.'
     ],
     checks: [
-      'Wallet navigation is accessible for approved users with full feature access.',
-      'Available, Reserved, and MT5 balances update accurately following each transaction.',
-      'Deposit workflow shows clear fee, currency, and limit disclosures before submission.',
-      'Withdrawal form restricts destinations to verified accounts in the user\'s legal name and enforces balance limits.',
-      'Internal transfers execute atomically between Wallet and MT5 without lag or dropped funds.',
-      'Transaction filter and history display accurate timestamps, status badges, and transaction IDs.'
+      'Withdrawable Balance and Total Balance (MT5 + Wallet) reflect accurate real-time values.',
+      'Deposit modal offers both "Deposit To Wallet" and "Deposit To MT5 Account" tabs with accurate currency and bank dropdowns.',
+      'Converted value updates dynamically when entering USD deposit amount based on platform exchange rates.',
+      'File upload validator enforces JPEG, PNG, PDF formats and rejects files exceeding 10MB.',
+      'Deposit to MT5 exposes the 3 transaction methods: Fiat, Crypto, and Move Funds to MT5.',
+      'Withdraw modal validates Withdrawable Balance and moves pending sums to Approval in Progress.',
+      'Wallet Transfer validates recipient through Find User before enabling "Send Transfer Request".',
+      'Create MT5 Account modal facilitates Live and Demo account creation with leverage selection.',
+      'Bank Account Connect form validates mandatory fields and requires proof document upload before submission.',
+      'Transaction History filters accurately by Trans Method, Module, Trans Type, and Date.'
     ],
     sections: [
       {
-        eyebrow: 'BALANCES & CURRENCIES',
-        title: 'Wallet Overview & Account Balances',
-        description: 'Displays available, reserved, and total balances across supported account currencies and connected MT5 accounts.',
+        eyebrow: 'BALANCES & OVERVIEW',
+        title: 'Balance Cards & Financial Metrics',
+        description: 'Displays liquid withdrawable funds, combined trading equity, promotional bonuses, and pending approval holds.',
         items: [
-          ['Total Balance', 'Aggregated sum of all funds across your main fiat and crypto balances.', 'Overview'],
-          ['Available Balance', 'Funds immediately accessible for new deposits, withdrawals, or trading transfers.', 'Accessible'],
-          ['Reserved Funds', 'Amount temporarily locked during active pending withdrawal requests or open operations.', 'Locked'],
-          ['Connected MT5 Balances', 'Real-time equity and balance synchronized across connected MT5 trading accounts.', 'MT5 Accounts'],
-          ['Multi-Currency Support', 'Hold and manage balances in USD, EUR, GBP, and supported digital assets.', 'Currencies']
+          ['Withdrawable Balance', 'The net liquid balance immediately available for withdrawal or transfers ($183,750.50 in sample).', 'Liquid Funds'],
+          ['Total Balance (MT5 + Wallet)', 'Aggregated platform equity combining the user wallet and all connected MT5 trading accounts ($233,401.74).', 'Combined Total'],
+          ['Total Bonus', 'Platform trading credits ($0.00) including tracked Unused Bonus available for margin support.', 'Trading Credits'],
+          ['Approval in Progress', 'Funds temporarily set aside and locked for withdrawal processing ($3,831.46 in sample).', 'Pending Holds']
         ]
       },
       {
-        eyebrow: 'FUNDING METHODS',
-        title: 'Deposit Workflow & Disclosures',
-        description: 'Step-by-step instructions for funding your Zyvest wallet using verified payment channels.',
+        eyebrow: 'DEPOSIT WORKFLOW',
+        title: 'Deposit To Wallet & Deposit To MT5',
+        description: 'Multi-module funding with dual currency selection, bank routing, live conversion, and payment proof verification.',
         items: [
-          ['Enabled Payment Methods', 'Choose between instant bank transfer, wire deposit, credit/debit cards, and supported crypto.', 'Channels'],
-          ['Deposit Disclosures', 'Review real-time conversion rates, provider processing fees, minimum/maximum limits, and estimated time.', 'Transparency'],
-          ['Deposit Status Tracking', 'Track funding lifecycle: Pending → Processing → Completed (or Failed with clear error reasons).', 'Tracking'],
-          ['Credit Confirmation', 'Funds are credited to available wallet balance automatically once payment confirms.', 'Instant Credit']
+          ['Deposit To Wallet', 'Funds the central user wallet via Fiat Currency or Crypto Currency.', 'Wallet Module'],
+          ['Deposit To MT5 Account', 'Directly funds trading accounts via 3 methods: Fiat, Crypto, or Move Funds to MT5.', 'MT5 Module'],
+          ['Bank Routing (From & To)', 'Select verified source account from My Bank Accounts and target admin beneficiary bank.', 'Bank Selection'],
+          ['USD Amount & Converted Value', 'Input amount in USD with automatic real-time conversion label in the target currency.', 'Live Conversion'],
+          ['Payment Proof Attachment', 'Upload receipt via drag-and-drop or manual selection; supports JPEG, PNG, PDF up to 10MB each.', 'Proof Upload'],
+          ['Bank Summary Preview', 'Bottom preview displays sender legal name/ID, beneficiary bank details, currency, and account numbers.', 'Preview Box'],
+          ['Email Bank Details', 'Option for MT5 deposits to automatically email official wire instructions and SWIFT/IBAN details.', 'Email Wire Info']
         ]
       },
       {
         eyebrow: 'WITHDRAWAL CONTROLS',
-        title: 'Withdrawal Workflow & Safety Checks',
-        description: 'Security rules and procedures for withdrawing funds from your Zyvest wallet.',
+        title: 'Withdraw from Wallet & MT5',
+        description: 'Secure capital payouts with balance checks, verified destination matching, and approval holds.',
         items: [
-          ['Verified Destination', 'Withdrawals are strictly permitted only to verified bank accounts or crypto addresses registered in your name.', 'Security Rule'],
-          ['Fund Reservation', 'Requested withdrawal amount is immediately reserved from available funds upon submission.', 'Balance Safety'],
-          ['Approval & Processing', 'Requests are reviewed and processed; notification sent upon release or completion.', 'Status Cycle'],
-          ['Failure & Rejection Release', 'If a withdrawal is rejected or fails, reserved funds are instantly released back to available balance.', 'Auto-Release']
+          ['Withdrawable Balance Check', 'Guarantees users can only withdraw unencumbered capital, protecting active MT5 margin.', 'Safety Limit'],
+          ['Withdraw from Wallet', 'Disburse funds to connected bank accounts or whitelisted USDT crypto addresses.', 'Wallet Payout'],
+          ['Withdraw from MT5', 'Transfer trading profits back to wallet or directly to external verified accounts.', 'MT5 Payout'],
+          ['Approval in Progress Hold', 'Submitted requests transition to Approval in Progress until audited and finalized by admin.', 'Escrow Phase']
         ]
       },
       {
-        eyebrow: 'TRADING TRANSFERS',
-        title: 'Internal Transfer between Wallet & MT5',
-        description: 'Move capital seamlessly between your Zyvest Wallet and MT5 trading accounts without external fees.',
+        eyebrow: 'TRANSFERS & P2P',
+        title: 'Wallet Transfer & MT5 Transfer',
+        description: 'Peer-to-peer user wallet transfers with recipient validation and internal trading account balancing.',
         items: [
-          ['Source & Destination', 'Transfer funds between Main Wallet and any connected MT5 Live trading account.', 'Direct Route'],
-          ['Atomic Processing', 'Debiting the source and crediting the destination execute atomically in real-time.', 'Zero Lag'],
-          ['Zero Internal Fees', 'Instant internal capital reallocation without payment provider transaction charges.', 'No Fees'],
-          ['Currency Handling', 'Supports same-currency matching or live platform conversion rates before confirmation.', 'Rates Disclosed']
+          ['Wallet Transfer (P2P)', 'Send funds to other platform users with Find User validation and visual profile card preview.', 'P2P Transfer'],
+          ['Find User Lookup', 'Search recipient by name or User ID (e.g. ZYVE-500) to confirm recipient identity before sending.', 'Identity Check'],
+          ['Visual Transfer Flow', 'Displays sender card (photo, name, ID) pointing to recipient card (name, ID, avatar).', 'Visual Preview'],
+          ['MT5 Internal Transfer', 'Instantly move funds between multiple MT5 trading accounts with zero fees and atomic execution.', 'Internal MT5']
         ]
       },
       {
-        eyebrow: 'RECORDS & AUDIT',
+        eyebrow: 'CREDENTIAL MANAGEMENT',
+        title: 'My MT5 Accounts, Bank Accounts & USDT',
+        description: 'Manage trading terminals, connect verified fiat bank accounts, and whitelist crypto addresses.',
+        items: [
+          ['My MT5 Accounts', 'View connected cards (Account ID, Type, Balance, Bonus) and create new Live or Demo MT5 accounts.', 'Trading Terminals'],
+          ['Create MT5 Account Modal', 'Provision new accounts with Account Type selection, Leverage (100, 200, 300), and Initial Deposit.', 'MT5 Provisioning'],
+          ['My Bank Accounts', 'Manage verified bank cards with masked account numbers, institution names, and country tags.', 'Fiat Banking'],
+          ['Bank Account Connect Modal', 'Connect bank with Account Holder Name, Account Number, Country, IFSC, IBAN, Swift, Branch, and Proof.', 'Bank Connect'],
+          ['My USDT Address', 'Manage whitelisted TRC20 and ERC20 cryptocurrency payout wallet addresses.', 'Crypto Wallets']
+        ]
+      },
+      {
+        eyebrow: 'AUDIT & LEDGER',
         title: 'Transaction History & Statements',
-        description: 'Complete historical records for all deposits, withdrawals, transfers, and fees.',
+        description: 'Complete auditable transaction records with multi-criteria filtering and status tracking.',
         items: [
-          ['Multi-Filter Search', 'Filter history by Transaction Type (Deposit, Withdrawal, Transfer), Date Range, and Status.', 'Filters'],
-          ['Transaction Details Dialog', 'Click any transaction to view Transaction ID, Reference Code, Timestamp, Method, and Net Amount.', 'Detailed Receipt'],
-          ['Statement Export', 'Export verified PDF and CSV account statements for tax or accounting purposes.', 'Export PDF/CSV']
+          ['Filter Controls', 'Filter history by Trans Method (Fiat, Crypto), Module (General, MT5, Copier), Trans Type, and Date.', 'Filters'],
+          ['Ledger Columns', 'Displays Transaction Description, Date, Status (Approved/Pending), Type (Debit/Credit), Module, and Amount.', 'Data Grid'],
+          ['Audit Transparency', 'Tracks subscription fees, wallet deposits, withdrawals, and internal reallocations.', 'Audit Trail']
         ]
       }
     ]
@@ -745,6 +767,7 @@ function renderModules() {
       <strong>${escapeHtml(module.title)}</strong><span class="module-summary">${escapeHtml(module.summary)}</span>
       ${module.hasSubmodules ? '<div class="submodule-pill-list"><span class="submodule-pill">Step 1: Sign up</span><span class="submodule-pill">Step 2: KYC</span><span class="submodule-pill">Step 3: Nominee</span><span class="submodule-pill">Step 4: Pending KYC Approval</span></div>' : ''}
       ${module.id === 'profile' ? '<div class="submodule-pill-list"><span class="submodule-pill">User Level Upgrade</span><span class="submodule-pill">Account Types: Copier Group</span><span class="submodule-pill">Spread & Leverage</span><span class="submodule-pill">Manage Profile</span><span class="submodule-pill">KYC Re-Setup</span><span class="submodule-pill">2FA: Mail & App</span></div>' : ''}
+      ${module.id === 'wallet' ? '<div class="submodule-pill-list"><span class="submodule-pill">Withdrawable Balance</span><span class="submodule-pill">Deposit to Wallet/MT5</span><span class="submodule-pill">Withdrawal Payouts</span><span class="submodule-pill">P2P & MT5 Transfer</span><span class="submodule-pill">MT5 Accounts</span><span class="submodule-pill">Bank Connect</span><span class="submodule-pill">USDT Address</span><span class="submodule-pill">Ledger History</span></div>' : ''}
       <span class="module-action">Open overview <b>→</b></span>
     </button>`).join('');
   empty.hidden = visible.length > 0;
@@ -1087,6 +1110,522 @@ function openAuthenticatorModal(opener) {
   detail.querySelector('.close-button').focus();
 }
 
+function showZyvestToast(message) {
+  const existing = document.querySelector('.zyvest-toast');
+  if (existing) existing.remove();
+  const toast = document.createElement('div');
+  toast.className = 'zyvest-toast';
+  toast.innerHTML = `<span>✓</span><span>${escapeHtml(message)}</span>`;
+  document.body.append(toast);
+  setTimeout(() => toast.remove(), 4000);
+}
+
+function openDepositModalDemo(opener) {
+  const overlay = document.createElement('div');
+  overlay.className = 'zyvest-modal-overlay';
+  overlay.innerHTML = `
+    <div class="zyvest-modal-dialog zyvest-split-modal" role="dialog" aria-modal="true" aria-labelledby="depTitle">
+      <div class="zyvest-modal-green-panel">
+        <span class="zyvest-green-badge-dot"></span>
+        <h2 id="depTitle">Deposit to your wallet</h2>
+        <p>Transfer funds easily to your wallet or MT5 live trading account.</p>
+        <span class="zyvest-instructions-title">Deposit Instructions</span>
+        <ul class="zyvest-instructions-list">
+          <li><span class="step-idx">1</span> Copy the bank details and initiate a wire transfer.</li>
+          <li><span class="step-idx">2</span> Upload the transaction proof when submitting the payment order.</li>
+          <li><span class="step-idx">3</span> Enter the transferred amount as per the proof.</li>
+          <li><span class="step-idx">4</span> Your deposit will be processed once funds reach admin bank account.</li>
+        </ul>
+      </div>
+      <div class="zyvest-modal-body-panel">
+        <button type="button" class="zyvest-modal-close-btn close-modal" aria-label="Close modal">×</button>
+        <div class="zyvest-modal-tabs">
+          <button type="button" class="zyvest-modal-tab active" data-dep-tab="wallet">Deposit To Wallet</button>
+          <button type="button" class="zyvest-modal-tab" data-dep-tab="mt5">Deposit To MT5 Account</button>
+        </div>
+
+        <div id="mt5AccountSelectRow" class="zyvest-form-group" style="display:none">
+          <label class="zyvest-form-label">Select MT5 Account <span class="req">*</span></label>
+          <select class="zyvest-form-select">
+            <option value="3033599">Live - Zyvest Gold (3033599) — Balance: $64.00</option>
+            <option value="3033598">Live - Bug Test (3033598) — Balance: $112.00</option>
+            <option value="3033597">Live - Copier Grp (3033597) — Balance: $162.00</option>
+          </select>
+        </div>
+
+        <div class="zyvest-form-group">
+          <label class="zyvest-form-label">Transaction Method <span class="req">*</span></label>
+          <div class="zyvest-method-pills" id="depMethodPills">
+            <button type="button" class="zyvest-method-pill active" data-method="fiat">Fiat Currency</button>
+            <button type="button" class="zyvest-method-pill" data-method="crypto">Crypto Currency</button>
+            <button type="button" class="zyvest-method-pill" data-method="move" id="moveFundsPill" style="display:none">Move Funds to MT5</button>
+          </div>
+        </div>
+
+        <div class="zyvest-form-group" id="bankRoutingRow">
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px">
+            <div>
+              <label class="zyvest-form-label">From Bank Account <span class="req">*</span></label>
+              <select class="zyvest-form-select" id="fromBankSelect">
+                <option value="sbi">State Bank of India (5058 **** 5888)</option>
+              </select>
+            </div>
+            <div>
+              <label class="zyvest-form-label">To Bank Account <span class="req">*</span></label>
+              <select class="zyvest-form-select" id="toBankSelect">
+                <option value="admin-eur">Zyvest Treasury Bank (EUR / USD)</option>
+                <option value="admin-inr">Zyvest Regional Bank (INR)</option>
+              </select>
+            </div>
+          </div>
+        </div>
+
+        <div class="zyvest-form-group" id="emailWireToggleRow" style="display:none">
+          <label style="display:flex;align-items:center;gap:8px;font-size:0.8125rem;cursor:pointer;color:var(--ink)">
+            <input type="checkbox" id="sendEmailDetails" checked> Send bank details to my email
+          </label>
+        </div>
+
+        <div class="zyvest-form-group">
+          <label class="zyvest-form-label">Amount in USD <span class="req">*</span></label>
+          <input type="number" class="zyvest-form-input" id="depAmountInput" value="500" min="10" placeholder="Enter amount in USD">
+          <div style="margin-top:4px">
+            <span class="zyvest-converted-tag" id="depConvertedTag">Converted Value: ~500.00 USD / USDT</span>
+          </div>
+        </div>
+
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px">
+          <div class="zyvest-form-group">
+            <label class="zyvest-form-label">Write Note</label>
+            <input type="text" class="zyvest-form-input" placeholder="e.g. Trading capital deposit">
+          </div>
+          <div class="zyvest-form-group">
+            <label class="zyvest-form-label">Campaign Code</label>
+            <div class="zyvest-input-with-btn">
+              <input type="text" class="zyvest-form-input" id="campCodeInput" placeholder="Enter code">
+              <button type="button" class="zyvest-btn-inline" id="btnApplyCode">Apply</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="zyvest-form-group" id="depUploadGroup">
+          <label class="zyvest-form-label">Document Attachment as Proof <span class="req">*</span></label>
+          <div class="zyvest-dropzone" id="depDropzone">
+            <span class="zyvest-dropzone-icon">📄</span>
+            <strong id="dropzoneText">Choose files or drag & drop them here</strong>
+            <small>JPEG, PNG, PDF formats, up to 10MB each</small>
+            <input type="file" id="depFileInput" accept=".jpg,.jpeg,.png,.pdf" style="display:none">
+          </div>
+        </div>
+
+        <div class="zyvest-preview-card" id="bankSummaryPreview">
+          <div class="zyvest-preview-row"><span class="label">From Account:</span> <strong>State Bank of India (5058 **** 5888)</strong></div>
+          <div class="zyvest-preview-row"><span class="label">Beneficiary:</span> <strong>Zyvest Capital Treasury (Admin Account)</strong></div>
+          <div class="zyvest-preview-row"><span class="label">Processing:</span> <span>Verified by Zyvest Finance Team</span></div>
+        </div>
+
+        <div class="zyvest-modal-footer">
+          <button type="button" class="zyvest-btn-cancel close-modal">Cancel</button>
+          <button type="button" class="zyvest-btn-submit" id="btnSubmitDeposit">Submit</button>
+        </div>
+      </div>
+    </div>`;
+
+  document.body.append(overlay);
+  const close = () => { overlay.remove(); opener?.focus(); };
+  overlay.querySelectorAll('.close-modal').forEach(b => b.addEventListener('click', close));
+  overlay.addEventListener('click', e => { if (e.target === overlay) close(); });
+  overlay.addEventListener('keydown', e => { if (e.key === 'Escape') close(); });
+
+  const tabs = overlay.querySelectorAll('[data-dep-tab]');
+  const mt5Row = overlay.querySelector('#mt5AccountSelectRow');
+  const movePill = overlay.querySelector('#moveFundsPill');
+  const emailRow = overlay.querySelector('#emailWireToggleRow');
+  const modalTitle = overlay.querySelector('#depTitle');
+
+  tabs.forEach(tab => {
+    tab.addEventListener('click', () => {
+      tabs.forEach(t => t.classList.remove('active'));
+      tab.classList.add('active');
+      const isMt5 = tab.dataset.depTab === 'mt5';
+      mt5Row.style.display = isMt5 ? 'flex' : 'none';
+      movePill.style.display = isMt5 ? 'inline-block' : 'none';
+      emailRow.style.display = isMt5 ? 'flex' : 'none';
+      modalTitle.textContent = isMt5 ? 'Deposit to MT5 Account' : 'Deposit to your wallet';
+    });
+  });
+
+  const methodPills = overlay.querySelectorAll('.zyvest-method-pill');
+  const bankRoutingRow = overlay.querySelector('#bankRoutingRow');
+  const uploadGroup = overlay.querySelector('#depUploadGroup');
+  const bankSummary = overlay.querySelector('#bankSummaryPreview');
+
+  methodPills.forEach(pill => {
+    pill.addEventListener('click', () => {
+      methodPills.forEach(p => p.classList.remove('active'));
+      pill.classList.add('active');
+      const method = pill.dataset.method;
+      if (method === 'move') {
+        bankRoutingRow.style.display = 'none';
+        uploadGroup.style.display = 'none';
+        bankSummary.innerHTML = `
+          <div class="zyvest-preview-row"><span class="label">Transfer Type:</span> <strong>Internal Wallet to MT5</strong></div>
+          <div class="zyvest-preview-row"><span class="label">Fee & Speed:</span> <strong>Zero Fee · Instant Execution</strong></div>
+        `;
+      } else {
+        bankRoutingRow.style.display = 'flex';
+        uploadGroup.style.display = 'flex';
+        bankSummary.innerHTML = `
+          <div class="zyvest-preview-row"><span class="label">From Account:</span> <strong>${method === 'crypto' ? 'Whitelisted USDT TRC20 Wallet' : 'State Bank of India (5058 **** 5888)'}</strong></div>
+          <div class="zyvest-preview-row"><span class="label">Beneficiary:</span> <strong>${method === 'crypto' ? 'Zyvest Official USDT Deposit Address' : 'Zyvest Capital Treasury (Admin Account)'}</strong></div>
+          <div class="zyvest-preview-row"><span class="label">Processing:</span> <span>Verified by Zyvest Finance Team</span></div>
+        `;
+      }
+    });
+  });
+
+  const amtInput = overlay.querySelector('#depAmountInput');
+  const convTag = overlay.querySelector('#depConvertedTag');
+  amtInput?.addEventListener('input', () => {
+    const val = parseFloat(amtInput.value) || 0;
+    convTag.textContent = `Converted Value: ~${val.toFixed(2)} USD / USDT`;
+  });
+
+  const campInput = overlay.querySelector('#campCodeInput');
+  const applyBtn = overlay.querySelector('#btnApplyCode');
+  applyBtn?.addEventListener('click', () => {
+    const code = campInput.value.trim().toUpperCase();
+    if (code) {
+      showZyvestToast(`Promo code "${code}" applied! Deposit bonus eligibility activated.`);
+    } else {
+      campInput.focus();
+    }
+  });
+
+  const dropzone = overlay.querySelector('#depDropzone');
+  const fileInput = overlay.querySelector('#depFileInput');
+  const dropText = overlay.querySelector('#dropzoneText');
+  dropzone?.addEventListener('click', () => fileInput.click());
+  fileInput?.addEventListener('change', () => {
+    if (fileInput.files.length > 0) {
+      dropText.textContent = `✓ Attached: ${fileInput.files[0].name} (${(fileInput.files[0].size / 1024 / 1024).toFixed(2)} MB)`;
+    }
+  });
+
+  overlay.querySelector('#btnSubmitDeposit')?.addEventListener('click', () => {
+    const amt = amtInput.value || 0;
+    close();
+    showZyvestToast(`Deposit request of $${amt} submitted! Verification is now in progress.`);
+  });
+}
+
+function openTransferModalDemo(opener) {
+  const overlay = document.createElement('div');
+  overlay.className = 'zyvest-modal-overlay';
+  overlay.innerHTML = `
+    <div class="zyvest-modal-dialog zyvest-split-modal" role="dialog" aria-modal="true" aria-labelledby="transTitle">
+      <div class="zyvest-modal-green-panel">
+        <span class="zyvest-green-badge-dot"></span>
+        <h2 id="transTitle">Transfer to other Wallets</h2>
+        <p>Transfer funds easily to other wallets from your wallet or reallocate between MT5 accounts.</p>
+        <span class="zyvest-instructions-title">Transfer Rules</span>
+        <ul class="zyvest-instructions-list">
+          <li><span class="step-idx">1</span> Enter recipient name or User ID and click Find User to verify identity.</li>
+          <li><span class="step-idx">2</span> Ensure recipient details match before sending.</li>
+          <li><span class="step-idx">3</span> P2P transfers settle immediately upon execution.</li>
+        </ul>
+      </div>
+      <div class="zyvest-modal-body-panel">
+        <button type="button" class="zyvest-modal-close-btn close-modal" aria-label="Close modal">×</button>
+        <div class="zyvest-modal-tabs">
+          <button type="button" class="zyvest-modal-tab active" data-trans-tab="wallet">Wallet Transfer</button>
+          <button type="button" class="zyvest-modal-tab" data-trans-tab="mt5">MT5 Transfer</button>
+        </div>
+
+        <div id="p2pRecipientBlock">
+          <div class="zyvest-form-group">
+            <label class="zyvest-form-label">Enter Recipient Name <span class="req">*</span></label>
+            <div class="zyvest-input-with-btn">
+              <input type="text" class="zyvest-form-input" id="recipientSearchInput" placeholder="Enter recipient name or ID (e.g. ZYVE-742)" value="ZYVE-742">
+              <button type="button" class="zyvest-btn-inline" id="btnFindUser">Find User</button>
+            </div>
+          </div>
+
+          <div class="zyvest-p2p-visual" id="p2pFlowVisual">
+            <div class="zyvest-p2p-card">
+              <div class="zyvest-p2p-avatar">👤</div>
+              <strong>Baasha</strong>
+              <small>ZYVE-500</small>
+            </div>
+            <span class="zyvest-p2p-arrow">➔</span>
+            <div class="zyvest-p2p-card" id="recipientCard">
+              <div class="zyvest-p2p-avatar" style="background:#eef2f5;color:#6b7f73">?</div>
+              <strong id="recipientNameLabel">User not selected</strong>
+              <small id="recipientIdLabel">Search with Find User</small>
+            </div>
+          </div>
+        </div>
+
+        <div id="mt5TransferBlock" style="display:none">
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px">
+            <div class="zyvest-form-group">
+              <label class="zyvest-form-label">From Account <span class="req">*</span></label>
+              <select class="zyvest-form-select">
+                <option>Main Wallet ($183,750.50)</option>
+                <option>Live - Zyvest Gold (3033599)</option>
+                <option>Live - Copier Grp (3033597)</option>
+              </select>
+            </div>
+            <div class="zyvest-form-group">
+              <label class="zyvest-form-label">To Account <span class="req">*</span></label>
+              <select class="zyvest-form-select">
+                <option>Live - Zyvest Gold (3033599)</option>
+                <option>Live - Copier Grp (3033597)</option>
+                <option>Main Wallet</option>
+              </select>
+            </div>
+          </div>
+        </div>
+
+        <div class="zyvest-form-group">
+          <label class="zyvest-form-label">Type Amount <span class="req">*</span></label>
+          <input type="number" class="zyvest-form-input" id="transferAmountInput" value="2000" placeholder="$0.00">
+        </div>
+
+        <div class="zyvest-form-group">
+          <label class="zyvest-form-label">Write Note (Optional)</label>
+          <input type="text" class="zyvest-form-input" placeholder="Write your note here">
+        </div>
+
+        <div class="zyvest-modal-footer">
+          <button type="button" class="zyvest-btn-cancel close-modal">Cancel</button>
+          <button type="button" class="zyvest-btn-submit" id="btnSendTransfer">Send Transfer Request</button>
+        </div>
+      </div>
+    </div>`;
+
+  document.body.append(overlay);
+  const close = () => { overlay.remove(); opener?.focus(); };
+  overlay.querySelectorAll('.close-modal').forEach(b => b.addEventListener('click', close));
+  overlay.addEventListener('click', e => { if (e.target === overlay) close(); });
+  overlay.addEventListener('keydown', e => { if (e.key === 'Escape') close(); });
+
+  const tabs = overlay.querySelectorAll('[data-trans-tab]');
+  const p2pBlock = overlay.querySelector('#p2pRecipientBlock');
+  const mt5Block = overlay.querySelector('#mt5TransferBlock');
+  tabs.forEach(tab => {
+    tab.addEventListener('click', () => {
+      tabs.forEach(t => t.classList.remove('active'));
+      tab.classList.add('active');
+      const isMt5 = tab.dataset.transTab === 'mt5';
+      p2pBlock.style.display = isMt5 ? 'none' : 'block';
+      mt5Block.style.display = isMt5 ? 'block' : 'none';
+    });
+  });
+
+  const findBtn = overlay.querySelector('#btnFindUser');
+  const recInput = overlay.querySelector('#recipientSearchInput');
+  const recName = overlay.querySelector('#recipientNameLabel');
+  const recId = overlay.querySelector('#recipientIdLabel');
+  const recAvatar = overlay.querySelector('#recipientCard .zyvest-p2p-avatar');
+
+  const doFind = () => {
+    const query = recInput.value.trim();
+    if (query) {
+      recAvatar.style.background = '#eef8f2';
+      recAvatar.style.color = '#07794e';
+      recAvatar.textContent = '👤';
+      recName.textContent = 'John Doe';
+      recId.textContent = 'ZYVE-742 · Verified';
+      showZyvestToast('Recipient validated: John Doe (ZYVE-742)');
+    }
+  };
+  findBtn?.addEventListener('click', doFind);
+  recInput?.addEventListener('keydown', e => { if (e.key === 'Enter') doFind(); });
+
+  overlay.querySelector('#btnSendTransfer')?.addEventListener('click', () => {
+    const amt = overlay.querySelector('#transferAmountInput').value || 0;
+    close();
+    showZyvestToast(`Transfer request of $${amt} dispatched successfully!`);
+  });
+}
+
+function openCreateMT5ModalDemo(opener) {
+  const overlay = document.createElement('div');
+  overlay.className = 'zyvest-modal-overlay';
+  overlay.innerHTML = `
+    <div class="zyvest-modal-dialog zyvest-split-modal" role="dialog" aria-modal="true" aria-labelledby="mt5CreateTitle">
+      <div class="zyvest-modal-green-panel">
+        <span class="zyvest-green-badge-dot"></span>
+        <h2 id="mt5CreateTitle">Create Live Account</h2>
+        <p>Trade in real markets with actual funds—experience full access and real profits.</p>
+        <span class="zyvest-instructions-title">Account Specifications</span>
+        <ul class="zyvest-instructions-list">
+          <li><span class="step-idx">✓</span> MetaTrader 5 institutional execution.</li>
+          <li><span class="step-idx">✓</span> Customizable leverage up to 1:500.</li>
+          <li><span class="step-idx">✓</span> Instant provisioning upon form submission.</li>
+        </ul>
+      </div>
+      <div class="zyvest-modal-body-panel">
+        <button type="button" class="zyvest-modal-close-btn close-modal" aria-label="Close modal">×</button>
+        <div class="zyvest-modal-tabs">
+          <button type="button" class="zyvest-modal-tab active" data-account-kind="live">Live Account</button>
+          <button type="button" class="zyvest-modal-tab" data-account-kind="demo">Demo Account</button>
+        </div>
+
+        <div class="zyvest-form-group">
+          <label class="zyvest-form-label">Account Type <span class="req">*</span></label>
+          <select class="zyvest-form-select">
+            <option>Copier Grp</option>
+            <option>Zyvest Gold</option>
+            <option>Standard Account</option>
+            <option>Raw Spread (ECN)</option>
+          </select>
+        </div>
+
+        <div class="zyvest-form-group">
+          <label class="zyvest-form-label">Leverage <span class="req">*</span></label>
+          <select class="zyvest-form-select">
+            <option>100</option>
+            <option selected>200</option>
+            <option>300</option>
+            <option>500</option>
+          </select>
+        </div>
+
+        <div class="zyvest-form-group">
+          <label class="zyvest-form-label">Initial Deposit (USD)</label>
+          <input type="number" class="zyvest-form-input" value="100" min="0">
+        </div>
+
+        <div class="zyvest-modal-footer">
+          <button type="button" class="zyvest-btn-cancel close-modal">Cancel</button>
+          <button type="button" class="zyvest-btn-submit" id="btnCreateMT5Submit">Submit</button>
+        </div>
+      </div>
+    </div>`;
+
+  document.body.append(overlay);
+  const close = () => { overlay.remove(); opener?.focus(); };
+  overlay.querySelectorAll('.close-modal').forEach(b => b.addEventListener('click', close));
+  overlay.addEventListener('click', e => { if (e.target === overlay) close(); });
+  overlay.addEventListener('keydown', e => { if (e.key === 'Escape') close(); });
+
+  const tabs = overlay.querySelectorAll('[data-account-kind]');
+  const title = overlay.querySelector('#mt5CreateTitle');
+  tabs.forEach(tab => {
+    tab.addEventListener('click', () => {
+      tabs.forEach(t => t.classList.remove('active'));
+      tab.classList.add('active');
+      title.textContent = tab.dataset.accountKind === 'demo' ? 'Create Demo Account' : 'Create Live Account';
+    });
+  });
+
+  overlay.querySelector('#btnCreateMT5Submit')?.addEventListener('click', () => {
+    close();
+    showZyvestToast('MT5 Account created successfully! Credentials sent to your email.');
+  });
+}
+
+function openBankConnectModalDemo(opener) {
+  const overlay = document.createElement('div');
+  overlay.className = 'zyvest-modal-overlay';
+  overlay.innerHTML = `
+    <div class="zyvest-modal-dialog zyvest-modal-single" role="dialog" aria-modal="true" aria-labelledby="bankConnectTitle">
+      <div class="zyvest-modal-body-panel" style="padding:28px">
+        <button type="button" class="zyvest-modal-close-btn close-modal" aria-label="Close modal">×</button>
+        <div style="text-align:center;margin-bottom:12px">
+          <h2 id="bankConnectTitle" style="margin:0 0 4px;font-size:1.35rem;color:var(--ink)">Bank Account Connect</h2>
+          <p style="margin:0;font-size:0.85rem;color:var(--muted)">Enter the necessary details to connect your bank account</p>
+        </div>
+
+        <div class="zyvest-form-group">
+          <label class="zyvest-form-label">Account Holder Name <span class="req">*</span></label>
+          <input type="text" class="zyvest-form-input" placeholder="Enter your bank account name" value="Baasha">
+        </div>
+
+        <div class="zyvest-form-group">
+          <label class="zyvest-form-label">Account Number <span class="req">*</span></label>
+          <input type="text" class="zyvest-form-input" placeholder="Enter your bank account number" value="5058 9201 3341 5888">
+        </div>
+
+        <div class="zyvest-form-group">
+          <label class="zyvest-form-label">Country <span class="req">*</span></label>
+          <select class="zyvest-form-select">
+            <option>India</option>
+            <option>United Kingdom</option>
+            <option>United Arab Emirates</option>
+            <option>Singapore</option>
+          </select>
+        </div>
+
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px">
+          <div class="zyvest-form-group">
+            <label class="zyvest-form-label">IFSC Code (Optional)</label>
+            <input type="text" class="zyvest-form-input" placeholder="Enter banks IFSC code" value="SBIN0001234">
+          </div>
+          <div class="zyvest-form-group">
+            <label class="zyvest-form-label">IBAN Number (Optional)</label>
+            <input type="text" class="zyvest-form-input" placeholder="Enter banks IBAN">
+          </div>
+        </div>
+
+        <div class="zyvest-form-group">
+          <label class="zyvest-form-label">Swift Code <span class="req">*</span></label>
+          <input type="text" class="zyvest-form-input" placeholder="Enter your banks swift code" value="SBININBB120">
+        </div>
+
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px">
+          <div class="zyvest-form-group">
+            <label class="zyvest-form-label">Select Bank <span class="req">*</span></label>
+            <select class="zyvest-form-select">
+              <option>State Bank of India</option>
+              <option>HDFC Bank</option>
+              <option>Barclays Bank</option>
+              <option>Emirates NBD</option>
+            </select>
+          </div>
+          <div class="zyvest-form-group">
+            <label class="zyvest-form-label">Branch <span class="req">*</span></label>
+            <input type="text" class="zyvest-form-input" placeholder="Enter branch name" value="Main Commercial Branch">
+          </div>
+        </div>
+
+        <div class="zyvest-form-group">
+          <label class="zyvest-form-label">Address</label>
+          <input type="text" class="zyvest-form-input" placeholder="Enter your bank address" value="12 Financial District">
+        </div>
+
+        <div class="zyvest-form-group">
+          <label class="zyvest-form-label">Proof of Bank Account (Up to 10MB) <span class="req">*</span></label>
+          <div style="display:flex;gap:10px;align-items:center">
+            <button type="button" class="zyvest-btn-inline" style="padding:10px 18px" id="btnUploadProof">Upload File</button>
+            <span id="proofFileName" style="font-size:0.8125rem;color:var(--muted)">passbook_statement.pdf (1.4 MB)</span>
+          </div>
+        </div>
+
+        <div class="zyvest-modal-footer">
+          <button type="button" class="zyvest-btn-cancel close-modal">Cancel</button>
+          <button type="button" class="zyvest-btn-submit" id="btnSubmitBank">Submit</button>
+        </div>
+      </div>
+    </div>`;
+
+  document.body.append(overlay);
+  const close = () => { overlay.remove(); opener?.focus(); };
+  overlay.querySelectorAll('.close-modal').forEach(b => b.addEventListener('click', close));
+  overlay.addEventListener('click', e => { if (e.target === overlay) close(); });
+  overlay.addEventListener('keydown', e => { if (e.key === 'Escape') close(); });
+
+  overlay.querySelector('#btnUploadProof')?.addEventListener('click', () => {
+    showZyvestToast('Bank document attached successfully!');
+  });
+  overlay.querySelector('#btnSubmitBank')?.addEventListener('click', () => {
+    close();
+    showZyvestToast('Bank account submitted for compliance approval!');
+  });
+}
+
 function openModule(id) {
   const module = modules.find(item => item.id === id);
   if (!module) return;
@@ -1170,12 +1709,66 @@ function openModule(id) {
           </div>
         </section>
       ` : ''}
+      ${module.id === 'wallet' ? `
+        <section class="detail-panel interactive-feature-panel">
+          <div class="interactive-feature-header">
+            <div>
+              <p class="eyebrow"><span class="pulse"></span> LIVE INTERACTIVE WORKFLOWS</p>
+              <h2>Wallet Actions & Account Setup Modals</h2>
+              <p>Test the exact Deposit, Transfer, Create MT5 Account, and Bank Account Connect modals directly in this Help Center guide.</p>
+            </div>
+            <span class="module-step-badge">Interactive Demo</span>
+          </div>
+          <div class="interactive-action-grid">
+            <div class="interactive-action-card">
+              <span class="interactive-card-icon">💳</span>
+              <div class="interactive-card-body">
+                <h3>Deposit to Wallet & MT5</h3>
+                <p>Test multi-channel funding with Fiat/Crypto, bank routing, live USD conversion, and 10MB payment proof upload.</p>
+                <button type="button" class="btn-action-primary open-deposit-modal-btn">
+                  Open Deposit Modal Demo <b>→</b>
+                </button>
+              </div>
+            </div>
+            <div class="interactive-action-card">
+              <span class="interactive-card-icon">🔄</span>
+              <div class="interactive-card-body">
+                <h3>P2P & MT5 Transfers</h3>
+                <p>Test peer-to-peer transfers with live "Find User" recipient validation, sender-to-recipient visual flow card, and internal MT5 reallocations.</p>
+                <button type="button" class="btn-action-primary open-transfer-modal-btn">
+                  Open Transfer Modal Demo <b>→</b>
+                </button>
+              </div>
+            </div>
+            <div class="interactive-action-card">
+              <span class="interactive-card-icon">📈</span>
+              <div class="interactive-card-body">
+                <h3>Create MT5 Account</h3>
+                <p>Test provisioning Live and Demo MT5 trading accounts with leverage options (100, 200, 300) and initial deposit configuration.</p>
+                <button type="button" class="btn-action-secondary open-mt5-modal-btn">
+                  Open Create MT5 Modal <b>→</b>
+                </button>
+              </div>
+            </div>
+            <div class="interactive-action-card">
+              <span class="interactive-card-icon">🏦</span>
+              <div class="interactive-card-body">
+                <h3>Bank Account Connect</h3>
+                <p>Test connecting verified beneficiary bank accounts with IFSC, IBAN, Swift Code, and 10MB document proof attachment.</p>
+                <button type="button" class="btn-action-secondary open-bank-modal-btn">
+                  Open Bank Connect Modal <b>→</b>
+                </button>
+              </div>
+            </div>
+          </div>
+        </section>
+      ` : ''}
       ${module.sections?.length ? `
         <section class="detail-panel profile-sections-container">
           <div class="ib-section-heading">
             <div>
               <p class="eyebrow">DETAILED PAGE MODULES & CONTROLS</p>
-              <h2>Profile Page Structure & Components</h2>
+              <h2>${module.id === 'wallet' ? 'Wallet & Dashboard Structure & Components' : (module.id === 'profile' ? 'Profile Page Structure & Components' : escapeHtml(module.title) + ' Structure & Components')}</h2>
               <p>Reference guide for all navigation menus, identification items, personal fields, and security options.</p>
             </div>
             <span>${module.sections.length} Sections</span>
@@ -1237,6 +1830,25 @@ function openModule(id) {
   if (app2faBtn) {
     app2faBtn.addEventListener('click', () => openAuthenticatorModal(app2faBtn));
   }
+
+  // Wallet Interactive Modals
+  const depBtn = detail.querySelector('.open-deposit-modal-btn');
+  if (depBtn) {
+    depBtn.addEventListener('click', () => openDepositModalDemo(depBtn));
+  }
+  const transBtn = detail.querySelector('.open-transfer-modal-btn');
+  if (transBtn) {
+    transBtn.addEventListener('click', () => openTransferModalDemo(transBtn));
+  }
+  const mt5Btn = detail.querySelector('.open-mt5-modal-btn');
+  if (mt5Btn) {
+    mt5Btn.addEventListener('click', () => openCreateMT5ModalDemo(mt5Btn));
+  }
+  const bankBtn = detail.querySelector('.open-bank-modal-btn');
+  if (bankBtn) {
+    bankBtn.addEventListener('click', () => openBankConnectModalDemo(bankBtn));
+  }
+
   detail.addEventListener('click', event => { if (event.target === detail) close(); });
   detail.addEventListener('keydown', event => {
     if (event.key === 'Escape') close();
