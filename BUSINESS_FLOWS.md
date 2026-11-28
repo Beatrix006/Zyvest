@@ -14,10 +14,16 @@ This document records product-flow rules for the Zyvest website. The Help Center
 
 Exact KYC document types, nominee fields, bank fields, and bank verification rules must come from Zyvest product/compliance configuration; do not invent them in the flow guide.
 
-## 2. Sign in and recovery
+## 2. Sign in, 2FA Setup Gate, and recovery
 
 - Support email/password and Google sign-in.
-- On the Zyvest website, route valid credentials according to state: incomplete onboarding resumes at its next required step; Pending users receive review status and next-step updates; Rejected opens correction/resubmission; Approved opens **Wallet**.
+- **Post-Login 2FA Security Gate:**
+  1. Once valid login credentials or Google auth succeed, if two-factor authentication is not yet enabled or configured, the platform prompts the user with the **"2FA not enabled"** security gate.
+  2. The user is presented with two setup and verification options:
+     - **Option 1: Generate new code with mail:** Automatically dispatches a 6-digit one-time passcode (OTP) to the user's verified registered email with a 10-minute validity countdown.
+     - **Option 2: Open authenticator app:** Generates an authenticating QR code and manual setup secret key for pairing with Google Authenticator, Microsoft Authenticator, or Authy, accepting the live 6-digit TOTP code.
+  3. Once the 6-digit code is submitted and verified, the security gate unlocks and routes the user directly to the **User Dashboard** (`/dashboard`).
+- Route valid credentials according to user state: incomplete onboarding resumes at its next required step; Pending users receive review status and next-step updates; Rejected opens correction/resubmission; Approved users pass 2FA and land on the **Dashboard** and **Wallet**.
 - Link Google sign-in to an existing account by verified email. A new verified Google email starts signup/onboarding and must complete phone verification, KYC, nominee, bank, and approval steps.
 - Password recovery sends an email reset link; the user sets a new password through that link.
 - Invalid credentials keep the user on the login page and show a clear error.
@@ -27,8 +33,9 @@ Exact KYC document types, nominee fields, bank fields, and bank verification rul
 | State | User landing page | Available user actions |
 | --- | --- | --- |
 | Onboarding incomplete | Next required onboarding step | Complete signup, KYC, nominee, or bank setup |
-| Pending | Zyvest website review status | View status updates and wait for a decision; Wallet actions remain unavailable |
-| Approved | Wallet | Use Wallet first; remaining approved User modules are available through User navigation/switches |
+| Pending | Zyvest website review status | View status updates and wait for a decision; Dashboard/Wallet actions remain unavailable |
+| 2FA Pending / Not Enabled | 2FA Setup Gate | Choose "Generate new code with mail" or "Open authenticator app", enter 6-digit code |
+| Approved & Verified | Dashboard (`/dashboard`) & Wallet (`/user_wallet`) | Full access to Withdrawable Balance, Deposits, Withdrawals, Transfers, MT5 accounts, and Bank Connect |
 | Rejected | Correction/resubmission step | View reason, correct requested information/documents, resubmit |
 
 Pending/Rejected users cannot access approved-user modules. Admin approval opens Wallet as the first page; it does not route through a Dashboard.

@@ -1124,109 +1124,102 @@ function openDepositModalDemo(opener) {
   const overlay = document.createElement('div');
   overlay.className = 'zyvest-modal-overlay';
   overlay.innerHTML = `
-    <div class="zyvest-modal-dialog zyvest-split-modal" role="dialog" aria-modal="true" aria-labelledby="depTitle">
-      <div class="zyvest-modal-green-panel">
-        <span class="zyvest-green-badge-dot"></span>
+    <div class="zyvest-modal-dialog" role="dialog" aria-modal="true" aria-labelledby="depTitle">
+      <button type="button" class="zyvest-exact-close close-modal" aria-label="Close modal">×</button>
+      <div class="zyvest-green-banner-card">
+        <span class="white-dot"></span>
         <h2 id="depTitle">Deposit to your wallet</h2>
-        <p>Transfer funds easily to your wallet or MT5 live trading account.</p>
-        <span class="zyvest-instructions-title">Deposit Instructions</span>
-        <ul class="zyvest-instructions-list">
-          <li><span class="step-idx">1</span> Copy the bank details and initiate a wire transfer.</li>
-          <li><span class="step-idx">2</span> Upload the transaction proof when submitting the payment order.</li>
-          <li><span class="step-idx">3</span> Enter the transferred amount as per the proof.</li>
-          <li><span class="step-idx">4</span> Your deposit will be processed once funds reach admin bank account.</li>
-        </ul>
+        <p>Transfer funds easily to your wallet</p>
+        <div class="instructions-title">Deposit Instructions</div>
+        <ol class="instructions-list">
+          <li>Copy the bank details and initiate a wire transfer</li>
+          <li>Upload the transaction proof when submitting the payment order.</li>
+          <li>Enter the transferred amount as per the proof.</li>
+          <li>Your deposit will be processed once funds reach admin bank account.</li>
+        </ol>
       </div>
-      <div class="zyvest-modal-body-panel">
-        <button type="button" class="zyvest-modal-close-btn close-modal" aria-label="Close modal">×</button>
-        <div class="zyvest-modal-tabs">
-          <button type="button" class="zyvest-modal-tab active" data-dep-tab="wallet">Deposit To Wallet</button>
-          <button type="button" class="zyvest-modal-tab" data-dep-tab="mt5">Deposit To MT5 Account</button>
+      <div class="zyvest-form-side">
+        <div class="zyvest-exact-tabs">
+          <button type="button" class="zyvest-exact-tab active" data-dep-tab="wallet">Deposit To Wallet</button>
+          <button type="button" class="zyvest-exact-tab" data-dep-tab="mt5">Deposit To MT5 Account</button>
         </div>
 
-        <div id="mt5AccountSelectRow" class="zyvest-form-group" style="display:none">
-          <label class="zyvest-form-label">Select MT5 Account <span class="req">*</span></label>
-          <select class="zyvest-form-select">
-            <option value="3033599">Live - Zyvest Gold (3033599) — Balance: $64.00</option>
-            <option value="3033598">Live - Bug Test (3033598) — Balance: $112.00</option>
-            <option value="3033597">Live - Copier Grp (3033597) — Balance: $162.00</option>
+        <div class="zyvest-exact-group" id="mt5AccountSelectRow" style="display:none">
+          <label class="zyvest-exact-label">Select MT5 Account <span class="req">*</span></label>
+          <select class="zyvest-exact-select">
+            <option>Live - Zyvest Gold (3033599) — $64.00</option>
+            <option>Live - Bug Test (3033598) — $112.00</option>
+            <option>Live - Copier Grp (3033597) — $162.00</option>
           </select>
         </div>
 
-        <div class="zyvest-form-group">
-          <label class="zyvest-form-label">Transaction Method <span class="req">*</span></label>
-          <div class="zyvest-method-pills" id="depMethodPills">
-            <button type="button" class="zyvest-method-pill active" data-method="fiat">Fiat Currency</button>
-            <button type="button" class="zyvest-method-pill" data-method="crypto">Crypto Currency</button>
-            <button type="button" class="zyvest-method-pill" data-method="move" id="moveFundsPill" style="display:none">Move Funds to MT5</button>
+        <div class="zyvest-exact-group">
+          <label class="zyvest-exact-label">Transaction Method <span class="req">*</span></label>
+          <div class="zyvest-exact-tabs" style="margin-bottom:0">
+            <button type="button" class="zyvest-exact-tab active" data-method="fiat">Fiat Currency</button>
+            <button type="button" class="zyvest-exact-tab" data-method="crypto">Crypto Currency</button>
+            <button type="button" class="zyvest-exact-tab" data-method="move" id="moveFundsTab" style="display:none">Move Funds to MT5</button>
           </div>
         </div>
 
-        <div class="zyvest-form-group" id="bankRoutingRow">
+        <div class="zyvest-exact-group" id="bankRoutingRow">
           <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px">
             <div>
-              <label class="zyvest-form-label">From Bank Account <span class="req">*</span></label>
-              <select class="zyvest-form-select" id="fromBankSelect">
-                <option value="sbi">State Bank of India (5058 **** 5888)</option>
+              <label class="zyvest-exact-label">From Bank Account <span class="req">*</span></label>
+              <select class="zyvest-exact-select" id="fromBankSelect">
+                <option>State Bank of India (5058 **** 5888)</option>
               </select>
             </div>
             <div>
-              <label class="zyvest-form-label">To Bank Account <span class="req">*</span></label>
-              <select class="zyvest-form-select" id="toBankSelect">
-                <option value="admin-eur">Zyvest Treasury Bank (EUR / USD)</option>
-                <option value="admin-inr">Zyvest Regional Bank (INR)</option>
+              <label class="zyvest-exact-label">To Bank Account <span class="req">*</span></label>
+              <select class="zyvest-exact-select" id="toBankSelect">
+                <option>Zyvest Treasury Admin Bank</option>
               </select>
             </div>
           </div>
         </div>
 
-        <div class="zyvest-form-group" id="emailWireToggleRow" style="display:none">
-          <label style="display:flex;align-items:center;gap:8px;font-size:0.8125rem;cursor:pointer;color:var(--ink)">
-            <input type="checkbox" id="sendEmailDetails" checked> Send bank details to my email
+        <div class="zyvest-exact-group" id="emailWireToggleRow" style="display:none">
+          <label style="display:flex;align-items:center;gap:8px;font-size:12px;color:#333;cursor:pointer">
+            <input type="checkbox" checked> Send bank details to my email
           </label>
         </div>
 
-        <div class="zyvest-form-group">
-          <label class="zyvest-form-label">Amount in USD <span class="req">*</span></label>
-          <input type="number" class="zyvest-form-input" id="depAmountInput" value="500" min="10" placeholder="Enter amount in USD">
-          <div style="margin-top:4px">
-            <span class="zyvest-converted-tag" id="depConvertedTag">Converted Value: ~500.00 USD / USDT</span>
-          </div>
+        <div class="zyvest-exact-group">
+          <label class="zyvest-exact-label">Amount in USD <span class="req">*</span></label>
+          <input type="number" class="zyvest-exact-input" id="depAmountInput" value="500" placeholder="Enter amount">
+          <span style="font-size:11.5px;color:#00a663;font-weight:600;margin-top:3px" id="depConvertedTag">Converted value: ~500.00 USD / USDT</span>
         </div>
 
         <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px">
-          <div class="zyvest-form-group">
-            <label class="zyvest-form-label">Write Note</label>
-            <input type="text" class="zyvest-form-input" placeholder="e.g. Trading capital deposit">
+          <div class="zyvest-exact-group">
+            <label class="zyvest-exact-label">Write Note</label>
+            <input type="text" class="zyvest-exact-input" placeholder="Write note here">
           </div>
-          <div class="zyvest-form-group">
-            <label class="zyvest-form-label">Campaign Code</label>
-            <div class="zyvest-input-with-btn">
-              <input type="text" class="zyvest-form-input" id="campCodeInput" placeholder="Enter code">
-              <button type="button" class="zyvest-btn-inline" id="btnApplyCode">Apply</button>
+          <div class="zyvest-exact-group">
+            <label class="zyvest-exact-label">Enter campaign code</label>
+            <div style="display:flex;gap:6px">
+              <input type="text" class="zyvest-exact-input" id="campCodeInput" placeholder="Enter campaign code">
+              <button type="button" class="zyvest-exact-btn-black" id="btnApplyCode">Apply</button>
             </div>
           </div>
         </div>
 
-        <div class="zyvest-form-group" id="depUploadGroup">
-          <label class="zyvest-form-label">Document Attachment as Proof <span class="req">*</span></label>
-          <div class="zyvest-dropzone" id="depDropzone">
-            <span class="zyvest-dropzone-icon">📄</span>
-            <strong id="dropzoneText">Choose files or drag & drop them here</strong>
-            <small>JPEG, PNG, PDF formats, up to 10MB each</small>
+        <div class="zyvest-exact-group" id="depUploadGroup">
+          <label class="zyvest-exact-label" style="font-size:11.5px;color:#555">
+            Capture screenshot of payment / Transaction and upload it below, so that your transaction can be verified by our personnel
+          </label>
+          <div class="zyvest-exact-dropzone" id="depDropzone">
+            <div class="dropzone-icon">📋</div>
+            <div class="dropzone-main-text" id="dropzoneText">Choose files or drag & drop them here</div>
+            <div class="dropzone-sub-text">JPEG, PNG, PDF formats, up to 10MB each</div>
             <input type="file" id="depFileInput" accept=".jpg,.jpeg,.png,.pdf" style="display:none">
           </div>
         </div>
 
-        <div class="zyvest-preview-card" id="bankSummaryPreview">
-          <div class="zyvest-preview-row"><span class="label">From Account:</span> <strong>State Bank of India (5058 **** 5888)</strong></div>
-          <div class="zyvest-preview-row"><span class="label">Beneficiary:</span> <strong>Zyvest Capital Treasury (Admin Account)</strong></div>
-          <div class="zyvest-preview-row"><span class="label">Processing:</span> <span>Verified by Zyvest Finance Team</span></div>
-        </div>
-
-        <div class="zyvest-modal-footer">
-          <button type="button" class="zyvest-btn-cancel close-modal">Cancel</button>
-          <button type="button" class="zyvest-btn-submit" id="btnSubmitDeposit">Submit</button>
+        <div class="zyvest-exact-actions">
+          <button type="button" class="zyvest-exact-btn-cancel close-modal">Cancel</button>
+          <button type="button" class="zyvest-exact-btn-submit" id="btnSubmitDeposit">Submit</button>
         </div>
       </div>
     </div>`;
@@ -1239,7 +1232,7 @@ function openDepositModalDemo(opener) {
 
   const tabs = overlay.querySelectorAll('[data-dep-tab]');
   const mt5Row = overlay.querySelector('#mt5AccountSelectRow');
-  const movePill = overlay.querySelector('#moveFundsPill');
+  const moveTab = overlay.querySelector('#moveFundsTab');
   const emailRow = overlay.querySelector('#emailWireToggleRow');
   const modalTitle = overlay.querySelector('#depTitle');
 
@@ -1249,38 +1242,23 @@ function openDepositModalDemo(opener) {
       tab.classList.add('active');
       const isMt5 = tab.dataset.depTab === 'mt5';
       mt5Row.style.display = isMt5 ? 'flex' : 'none';
-      movePill.style.display = isMt5 ? 'inline-block' : 'none';
+      moveTab.style.display = isMt5 ? 'inline-block' : 'none';
       emailRow.style.display = isMt5 ? 'flex' : 'none';
       modalTitle.textContent = isMt5 ? 'Deposit to MT5 Account' : 'Deposit to your wallet';
     });
   });
 
-  const methodPills = overlay.querySelectorAll('.zyvest-method-pill');
+  const methodTabs = overlay.querySelectorAll('[data-method]');
   const bankRoutingRow = overlay.querySelector('#bankRoutingRow');
   const uploadGroup = overlay.querySelector('#depUploadGroup');
-  const bankSummary = overlay.querySelector('#bankSummaryPreview');
 
-  methodPills.forEach(pill => {
-    pill.addEventListener('click', () => {
-      methodPills.forEach(p => p.classList.remove('active'));
-      pill.classList.add('active');
-      const method = pill.dataset.method;
-      if (method === 'move') {
-        bankRoutingRow.style.display = 'none';
-        uploadGroup.style.display = 'none';
-        bankSummary.innerHTML = `
-          <div class="zyvest-preview-row"><span class="label">Transfer Type:</span> <strong>Internal Wallet to MT5</strong></div>
-          <div class="zyvest-preview-row"><span class="label">Fee & Speed:</span> <strong>Zero Fee · Instant Execution</strong></div>
-        `;
-      } else {
-        bankRoutingRow.style.display = 'flex';
-        uploadGroup.style.display = 'flex';
-        bankSummary.innerHTML = `
-          <div class="zyvest-preview-row"><span class="label">From Account:</span> <strong>${method === 'crypto' ? 'Whitelisted USDT TRC20 Wallet' : 'State Bank of India (5058 **** 5888)'}</strong></div>
-          <div class="zyvest-preview-row"><span class="label">Beneficiary:</span> <strong>${method === 'crypto' ? 'Zyvest Official USDT Deposit Address' : 'Zyvest Capital Treasury (Admin Account)'}</strong></div>
-          <div class="zyvest-preview-row"><span class="label">Processing:</span> <span>Verified by Zyvest Finance Team</span></div>
-        `;
-      }
+  methodTabs.forEach(tab => {
+    tab.addEventListener('click', () => {
+      methodTabs.forEach(t => t.classList.remove('active'));
+      tab.classList.add('active');
+      const isMove = tab.dataset.method === 'move';
+      bankRoutingRow.style.display = isMove ? 'none' : 'block';
+      uploadGroup.style.display = isMove ? 'none' : 'flex';
     });
   });
 
@@ -1288,7 +1266,7 @@ function openDepositModalDemo(opener) {
   const convTag = overlay.querySelector('#depConvertedTag');
   amtInput?.addEventListener('input', () => {
     const val = parseFloat(amtInput.value) || 0;
-    convTag.textContent = `Converted Value: ~${val.toFixed(2)} USD / USDT`;
+    convTag.textContent = `Converted value: ~${val.toFixed(2)} USD / USDT`;
   });
 
   const campInput = overlay.querySelector('#campCodeInput');
@@ -1323,63 +1301,55 @@ function openTransferModalDemo(opener) {
   const overlay = document.createElement('div');
   overlay.className = 'zyvest-modal-overlay';
   overlay.innerHTML = `
-    <div class="zyvest-modal-dialog zyvest-split-modal" role="dialog" aria-modal="true" aria-labelledby="transTitle">
-      <div class="zyvest-modal-green-panel">
-        <span class="zyvest-green-badge-dot"></span>
+    <div class="zyvest-modal-dialog" role="dialog" aria-modal="true" aria-labelledby="transTitle">
+      <button type="button" class="zyvest-exact-close close-modal" aria-label="Close modal">×</button>
+      <div class="zyvest-green-banner-card">
+        <span class="white-dot"></span>
         <h2 id="transTitle">Transfer to other Wallets</h2>
-        <p>Transfer funds easily to other wallets from your wallet or reallocate between MT5 accounts.</p>
-        <span class="zyvest-instructions-title">Transfer Rules</span>
-        <ul class="zyvest-instructions-list">
-          <li><span class="step-idx">1</span> Enter recipient name or User ID and click Find User to verify identity.</li>
-          <li><span class="step-idx">2</span> Ensure recipient details match before sending.</li>
-          <li><span class="step-idx">3</span> P2P transfers settle immediately upon execution.</li>
-        </ul>
+        <p>Transfer funds easily to other wallets from your wallet.</p>
       </div>
-      <div class="zyvest-modal-body-panel">
-        <button type="button" class="zyvest-modal-close-btn close-modal" aria-label="Close modal">×</button>
-        <div class="zyvest-modal-tabs">
-          <button type="button" class="zyvest-modal-tab active" data-trans-tab="wallet">Wallet Transfer</button>
-          <button type="button" class="zyvest-modal-tab" data-trans-tab="mt5">MT5 Transfer</button>
+      <div class="zyvest-form-side">
+        <div class="zyvest-exact-tabs">
+          <button type="button" class="zyvest-exact-tab active" data-trans-tab="wallet">Wallet Transfer</button>
+          <button type="button" class="zyvest-exact-tab" data-trans-tab="mt5">MT5 Transfer</button>
         </div>
 
-        <div id="p2pRecipientBlock">
-          <div class="zyvest-form-group">
-            <label class="zyvest-form-label">Enter Recipient Name <span class="req">*</span></label>
-            <div class="zyvest-input-with-btn">
-              <input type="text" class="zyvest-form-input" id="recipientSearchInput" placeholder="Enter recipient name or ID (e.g. ZYVE-742)" value="ZYVE-742">
-              <button type="button" class="zyvest-btn-inline" id="btnFindUser">Find User</button>
+        <div id="p2pBlock">
+          <div class="zyvest-exact-group">
+            <label class="zyvest-exact-label">Enter Recipient Name <span class="req">*</span></label>
+            <div style="display:flex;gap:6px">
+              <input type="text" class="zyvest-exact-input" id="recipientSearchInput" placeholder="Enter recipient name" value="ZYVE-742">
+              <button type="button" class="zyvest-exact-btn-black" id="btnFindUser">Find User</button>
             </div>
           </div>
 
-          <div class="zyvest-p2p-visual" id="p2pFlowVisual">
-            <div class="zyvest-p2p-card">
-              <div class="zyvest-p2p-avatar">👤</div>
-              <strong>Baasha</strong>
-              <small>ZYVE-500</small>
+          <div class="zyvest-exact-p2p-box">
+            <div class="zyvest-exact-user-card">
+              <div class="zyvest-exact-user-avatar">👤</div>
+              <div class="zyvest-exact-user-name">Baasha</div>
+              <div class="zyvest-exact-user-id">ZYVE-500</div>
             </div>
-            <span class="zyvest-p2p-arrow">➔</span>
-            <div class="zyvest-p2p-card" id="recipientCard">
-              <div class="zyvest-p2p-avatar" style="background:#eef2f5;color:#6b7f73">?</div>
-              <strong id="recipientNameLabel">User not selected</strong>
-              <small id="recipientIdLabel">Search with Find User</small>
+            <div class="zyvest-exact-p2p-arrow">➔</div>
+            <div class="zyvest-exact-user-card" id="recipientUserCard">
+              <div class="zyvest-exact-user-avatar" style="background:#f2f2f2;color:#999">?</div>
+              <div class="zyvest-exact-user-name" id="recUserName">User not selected</div>
+              <div class="zyvest-exact-user-id" id="recUserId">Click Find User</div>
             </div>
           </div>
         </div>
 
-        <div id="mt5TransferBlock" style="display:none">
+        <div id="mt5Block" style="display:none">
           <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px">
-            <div class="zyvest-form-group">
-              <label class="zyvest-form-label">From Account <span class="req">*</span></label>
-              <select class="zyvest-form-select">
+            <div class="zyvest-exact-group">
+              <label class="zyvest-exact-label">From Account <span class="req">*</span></label>
+              <select class="zyvest-exact-select">
                 <option>Main Wallet ($183,750.50)</option>
                 <option>Live - Zyvest Gold (3033599)</option>
-                <option>Live - Copier Grp (3033597)</option>
               </select>
             </div>
-            <div class="zyvest-form-group">
-              <label class="zyvest-form-label">To Account <span class="req">*</span></label>
-              <select class="zyvest-form-select">
-                <option>Live - Zyvest Gold (3033599)</option>
+            <div class="zyvest-exact-group">
+              <label class="zyvest-exact-label">To Account <span class="req">*</span></label>
+              <select class="zyvest-exact-select">
                 <option>Live - Copier Grp (3033597)</option>
                 <option>Main Wallet</option>
               </select>
@@ -1387,19 +1357,19 @@ function openTransferModalDemo(opener) {
           </div>
         </div>
 
-        <div class="zyvest-form-group">
-          <label class="zyvest-form-label">Type Amount <span class="req">*</span></label>
-          <input type="number" class="zyvest-form-input" id="transferAmountInput" value="2000" placeholder="$0.00">
+        <div class="zyvest-exact-group">
+          <label class="zyvest-exact-label">Type Amount <span class="req">*</span></label>
+          <input type="text" class="zyvest-exact-input" id="transAmtInput" value="$2000" placeholder="$0.00">
         </div>
 
-        <div class="zyvest-form-group">
-          <label class="zyvest-form-label">Write Note (Optional)</label>
-          <input type="text" class="zyvest-form-input" placeholder="Write your note here">
+        <div class="zyvest-exact-group">
+          <label class="zyvest-exact-label">Write Note (Optional)</label>
+          <input type="text" class="zyvest-exact-input" placeholder="Write your note here">
         </div>
 
-        <div class="zyvest-modal-footer">
-          <button type="button" class="zyvest-btn-cancel close-modal">Cancel</button>
-          <button type="button" class="zyvest-btn-submit" id="btnSendTransfer">Send Transfer Request</button>
+        <div class="zyvest-exact-actions">
+          <button type="button" class="zyvest-exact-btn-cancel close-modal">Cancel</button>
+          <button type="button" class="zyvest-exact-btn-submit" id="btnSendTransfer">Send Transfer Request</button>
         </div>
       </div>
     </div>`;
@@ -1411,8 +1381,8 @@ function openTransferModalDemo(opener) {
   overlay.addEventListener('keydown', e => { if (e.key === 'Escape') close(); });
 
   const tabs = overlay.querySelectorAll('[data-trans-tab]');
-  const p2pBlock = overlay.querySelector('#p2pRecipientBlock');
-  const mt5Block = overlay.querySelector('#mt5TransferBlock');
+  const p2pBlock = overlay.querySelector('#p2pBlock');
+  const mt5Block = overlay.querySelector('#mt5Block');
   tabs.forEach(tab => {
     tab.addEventListener('click', () => {
       tabs.forEach(t => t.classList.remove('active'));
@@ -1425,15 +1395,15 @@ function openTransferModalDemo(opener) {
 
   const findBtn = overlay.querySelector('#btnFindUser');
   const recInput = overlay.querySelector('#recipientSearchInput');
-  const recName = overlay.querySelector('#recipientNameLabel');
-  const recId = overlay.querySelector('#recipientIdLabel');
-  const recAvatar = overlay.querySelector('#recipientCard .zyvest-p2p-avatar');
+  const recName = overlay.querySelector('#recUserName');
+  const recId = overlay.querySelector('#recUserId');
+  const recAvatar = overlay.querySelector('#recipientUserCard .zyvest-exact-user-avatar');
 
   const doFind = () => {
     const query = recInput.value.trim();
     if (query) {
       recAvatar.style.background = '#eef8f2';
-      recAvatar.style.color = '#07794e';
+      recAvatar.style.color = '#00a663';
       recAvatar.textContent = '👤';
       recName.textContent = 'John Doe';
       recId.textContent = 'ZYVE-742 · Verified';
@@ -1444,9 +1414,9 @@ function openTransferModalDemo(opener) {
   recInput?.addEventListener('keydown', e => { if (e.key === 'Enter') doFind(); });
 
   overlay.querySelector('#btnSendTransfer')?.addEventListener('click', () => {
-    const amt = overlay.querySelector('#transferAmountInput').value || 0;
+    const amt = overlay.querySelector('#transAmtInput').value || '$0';
     close();
-    showZyvestToast(`Transfer request of $${amt} dispatched successfully!`);
+    showZyvestToast(`Transfer request of ${amt} dispatched successfully!`);
   });
 }
 
@@ -1454,53 +1424,43 @@ function openCreateMT5ModalDemo(opener) {
   const overlay = document.createElement('div');
   overlay.className = 'zyvest-modal-overlay';
   overlay.innerHTML = `
-    <div class="zyvest-modal-dialog zyvest-split-modal" role="dialog" aria-modal="true" aria-labelledby="mt5CreateTitle">
-      <div class="zyvest-modal-green-panel">
-        <span class="zyvest-green-badge-dot"></span>
-        <h2 id="mt5CreateTitle">Create Live Account</h2>
+    <div class="zyvest-modal-dialog" role="dialog" aria-modal="true" aria-labelledby="liveAccTitle">
+      <button type="button" class="zyvest-exact-close close-modal" aria-label="Close modal">×</button>
+      <div class="zyvest-green-banner-card">
+        <span class="white-dot"></span>
+        <h2 id="liveAccTitle">Create Live Account</h2>
         <p>Trade in real markets with actual funds—experience full access and real profits.</p>
-        <span class="zyvest-instructions-title">Account Specifications</span>
-        <ul class="zyvest-instructions-list">
-          <li><span class="step-idx">✓</span> MetaTrader 5 institutional execution.</li>
-          <li><span class="step-idx">✓</span> Customizable leverage up to 1:500.</li>
-          <li><span class="step-idx">✓</span> Instant provisioning upon form submission.</li>
-        </ul>
       </div>
-      <div class="zyvest-modal-body-panel">
-        <button type="button" class="zyvest-modal-close-btn close-modal" aria-label="Close modal">×</button>
-        <div class="zyvest-modal-tabs">
-          <button type="button" class="zyvest-modal-tab active" data-account-kind="live">Live Account</button>
-          <button type="button" class="zyvest-modal-tab" data-account-kind="demo">Demo Account</button>
+      <div class="zyvest-form-side">
+        <div class="zyvest-exact-tabs">
+          <button type="button" class="zyvest-exact-tab active" data-acc-type="live">Live Account</button>
+          <button type="button" class="zyvest-exact-tab" data-acc-type="demo">Demo Account</button>
         </div>
 
-        <div class="zyvest-form-group">
-          <label class="zyvest-form-label">Account Type <span class="req">*</span></label>
-          <select class="zyvest-form-select">
-            <option>Copier Grp</option>
-            <option>Zyvest Gold</option>
-            <option>Standard Account</option>
-            <option>Raw Spread (ECN)</option>
+        <div class="zyvest-exact-group">
+          <label class="zyvest-exact-label">Account Type <span class="req">*</span></label>
+          <input type="text" class="zyvest-exact-input" value="Copier Grp" readonly>
+        </div>
+
+        <div class="zyvest-exact-group">
+          <label class="zyvest-exact-label">Leverage <span class="req">*</span></label>
+          <select class="zyvest-exact-select">
+            <option value="">Select Leverage Amount</option>
+            <option value="100">100</option>
+            <option value="200" selected>200</option>
+            <option value="300">300</option>
+            <option value="500">500</option>
           </select>
         </div>
 
-        <div class="zyvest-form-group">
-          <label class="zyvest-form-label">Leverage <span class="req">*</span></label>
-          <select class="zyvest-form-select">
-            <option>100</option>
-            <option selected>200</option>
-            <option>300</option>
-            <option>500</option>
-          </select>
+        <div class="zyvest-exact-group">
+          <label class="zyvest-exact-label">Initial Deposit (USD)</label>
+          <input type="number" class="zyvest-exact-input" value="100">
         </div>
 
-        <div class="zyvest-form-group">
-          <label class="zyvest-form-label">Initial Deposit (USD)</label>
-          <input type="number" class="zyvest-form-input" value="100" min="0">
-        </div>
-
-        <div class="zyvest-modal-footer">
-          <button type="button" class="zyvest-btn-cancel close-modal">Cancel</button>
-          <button type="button" class="zyvest-btn-submit" id="btnCreateMT5Submit">Submit</button>
+        <div class="zyvest-exact-actions">
+          <button type="button" class="zyvest-exact-btn-cancel close-modal">Cancel</button>
+          <button type="button" class="zyvest-exact-btn-submit" id="btnSubmitMT5">Submit</button>
         </div>
       </div>
     </div>`;
@@ -1511,19 +1471,65 @@ function openCreateMT5ModalDemo(opener) {
   overlay.addEventListener('click', e => { if (e.target === overlay) close(); });
   overlay.addEventListener('keydown', e => { if (e.key === 'Escape') close(); });
 
-  const tabs = overlay.querySelectorAll('[data-account-kind]');
-  const title = overlay.querySelector('#mt5CreateTitle');
+  const tabs = overlay.querySelectorAll('[data-acc-type]');
+  const title = overlay.querySelector('#liveAccTitle');
   tabs.forEach(tab => {
     tab.addEventListener('click', () => {
       tabs.forEach(t => t.classList.remove('active'));
       tab.classList.add('active');
-      title.textContent = tab.dataset.accountKind === 'demo' ? 'Create Demo Account' : 'Create Live Account';
+      title.textContent = tab.dataset.accType === 'demo' ? 'Create Demo Account' : 'Create Live Account';
     });
   });
 
-  overlay.querySelector('#btnCreateMT5Submit')?.addEventListener('click', () => {
+  overlay.querySelector('#btnSubmitMT5')?.addEventListener('click', () => {
     close();
     showZyvestToast('MT5 Account created successfully! Credentials sent to your email.');
+  });
+}
+
+function openSaveCryptoModalDemo(opener) {
+  const overlay = document.createElement('div');
+  overlay.className = 'zyvest-modal-overlay';
+  overlay.innerHTML = `
+    <div class="zyvest-modal-dialog crypto-address-dialog" role="dialog" aria-modal="true" aria-labelledby="cryptoModalTitle">
+      <button type="button" class="zyvest-exact-close close-modal" aria-label="Close modal">×</button>
+      <div class="zyvest-green-banner-card crypto-banner">
+        <span class="white-dot"></span>
+        <h2 id="cryptoModalTitle">Save Crypto Address</h2>
+        <p>Add your Crypto address to start deposits and withdrawals</p>
+      </div>
+      <div class="zyvest-form-side">
+        <div class="zyvest-exact-group">
+          <label class="zyvest-exact-label">Select Crypto Currency <span class="req">*</span></label>
+          <select class="zyvest-exact-select">
+            <option selected>Select USDT Address</option>
+            <option>USDT (TRC-20)</option>
+            <option>USDT (ERC-20)</option>
+            <option>Bitcoin (BTC)</option>
+          </select>
+        </div>
+
+        <div class="zyvest-exact-group">
+          <label class="zyvest-exact-label">Type Address <span class="req">*</span></label>
+          <input type="text" class="zyvest-exact-input" placeholder="Type your USDT address" value="TXYZ98234ab89cdef761234">
+        </div>
+
+        <div class="zyvest-exact-actions">
+          <button type="button" class="zyvest-exact-btn-cancel close-modal">Cancel</button>
+          <button type="button" class="zyvest-exact-btn-submit" id="btnSaveCrypto">Save Address</button>
+        </div>
+      </div>
+    </div>`;
+
+  document.body.append(overlay);
+  const close = () => { overlay.remove(); opener?.focus(); };
+  overlay.querySelectorAll('.close-modal').forEach(b => b.addEventListener('click', close));
+  overlay.addEventListener('click', e => { if (e.target === overlay) close(); });
+  overlay.addEventListener('keydown', e => { if (e.key === 'Escape') close(); });
+
+  overlay.querySelector('#btnSaveCrypto')?.addEventListener('click', () => {
+    close();
+    showZyvestToast('USDT Address saved successfully to your whitelist!');
   });
 }
 
@@ -1531,82 +1537,210 @@ function openBankConnectModalDemo(opener) {
   const overlay = document.createElement('div');
   overlay.className = 'zyvest-modal-overlay';
   overlay.innerHTML = `
-    <div class="zyvest-modal-dialog zyvest-modal-single" role="dialog" aria-modal="true" aria-labelledby="bankConnectTitle">
-      <div class="zyvest-modal-body-panel" style="padding:28px">
-        <button type="button" class="zyvest-modal-close-btn close-modal" aria-label="Close modal">×</button>
-        <div style="text-align:center;margin-bottom:12px">
-          <h2 id="bankConnectTitle" style="margin:0 0 4px;font-size:1.35rem;color:var(--ink)">Bank Account Connect</h2>
-          <p style="margin:0;font-size:0.85rem;color:var(--muted)">Enter the necessary details to connect your bank account</p>
-        </div>
+    <div class="zyvest-modal-dialog bank-connect-dialog" role="dialog" aria-modal="true" aria-labelledby="bankPageTitle">
+      <button type="button" class="zyvest-exact-close close-modal" aria-label="Close modal">×</button>
+      <div>
+        <h2 id="bankPageTitle" style="font-size:22px;font-weight:700;color:var(--ink);margin:0 0 4px">Bank Account Connect</h2>
+        <p style="font-size:13px;color:var(--muted);margin:0 0 16px">Enter the necessary details to connect your bank account</p>
 
-        <div class="zyvest-form-group">
-          <label class="zyvest-form-label">Account Holder Name <span class="req">*</span></label>
-          <input type="text" class="zyvest-form-input" placeholder="Enter your bank account name" value="Baasha">
-        </div>
-
-        <div class="zyvest-form-group">
-          <label class="zyvest-form-label">Account Number <span class="req">*</span></label>
-          <input type="text" class="zyvest-form-input" placeholder="Enter your bank account number" value="5058 9201 3341 5888">
-        </div>
-
-        <div class="zyvest-form-group">
-          <label class="zyvest-form-label">Country <span class="req">*</span></label>
-          <select class="zyvest-form-select">
-            <option>India</option>
-            <option>United Kingdom</option>
-            <option>United Arab Emirates</option>
-            <option>Singapore</option>
-          </select>
-        </div>
-
-        <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px">
-          <div class="zyvest-form-group">
-            <label class="zyvest-form-label">IFSC Code (Optional)</label>
-            <input type="text" class="zyvest-form-input" placeholder="Enter banks IFSC code" value="SBIN0001234">
+        <div style="display:flex;flex-direction:column;gap:11px">
+          <div class="zyvest-exact-group">
+            <label class="zyvest-exact-label">Account Holder Name <span class="req">*</span></label>
+            <input type="text" class="zyvest-exact-input" placeholder="Enter your bank account name" value="Baasha">
           </div>
-          <div class="zyvest-form-group">
-            <label class="zyvest-form-label">IBAN Number (Optional)</label>
-            <input type="text" class="zyvest-form-input" placeholder="Enter banks IBAN">
+          <div class="zyvest-exact-group">
+            <label class="zyvest-exact-label">Account Number <span class="req">*</span></label>
+            <input type="text" class="zyvest-exact-input" placeholder="Enter your bank account number" value="5058 9201 3341 5888">
           </div>
-        </div>
-
-        <div class="zyvest-form-group">
-          <label class="zyvest-form-label">Swift Code <span class="req">*</span></label>
-          <input type="text" class="zyvest-form-input" placeholder="Enter your banks swift code" value="SBININBB120">
-        </div>
-
-        <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px">
-          <div class="zyvest-form-group">
-            <label class="zyvest-form-label">Select Bank <span class="req">*</span></label>
-            <select class="zyvest-form-select">
-              <option>State Bank of India</option>
-              <option>HDFC Bank</option>
-              <option>Barclays Bank</option>
-              <option>Emirates NBD</option>
+          <div class="zyvest-exact-group">
+            <label class="zyvest-exact-label">Country <span class="req">*</span></label>
+            <select class="zyvest-exact-select">
+              <option selected>Select your Country</option>
+              <option>India</option>
+              <option>United Kingdom</option>
+              <option>United Arab Emirates</option>
             </select>
           </div>
-          <div class="zyvest-form-group">
-            <label class="zyvest-form-label">Branch <span class="req">*</span></label>
-            <input type="text" class="zyvest-form-input" placeholder="Enter branch name" value="Main Commercial Branch">
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px">
+            <div class="zyvest-exact-group">
+              <label class="zyvest-exact-label">IFSC Code(Optional)</label>
+              <input type="text" class="zyvest-exact-input" placeholder="Enter your banks IFSC code" value="SBIN0001234">
+            </div>
+            <div class="zyvest-exact-group">
+              <label class="zyvest-exact-label">IBAN Number(Optional)</label>
+              <input type="text" class="zyvest-exact-input" placeholder="Enter your bank IBAN Number">
+            </div>
+          </div>
+          <div class="zyvest-exact-group">
+            <label class="zyvest-exact-label">Swift Code <span class="req">*</span></label>
+            <input type="text" class="zyvest-exact-input" placeholder="Enter your banks swift code" value="SBININBB120">
+          </div>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px">
+            <div class="zyvest-exact-group">
+              <label class="zyvest-exact-label">Select Bank <span class="req">*</span></label>
+              <select class="zyvest-exact-select">
+                <option selected>Select a bank</option>
+                <option>State Bank of India</option>
+                <option>HDFC Bank</option>
+                <option>Barclays Bank</option>
+              </select>
+            </div>
+            <div class="zyvest-exact-group">
+              <label class="zyvest-exact-label">Branch <span class="req">*</span></label>
+              <input type="text" class="zyvest-exact-input" placeholder="Enter your bank Branch" value="Main Commercial Branch">
+            </div>
+          </div>
+          <div class="zyvest-exact-group">
+            <label class="zyvest-exact-label">Address</label>
+            <input type="text" class="zyvest-exact-input" placeholder="Enter your bank address" value="12 Financial District">
+          </div>
+          <div class="zyvest-exact-group">
+            <label class="zyvest-exact-label">Proof of Bank Account (Up to 10MB) <span class="req">*</span></label>
+            <button type="button" class="zyvest-exact-btn-black" style="width:100%" id="btnBankUploadFile">Upload File</button>
+          </div>
+          <button type="button" class="zyvest-exact-btn-submit" style="width:100%" id="btnBankSubmit">Submit</button>
+          <button type="button" class="zyvest-exact-btn-cancel close-modal" style="width:100%">Cancel</button>
+        </div>
+      </div>
+
+      <div class="zyvest-bank-illustration-box">
+        <div class="shield-icon-glow">🔒</div>
+        <h3>Bank Account Connect</h3>
+        <p>Secure direct bank integration protected by 256-bit institutional encryption and compliance verification.</p>
+      </div>
+    </div>`;
+
+  document.body.append(overlay);
+  const close = () => { overlay.remove(); opener?.focus(); };
+  overlay.querySelectorAll('.close-modal').forEach(b => b.addEventListener('click', close));
+  overlay.addEventListener('click', e => { if (e.target === overlay) close(); });
+  overlay.addEventListener('keydown', e => { if (e.key === 'Escape') close(); });
+
+  overlay.querySelector('#btnBankUploadFile')?.addEventListener('click', () => {
+    showZyvestToast('Bank document attached successfully!');
+  });
+  overlay.querySelector('#btnBankSubmit')?.addEventListener('click', () => {
+    close();
+    showZyvestToast('Bank account submitted for compliance review!');
+  });
+}
+
+function openZyvestUserFlowSimulator(opener) {
+  const overlay = document.createElement('div');
+  overlay.className = 'zyvest-modal-overlay';
+  overlay.innerHTML = `
+    <div class="zyvest-modal-dialog" style="max-width:880px;padding:24px;flex-direction:column;gap:18px" role="dialog" aria-modal="true">
+      <div style="display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid #ebebeb;padding-bottom:12px">
+        <div>
+          <span class="module-step-badge">Interactive Website Flow Simulator</span>
+          <h2 style="margin:4px 0 0;font-size:18px;color:var(--ink)">Zyvest User Flow · Login → 2FA Setup → Dashboard</h2>
+        </div>
+        <button type="button" class="zyvest-exact-close close-modal" aria-label="Close">×</button>
+      </div>
+
+      <div id="simScreenContent">
+        <!-- Step 1: Sign in -->
+        <div id="simStepLogin">
+          <div style="max-width:380px;margin:20px auto;text-align:center">
+            <div style="font-size:28px;font-weight:800;color:#00a663;margin-bottom:8px">zyvest</div>
+            <h3 style="margin:0 0 6px;color:var(--ink)">Sign in to your account</h3>
+            <p style="margin:0 0 18px;font-size:12.5px;color:var(--muted)">Enter your registered email and password to proceed.</p>
+            <div style="display:flex;flex-direction:column;gap:10px;text-align:left">
+              <div>
+                <label class="zyvest-exact-label">Email Address</label>
+                <input type="email" class="zyvest-exact-input" value="kabir.singh@example.com" readonly>
+              </div>
+              <div>
+                <label class="zyvest-exact-label">Password</label>
+                <input type="password" class="zyvest-exact-input" value="••••••••••••" readonly>
+              </div>
+              <button type="button" class="zyvest-exact-btn-submit" id="btnSimSignIn" style="margin-top:10px;width:100%">Sign in →</button>
+            </div>
           </div>
         </div>
 
-        <div class="zyvest-form-group">
-          <label class="zyvest-form-label">Address</label>
-          <input type="text" class="zyvest-form-input" placeholder="Enter your bank address" value="12 Financial District">
-        </div>
+        <!-- Step 2: 2FA Setup Gate -->
+        <div id="simStep2FA" style="display:none">
+          <div style="max-width:540px;margin:10px auto;text-align:center">
+            <div style="display:inline-block;padding:4px 12px;background:#fff1f0;border:1px solid #ffa39e;color:#cf1322;border-radius:20px;font-size:12px;font-weight:700;margin-bottom:12px">
+              ⚠️ 2FA not enabled
+            </div>
+            <h3 style="margin:0 0 6px;color:var(--ink);font-size:20px">Two-Factor Authentication Setup</h3>
+            <p style="margin:0 0 20px;font-size:13px;color:var(--muted);line-height:1.5">
+              To protect your capital and trading terminals, you must verify your identity. Choose an authentication channel below:
+            </p>
 
-        <div class="zyvest-form-group">
-          <label class="zyvest-form-label">Proof of Bank Account (Up to 10MB) <span class="req">*</span></label>
-          <div style="display:flex;gap:10px;align-items:center">
-            <button type="button" class="zyvest-btn-inline" style="padding:10px 18px" id="btnUploadProof">Upload File</button>
-            <span id="proofFileName" style="font-size:0.8125rem;color:var(--muted)">passbook_statement.pdf (1.4 MB)</span>
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:20px">
+              <button type="button" class="zyvest-exact-btn-black" id="btnSimMail2fa" style="height:auto;padding:16px;display:flex;flex-direction:column;align-items:center;gap:6px">
+                <span style="font-size:24px">✉️</span>
+                <span>Generate new code with mail</span>
+                <small style="opacity:0.8;font-size:11px">Send 6-digit OTP to email</small>
+              </button>
+              <button type="button" class="zyvest-exact-btn-black" id="btnSimApp2fa" style="height:auto;padding:16px;display:flex;flex-direction:column;align-items:center;gap:6px">
+                <span style="font-size:24px">📱</span>
+                <span>Open authenticator app</span>
+                <small style="opacity:0.8;font-size:11px">Pair with TOTP Authenticator</small>
+              </button>
+            </div>
+
+            <!-- OTP Input Box -->
+            <div id="simOtpInputArea" style="display:none;background:#f9fbf9;border:1px solid #cce8d8;border-radius:10px;padding:18px">
+              <p id="simOtpPromptText" style="margin:0 0 12px;font-size:12.5px;color:#044b2f;font-weight:600"></p>
+              <div style="display:flex;justify-content:center;gap:8px;margin-bottom:14px">
+                <input type="text" maxlength="1" class="totp-digit" value="7">
+                <input type="text" maxlength="1" class="totp-digit" value="4">
+                <input type="text" maxlength="1" class="totp-digit" value="2">
+                <input type="text" maxlength="1" class="totp-digit" value="9">
+                <input type="text" maxlength="1" class="totp-digit" value="0">
+                <input type="text" maxlength="1" class="totp-digit" value="1">
+              </div>
+              <button type="button" class="zyvest-exact-btn-submit" id="btnSimVerify2fa" style="width:100%">Verify Code & Continue to Dashboard ➔</button>
+            </div>
           </div>
         </div>
 
-        <div class="zyvest-modal-footer">
-          <button type="button" class="zyvest-btn-cancel close-modal">Cancel</button>
-          <button type="button" class="zyvest-btn-submit" id="btnSubmitBank">Submit</button>
+        <!-- Step 3: Dashboard View -->
+        <div id="simStepDashboard" style="display:none">
+          <div style="background:#f4f6f8;border-radius:10px;padding:16px">
+            <!-- Sim Topnav -->
+            <div style="display:flex;align-items:center;justify-content:space-between;background:#ffffff;padding:10px 16px;border-radius:8px;margin-bottom:14px;box-shadow:0 1px 4px rgba(0,0,0,0.05)">
+              <div style="display:flex;align-items:center;gap:18px">
+                <span style="font-size:18px;font-weight:800;color:#00a663">zyvest</span>
+                <span style="font-size:12.5px;font-weight:700;color:#00a663;border-bottom:2px solid #00a663;padding-bottom:2px">Dashboard</span>
+                <span style="font-size:12.5px;font-weight:600;color:#555;cursor:pointer" id="btnSimGoWallet">Wallet</span>
+                <span style="font-size:12.5px;color:#888">Account Type</span>
+                <span style="font-size:12.5px;color:#888">IB</span>
+                <span style="font-size:12.5px;color:#888">Support</span>
+              </div>
+              <div style="display:flex;align-items:center;gap:12px;font-size:12px">
+                <span>🔔</span>
+                <span style="font-weight:700;color:#333">Baasha (ZYVE-500)</span>
+              </div>
+            </div>
+
+            <!-- Balances -->
+            <div style="background:#ffffff;border-radius:10px;padding:18px;box-shadow:0 2px 8px rgba(0,0,0,0.04);margin-bottom:14px">
+              <div style="font-size:12px;color:#666">Withdrawable Balance</div>
+              <div style="font-size:28px;font-weight:800;color:#044b2f;margin:2px 0">$183,750.50</div>
+              <div style="font-size:12px;color:#888;margin-bottom:16px">Total Balance (MT5 + Wallet): $233,401.74</div>
+              <div style="display:flex;gap:10px">
+                <button type="button" class="zyvest-exact-btn-black" id="btnSimOpenDeposit">Deposit</button>
+                <button type="button" class="zyvest-exact-btn-cancel" id="btnSimOpenWithdraw">Withdraw</button>
+                <button type="button" class="zyvest-exact-btn-cancel" id="btnSimOpenTransfer">Transfer</button>
+              </div>
+            </div>
+
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px">
+              <div style="background:#ffffff;border-radius:8px;padding:14px">
+                <div style="font-size:11px;color:#777">Total Transactions Overview</div>
+                <div style="font-size:18px;font-weight:800;color:#00a663">$180,780.00</div>
+              </div>
+              <div style="background:#ffffff;border-radius:8px;padding:14px">
+                <div style="font-size:11px;color:#777">Approval in Progress</div>
+                <div style="font-size:18px;font-weight:800;color:#ff9800">$3,831.46</div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>`;
@@ -1617,12 +1751,40 @@ function openBankConnectModalDemo(opener) {
   overlay.addEventListener('click', e => { if (e.target === overlay) close(); });
   overlay.addEventListener('keydown', e => { if (e.key === 'Escape') close(); });
 
-  overlay.querySelector('#btnUploadProof')?.addEventListener('click', () => {
-    showZyvestToast('Bank document attached successfully!');
+  const stepLogin = overlay.querySelector('#simStepLogin');
+  const step2FA = overlay.querySelector('#simStep2FA');
+  const stepDash = overlay.querySelector('#simStepDashboard');
+  const otpArea = overlay.querySelector('#simOtpInputArea');
+  const otpPrompt = overlay.querySelector('#simOtpPromptText');
+
+  overlay.querySelector('#btnSimSignIn')?.addEventListener('click', () => {
+    stepLogin.style.display = 'none';
+    step2FA.style.display = 'block';
+    showZyvestToast('Credentials verified. 2FA security check initiated.');
   });
-  overlay.querySelector('#btnSubmitBank')?.addEventListener('click', () => {
+
+  overlay.querySelector('#btnSimMail2fa')?.addEventListener('click', () => {
+    otpArea.style.display = 'block';
+    otpPrompt.innerHTML = '✉️ <strong>One-Time Passcode sent!</strong> Enter the 6-digit verification code sent to <code>kabir.singh@example.com</code>:';
+    showZyvestToast('Security code sent to email.');
+  });
+
+  overlay.querySelector('#btnSimApp2fa')?.addEventListener('click', () => {
+    otpArea.style.display = 'block';
+    otpPrompt.innerHTML = '📱 <strong>Authenticator TOTP Required:</strong> Enter the current 6-digit code from Google/Microsoft Authenticator:';
+  });
+
+  overlay.querySelector('#btnSimVerify2fa')?.addEventListener('click', () => {
+    step2FA.style.display = 'none';
+    stepDash.style.display = 'block';
+    showZyvestToast('2FA Approved! Welcome to your Zyvest Dashboard.');
+  });
+
+  overlay.querySelector('#btnSimOpenDeposit')?.addEventListener('click', () => openDepositModalDemo());
+  overlay.querySelector('#btnSimOpenTransfer')?.addEventListener('click', () => openTransferModalDemo());
+  overlay.querySelector('#btnSimGoWallet')?.addEventListener('click', () => {
     close();
-    showZyvestToast('Bank account submitted for compliance approval!');
+    openModule('wallet');
   });
 }
 
@@ -1760,6 +1922,26 @@ function openModule(id) {
                 </button>
               </div>
             </div>
+            <div class="interactive-action-card">
+              <span class="interactive-card-icon">🪙</span>
+              <div class="interactive-card-body">
+                <h3>Save Crypto Address</h3>
+                <p>Connect and whitelist your personal USDT TRC-20 / ERC-20 crypto payout address.</p>
+                <button type="button" class="btn-action-secondary open-crypto-modal-btn">
+                  Open Save Crypto Address <b>→</b>
+                </button>
+              </div>
+            </div>
+            <div class="interactive-action-card" style="grid-column:1 / -1;background:linear-gradient(135deg,#f0fdf6 0%,#e3f8ec 100%);border-color:#79d4a0">
+              <span class="interactive-card-icon">🚀</span>
+              <div class="interactive-card-body">
+                <h3>End-to-End User Flow Simulator (Login → 2FA Gate → Dashboard)</h3>
+                <p>Launch the interactive website clone simulation: experience signing in, passing the "2FA not enabled" security screen (Email OTP or Authenticator app), and landing on the live user dashboard with interactive Deposit and Wallet actions!</p>
+                <button type="button" class="btn-action-primary open-user-flow-sim-btn">
+                  Launch Full User Flow Simulator <b>➔</b>
+                </button>
+              </div>
+            </div>
           </div>
         </section>
       ` : ''}
@@ -1847,6 +2029,14 @@ function openModule(id) {
   const bankBtn = detail.querySelector('.open-bank-modal-btn');
   if (bankBtn) {
     bankBtn.addEventListener('click', () => openBankConnectModalDemo(bankBtn));
+  }
+  const cryptoBtn = detail.querySelector('.open-crypto-modal-btn');
+  if (cryptoBtn) {
+    cryptoBtn.addEventListener('click', () => openSaveCryptoModalDemo(cryptoBtn));
+  }
+  const flowSimBtn = detail.querySelector('.open-user-flow-sim-btn');
+  if (flowSimBtn) {
+    flowSimBtn.addEventListener('click', () => openZyvestUserFlowSimulator(flowSimBtn));
   }
 
   detail.addEventListener('click', event => { if (event.target === detail) close(); });
